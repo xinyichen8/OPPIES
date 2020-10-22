@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isImp=false;
 int intCount=0;
-String className="";
+Class c;
 ArrayList<String> parent = new ArrayList<String>();
 }
 @lexer::header{
@@ -71,7 +71,7 @@ classDeclaration
     ;
     
 normalClassDeclaration
-    :   'class' Identifier {className=$Identifier.text;} typeParameters?
+    :   'class' Identifier {c=new Class($Identifier.text);} typeParameters?
         ('extends'{isExtends=true;} type)?
         ('implements'{isImp= true;} typeList)?
         classBody
@@ -115,7 +115,7 @@ interfaceDeclaration
     ;
     
 normalInterfaceDeclaration
-    :   'interface' Identifier{parent.add($Identifier.text);} typeParameters? ('extends' typeList)? interfaceBody
+    :   'interface' Identifier typeParameters? ('extends' typeList)? interfaceBody
     ;
     
 typeList
@@ -287,10 +287,10 @@ type
 
 classOrInterfaceType
 	:	I1=Identifier {if(isExtends){ 
-	                          System.out.println("extends "+$I1.text); isExtends=false;} 
+	                          parent.add($I1.text); isExtends=false;} 
 	                       else 
 	                       if(isImp){
-	                       	  System.out.println("implements "+$I1.text); isExtends=false;
+	                       	  parent.add($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
 	                       else

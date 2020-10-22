@@ -1,4 +1,4 @@
-// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-19 13:26:05
+// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-22 16:09:19
 
 package javaplain;
 
@@ -167,7 +167,7 @@ public class JavaPlainParser extends Parser {
 
 	boolean isExtends=false, isImp=false;
 	int intCount=0;
-	String className="";
+	Class c;
 	ArrayList<String> parent = new ArrayList<String>();
 
 
@@ -974,8 +974,8 @@ public class JavaPlainParser extends Parser {
 			{
 			match(input,66,FOLLOW_66_in_normalClassDeclaration464); if (state.failed) return;
 			Identifier1=(Token)match(input,Identifier,FOLLOW_Identifier_in_normalClassDeclaration466); if (state.failed) return;
-			if ( state.backtracking==0 ) {className=(Identifier1!=null?Identifier1.getText():null);}
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:74:58: ( typeParameters )?
+			if ( state.backtracking==0 ) {c=new Class((Identifier1!=null?Identifier1.getText():null));}
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:74:61: ( typeParameters )?
 			int alt17=2;
 			int LA17_0 = input.LA(1);
 			if ( (LA17_0==49) ) {
@@ -983,7 +983,7 @@ public class JavaPlainParser extends Parser {
 			}
 			switch (alt17) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:74:58: typeParameters
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:74:61: typeParameters
 					{
 					pushFollow(FOLLOW_typeParameters_in_normalClassDeclaration470);
 					typeParameters();

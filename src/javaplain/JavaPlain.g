@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isImp=false;
 int intCount=0;
-String className="";
+Class c;
 ArrayList<String> parent = new ArrayList<String>();
 }
 @lexer::header{
@@ -71,7 +71,7 @@ classDeclaration
     ;
     
 normalClassDeclaration
-    :   'class' Identifier {className=$Identifier.text;} typeParameters?
+    :   'class' Identifier {c=new Class($Identifier.text);} typeParameters?
         ('extends'{isExtends=true;} type)?
         ('implements'{isImp= true;} typeList)?
         classBody
