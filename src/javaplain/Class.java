@@ -6,6 +6,7 @@ public class Class
 {
 	private String name;
 	private ArrayList<Method> method;
+	private ArrayList<DataMem> dm;
 	private boolean isFinal;
 	private boolean isStatic;
 	private String extend;
@@ -18,11 +19,17 @@ public class Class
 		this.isFinal=false;
 		this.isStatic=false;
 		this.method=new ArrayList<Method>();
+		this.dm=new ArrayList<DataMem>();
 	}
 	
 	public void addMethod(Method m)
 	{
 		method.add(m);
+	}
+	
+	public void addDM(DataMem d)
+	{
+		this.dm.add(d);
 	}
 	
 	public void setfinal(boolean f)
@@ -48,6 +55,11 @@ public class Class
 	public ArrayList<Method> getMethod()
 	{
 		return this.method;
+	}
+	
+	public ArrayList<DataMem> getDM()
+	{
+		return this.dm;
 	}
 	
 	public boolean isf()
