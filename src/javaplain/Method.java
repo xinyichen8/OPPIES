@@ -11,6 +11,7 @@ public class Method {
 	private boolean isStatic;
 	private ArrayList<DataMem> localVar;
 	private ArrayList<Call> call;
+	private ArrayList<Param> param;
 	
 	public Method(String name)
 	{
@@ -20,6 +21,7 @@ public class Method {
 		abs=false;
 		localVar = new ArrayList<DataMem>();
 		call= new ArrayList<Call>();
+		param = new ArrayList<Param>();
 		isFinal =false;
 		isStatic=false;
 	}
@@ -57,6 +59,11 @@ public class Method {
 	public void addCall(Call c)
 	{
 		this.call.add(c);
+	}
+	
+	public void addParam(Param p)
+	{
+		this.param.add(p);
 	}
 	
 	public String getName()
@@ -97,5 +104,10 @@ public class Method {
 	public ArrayList<Call> getCall()
 	{
 		return this.call;
+	}
+	
+	public ArrayList<Param> getParam()
+	{
+		return this.param;
 	}
 }
