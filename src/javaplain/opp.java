@@ -13,10 +13,9 @@ public class opp {
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		JavaPlainParser parser = new JavaPlainParser(tokens);
 		parser.compilationUnit();
-		
-		
-		
-		System.out.println("Class: " + parser.c.getName());
-		System.out.println("Parent: " + parser.parent.get(0));
+		for(Method s: parser.c.getMethod())
+		{
+			System.out.println(s.getp()+" " +s.getType()+" "+ s.getName());
+		}
 	}
 }

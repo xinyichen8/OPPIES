@@ -5,10 +5,13 @@ options {backtrack=true; memoize=true;}
 package javaplain;
 }
 @members{
-boolean isExtends=false, isImp=false;
+boolean isExtends=false, isImp=false, isMethod=false;
 int intCount=0;
-Class c;
-ArrayList<String> parent = new ArrayList<String>();
+Class c = new Class();
+ArrayList<Method> m = new ArrayList<Method>();
+int l = -1;
+String type="";
+String p ="";
 }
 @lexer::header{
 package javaplain;
@@ -71,7 +74,7 @@ classDeclaration
     ;
     
 normalClassDeclaration
-    :   'class' Identifier {c=new Class($Identifier.text);} typeParameters?
+    :   'class' Identifier {c.addName($Identifier.text);} typeParameters?
         ('extends'{isExtends=true;} type)?
         ('implements'{isImp= true;} typeList)?
         classBody
@@ -139,7 +142,11 @@ classBodyDeclaration
 memberDecl
     :   genericMethodOrConstructorDecl
     |   memberDeclaration
-    |   'void' Identifier voidMethodDeclaratorRest
+    |   'void' Identifier{c.addMethod(new Method("void"));
+    				l++;
+    				c.getMethod().get(l).addName($Identifier.text);
+    				c.getMethod().get(l).setp(p);} 
+    				voidMethodDeclaratorRest
     |   Identifier constructorDeclaratorRest
     |   interfaceDeclaration
     |   classDeclaration
@@ -158,8 +165,13 @@ genericMethodOrConstructorRest
     |   Identifier constructorDeclaratorRest
     ;
 
+//method type and name here
 methodDeclaration
-    :   Identifier methodDeclaratorRest
+    :   Identifier{c.addMethod(new Method(type));
+    			l++;
+    			c.getMethod().get(l).addName($Identifier.text);
+    			c.getMethod().get(l).setp(p);}
+    			 methodDeclaratorRest
     ;
 
 fieldDeclaration
@@ -255,7 +267,7 @@ arrayInitializer
 
 modifier
     :   annotation
-    |   'public'
+    |   'public' {p="public";}
     |   'protected'
     |   'private'
     |   'static'
@@ -287,10 +299,10 @@ type
 
 classOrInterfaceType
 	:	I1=Identifier {if(isExtends){ 
-	                          parent.add($I1.text); isExtends=false;} 
+	                          c.setExtend($I1.text); isExtends=false;} 
 	                       else 
 	                       if(isImp){
-	                       	  parent.add($I1.text); isExtends=false;
+	                       	  c.addImplement($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
 	                       else
@@ -299,14 +311,14 @@ classOrInterfaceType
 	;
 
 primitiveType
-    :   'boolean'
-    |   'char'
-    |   'byte'
-    |   'short'
-    |   'int' {System.out.println("Found int"); intCount++;}
-    |   'long'
-    |   'float'
-    |   'double'
+    :   'boolean'{type="boolean";}
+    |   'char' {type="char";}//{if(isMethod==true){c.addMethod(new Method("char"));l++;isMethod=false;}}
+    |   'byte' {type="byte";}//{if(isMethod==true){c.addMethod(new Method("byte"));l++;isMethod=false;}}
+    |   'short' {type="short";}//{if(isMethod==true){c.addMethod(new Method("short"));l++;isMethod=false;}}
+    |   'int' {type="int";}//{if(isMethod==true){c.addMethod(new Method("int"));l++;isMethod=false;}}
+    |   'long'{type="long";}//{if(isMethod==true){c.addMethod(new Method("long"));l++;isMethod=false;}}
+    |   'float'{type="float";}//{if(isMethod==true){c.addMethod(new Method("float"));l++;isMethod=false;}}
+    |   'double'{type="double";}//{if(isMethod==true){c.addMethod(new Method("double"));l++;isMethod=false;}}
     ;
 
 variableModifier
