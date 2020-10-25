@@ -13,7 +13,7 @@ int l = -1;
 int v = -1;
 String type="";
 String p ="";
-boolean classMemberFlag=false;
+boolean classMemberFlag=true;
 }
 @lexer::header{
 package javaplain;
@@ -145,11 +145,13 @@ memberDecl
     :   genericMethodOrConstructorDecl
     |   memberDeclaration
     |   'void' Identifier{c.addMethod(new Method("void"));
+    				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
     				c.getMethod().get(l).setp(p);} 
     				voidMethodDeclaratorRest
     |   Identifier constructorDeclaratorRest{c.addMethod(new Method("constructor"));
+    				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
     				c.getMethod().get(l).setp(p);} 
@@ -172,7 +174,9 @@ genericMethodOrConstructorRest
 
 //method type and name here
 methodDeclaration
-    :   Identifier{c.addMethod(new Method(type));
+    :   Identifier{
+    			classMemberFlag=false;
+    			c.addMethod(new Method(type));
     			l++;
     			c.getMethod().get(l).addName($Identifier.text);
     			c.getMethod().get(l).setp(p);}
@@ -230,11 +234,11 @@ interfaceGenericMethodDecl
     ;
     
 voidInterfaceMethodDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)? ';'
+    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? ';'
     ;
     
 constructorDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)? constructorBody
+    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? constructorBody
     ;
 
 constantDeclarator
