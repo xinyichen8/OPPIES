@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
+import org.stringtemplate.v4.compiler.STParser.compoundElement_return;
 
 public class opp {
 	public static void main(String[] args) throws IOException, RecognitionException 
@@ -17,5 +18,11 @@ public class opp {
 		{
 			System.out.println(s.getp()+" " +s.getType()+" "+ s.getName());
 		}
+		System.out.println("===========================");
+		System.out.println(parser.c.getName());
+		for(DataMem dataMem : parser.c.getDM())
+			System.out.println(dataMem.getp()+" " + dataMem.getType()+" " +dataMem.getName());
+		System.out.println("isStatic: " + parser.c.iss());
+		
 	}
 }
