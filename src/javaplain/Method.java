@@ -13,17 +13,22 @@ public class Method {
 	private ArrayList<Call> call;
 	private ArrayList<Param> param;
 	
-	public Method(String name)
+	public Method(String type)
+	{
+		this.name="";
+		this.type=type;
+		this.pri_pub="";
+		this.abs=false;
+		this.localVar = new ArrayList<DataMem>();
+		this.call= new ArrayList<Call>();
+		this.param = new ArrayList<Param>();
+		this.isFinal =false;
+		this.isStatic=false;
+	}
+	
+	public void addName(String name)
 	{
 		this.name=name;
-		type="";
-		pri_pub="";
-		abs=false;
-		localVar = new ArrayList<DataMem>();
-		call= new ArrayList<Call>();
-		param = new ArrayList<Param>();
-		isFinal =false;
-		isStatic=false;
 	}
 	
 	public void settype(String t)

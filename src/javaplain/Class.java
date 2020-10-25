@@ -11,15 +11,20 @@ public class Class
 	private boolean isStatic;
 	private String extend;
 	private ArrayList<String> implement;
-	public Class(String name)
+	public Class()
 	{
-		this.name=name;
+		this.name="";
 		this.extend="";
 		this.implement=new ArrayList<String>();
 		this.isFinal=false;
 		this.isStatic=false;
 		this.method=new ArrayList<Method>();
 		this.dm=new ArrayList<DataMem>();
+	}
+	
+	public void addName(String name)
+	{
+		this.name=name;
 	}
 	
 	public void addMethod(Method m)
@@ -46,6 +51,7 @@ public class Class
 	{
 		this.extend=e;
 	}
+	
 	
 	public void addImplement(String i)
 	{
@@ -100,13 +106,13 @@ public class Class
 			}
 			else
 			{
-				return this.name+" extend "+this.extend + " implements "+sb.toString();
+				return this.name+" extends "+this.extend + " implements "+sb.toString();
 			}
 		}
 		else if(implement.size()==0)
 		{
 			if(!extend.equals(""))
-				return this.name+" extend "+this.extend;
+				return this.name+" extends "+this.extend;
 		}
 		return this.name;
 	}
