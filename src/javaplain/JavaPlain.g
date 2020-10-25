@@ -10,8 +10,10 @@ int intCount=0;
 Class c = new Class();
 ArrayList<Method> m = new ArrayList<Method>();
 int l = -1;
+int v = -1;
 String type="";
 String p ="";
+boolean classMemberFlag=false;
 }
 @lexer::header{
 package javaplain;
@@ -59,8 +61,8 @@ classOrInterfaceModifier
     |   'protected'   {System.out.println("found protected");}// class or interface
     |   'private'     {System.out.println("found private");}// class or interface
     |   'abstract'   // class or interface
-    |   'static'     // class or interface
-    |   'final'      // class only -- does not apply to interfaces
+    |   'static'     {c.setStatic(true);}// class or interface
+    |   'final'      {c.setfinal(true);}// class only -- does not apply to interfaces
     |   'strictfp'   // class or interface
     ;
 
@@ -85,7 +87,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier ('extends' typeBound)?
+    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -93,7 +95,7 @@ typeBound
     ;
 
 enumDeclaration
-    :   ENUM Identifier ('implements' typeList)? enumBody
+    :   ENUM Identifier ('implements' typeList)? enumBody {c.addImplement($Identifier.text);}
     ;
 
 enumBody
@@ -147,7 +149,10 @@ memberDecl
     				c.getMethod().get(l).addName($Identifier.text);
     				c.getMethod().get(l).setp(p);} 
     				voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest
+    |   Identifier constructorDeclaratorRest{c.addMethod(new Method("constructor"));
+    				l++;
+    				c.getMethod().get(l).addName($Identifier.text);
+    				c.getMethod().get(l).setp(p);} 
     |   interfaceDeclaration
     |   classDeclaration
     ;
@@ -175,7 +180,7 @@ methodDeclaration
     ;
 
 fieldDeclaration
-    :   variableDeclarators ';'
+    :   variableDeclarators ';'{classMemberFlag=true;}
     ;
         
 interfaceBodyDeclaration
@@ -201,7 +206,7 @@ interfaceMethodOrFieldRest
     ;
     
 methodDeclaratorRest
-    :   formalParameters ('[' ']')*
+    :   formalParameters ('[' ']')* 
         ('throws' qualifiedNameList)?
         (   methodBody
         |   ';'
@@ -237,7 +242,7 @@ constantDeclarator
     ;
     
 variableDeclarators
-    :   variableDeclarator (',' variableDeclarator)*
+    :   variableDeclarator (',' variableDeclarator)* 
     ;
 
 variableDeclarator
@@ -253,7 +258,12 @@ constantDeclaratorRest
     ;
     
 variableDeclaratorId
-    :   Identifier ('[' ']')*
+    :   Identifier {if(classMemberFlag){
+    			c.addDM(new DataMem($Identifier.text));
+    			v++;
+    			c.getDM().get(v).settype(type);
+    			c.getDM().get(v).setp(p);
+    			classMemberFlag=false;}} ('[' ']')*
     ;
 
 variableInitializer
@@ -269,7 +279,7 @@ modifier
     :   annotation
     |   'public' {p="public";}
     |   'protected'
-    |   'private'
+    |   'private' {p="private";}
     |   'static'
     |   'abstract'
     |   'final'
@@ -306,8 +316,10 @@ classOrInterfaceType
 	                       	  isImp=false;
 	                       } 
 	                       else
-	                       System.out.println("Found type " + $I1.text);}
-	         typeArguments? ('.' Identifier typeArguments? )*
+	                       System.out.println("Found type " + $I1.text);
+	                       
+	                       type = $I1.text;}
+	         typeArguments? ('.' Identifier typeArguments?)*
 	;
 
 primitiveType

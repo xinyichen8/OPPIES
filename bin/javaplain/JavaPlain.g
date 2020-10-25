@@ -5,10 +5,15 @@ options {backtrack=true; memoize=true;}
 package javaplain;
 }
 @members{
-boolean isExtends=false, isImp=false;
+boolean isExtends=false, isImp=false, isMethod=false;
 int intCount=0;
-Class c;
-ArrayList<String> parent = new ArrayList<String>();
+Class c = new Class();
+ArrayList<Method> m = new ArrayList<Method>();
+int l = -1;
+int v = -1;
+String type="";
+String p ="";
+boolean classMemberFlag=false;
 }
 @lexer::header{
 package javaplain;
@@ -56,8 +61,8 @@ classOrInterfaceModifier
     |   'protected'   {System.out.println("found protected");}// class or interface
     |   'private'     {System.out.println("found private");}// class or interface
     |   'abstract'   // class or interface
-    |   'static'     // class or interface
-    |   'final'      // class only -- does not apply to interfaces
+    |   'static'     {c.setStatic(true);}// class or interface
+    |   'final'      {c.setfinal(true);}// class only -- does not apply to interfaces
     |   'strictfp'   // class or interface
     ;
 
@@ -71,7 +76,7 @@ classDeclaration
     ;
     
 normalClassDeclaration
-    :   'class' Identifier {c=new Class($Identifier.text);} typeParameters?
+    :   'class' Identifier {c.addName($Identifier.text);} typeParameters?
         ('extends'{isExtends=true;} type)?
         ('implements'{isImp= true;} typeList)?
         classBody
@@ -82,7 +87,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier ('extends' typeBound)?
+    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -90,7 +95,7 @@ typeBound
     ;
 
 enumDeclaration
-    :   ENUM Identifier ('implements' typeList)? enumBody
+    :   ENUM Identifier ('implements' typeList)? enumBody {c.addImplement($Identifier.text);}
     ;
 
 enumBody
@@ -139,8 +144,15 @@ classBodyDeclaration
 memberDecl
     :   genericMethodOrConstructorDecl
     |   memberDeclaration
-    |   'void' Identifier voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest
+    |   'void' Identifier{c.addMethod(new Method("void"));
+    				l++;
+    				c.getMethod().get(l).addName($Identifier.text);
+    				c.getMethod().get(l).setp(p);} 
+    				voidMethodDeclaratorRest
+    |   Identifier constructorDeclaratorRest{c.addMethod(new Method("constructor"));
+    				l++;
+    				c.getMethod().get(l).addName($Identifier.text);
+    				c.getMethod().get(l).setp(p);} 
     |   interfaceDeclaration
     |   classDeclaration
     ;
@@ -158,12 +170,17 @@ genericMethodOrConstructorRest
     |   Identifier constructorDeclaratorRest
     ;
 
+//method type and name here
 methodDeclaration
-    :   Identifier methodDeclaratorRest
+    :   Identifier{c.addMethod(new Method(type));
+    			l++;
+    			c.getMethod().get(l).addName($Identifier.text);
+    			c.getMethod().get(l).setp(p);}
+    			 methodDeclaratorRest
     ;
 
 fieldDeclaration
-    :   variableDeclarators ';'
+    :   variableDeclarators ';'{classMemberFlag=true;}
     ;
         
 interfaceBodyDeclaration
@@ -189,7 +206,7 @@ interfaceMethodOrFieldRest
     ;
     
 methodDeclaratorRest
-    :   formalParameters ('[' ']')*
+    :   formalParameters ('[' ']')* 
         ('throws' qualifiedNameList)?
         (   methodBody
         |   ';'
@@ -225,7 +242,7 @@ constantDeclarator
     ;
     
 variableDeclarators
-    :   variableDeclarator (',' variableDeclarator)*
+    :   variableDeclarator (',' variableDeclarator)* 
     ;
 
 variableDeclarator
@@ -241,7 +258,12 @@ constantDeclaratorRest
     ;
     
 variableDeclaratorId
-    :   Identifier ('[' ']')*
+    :   Identifier {if(classMemberFlag){
+    			c.addDM(new DataMem($Identifier.text));
+    			v++;
+    			c.getDM().get(v).settype(type);
+    			c.getDM().get(v).setp(p);
+    			classMemberFlag=false;}} ('[' ']')*
     ;
 
 variableInitializer
@@ -255,9 +277,9 @@ arrayInitializer
 
 modifier
     :   annotation
-    |   'public'
+    |   'public' {p="public";}
     |   'protected'
-    |   'private'
+    |   'private' {p="private";}
     |   'static'
     |   'abstract'
     |   'final'
@@ -287,26 +309,28 @@ type
 
 classOrInterfaceType
 	:	I1=Identifier {if(isExtends){ 
-	                          parent.add($I1.text); isExtends=false;} 
+	                          c.setExtend($I1.text); isExtends=false;} 
 	                       else 
 	                       if(isImp){
-	                       	  parent.add($I1.text); isExtends=false;
+	                       	  c.addImplement($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
 	                       else
-	                       System.out.println("Found type " + $I1.text);}
-	         typeArguments? ('.' Identifier typeArguments? )*
+	                       System.out.println("Found type " + $I1.text);
+	                       
+	                       type = $I1.text;}
+	         typeArguments? ('.' Identifier typeArguments?)*
 	;
 
 primitiveType
-    :   'boolean'
-    |   'char'
-    |   'byte'
-    |   'short'
-    |   'int' {System.out.println("Found int"); intCount++;}
-    |   'long'
-    |   'float'
-    |   'double'
+    :   'boolean'{type="boolean";}
+    |   'char' {type="char";}//{if(isMethod==true){c.addMethod(new Method("char"));l++;isMethod=false;}}
+    |   'byte' {type="byte";}//{if(isMethod==true){c.addMethod(new Method("byte"));l++;isMethod=false;}}
+    |   'short' {type="short";}//{if(isMethod==true){c.addMethod(new Method("short"));l++;isMethod=false;}}
+    |   'int' {type="int";}//{if(isMethod==true){c.addMethod(new Method("int"));l++;isMethod=false;}}
+    |   'long'{type="long";}//{if(isMethod==true){c.addMethod(new Method("long"));l++;isMethod=false;}}
+    |   'float'{type="float";}//{if(isMethod==true){c.addMethod(new Method("float"));l++;isMethod=false;}}
+    |   'double'{type="double";}//{if(isMethod==true){c.addMethod(new Method("double"));l++;isMethod=false;}}
     ;
 
 variableModifier
