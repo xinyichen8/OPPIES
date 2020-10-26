@@ -16,6 +16,13 @@ public class opp {
 		for(Method s: parser.c.getMethod())
 		{
 			System.out.println(s.getp()+" " +s.getType()+" "+ s.getName()+" "+s.gets());
+			if(s.getParam().size()>0)
+			{
+				for(Param p:s.getParam())
+				{
+					System.out.println("    parameter "+p.getParam());
+				}
+			}
 			if(s.getVar().size()>0) {
 				for(DataMem d : s.getVar())
 				{
@@ -27,7 +34,7 @@ public class opp {
 		System.out.println("===========================");
 		System.out.println(parser.c.getName());
 		for(DataMem dataMem : parser.c.getDM())
-			System.out.println(dataMem.getp()+" " + dataMem.getType()+" " +dataMem.getName());
+			System.out.println(dataMem.getp()+" " + dataMem.getType()+" " +dataMem.getName()+" "+dataMem.gets());
 		System.out.println("isAbs: " + parser.c.isAbs());
 		
 		

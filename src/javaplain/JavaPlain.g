@@ -7,11 +7,13 @@ package javaplain;
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=0;
+boolean param=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
 int v = -1;
 int lv = -1;
+int pa=-1;
 String type="";
 String p ="";
 boolean classMemberFlag=true;
@@ -162,10 +164,9 @@ memberDecl
 	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
 	    			lv=-1;
 	    			p="";
-	    			isMethod=true;
 	    			} 
-    				voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest{c.addMethod(new Method(""));
+    				{param=true;}voidMethodDeclaratorRest{isMethod=false;}
+    |   Identifier{c.addMethod(new Method(""));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
@@ -182,8 +183,9 @@ memberDecl
 	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
 	    			lv=-1;
 	    			p="";
-	    			isMethod=true;
 	    			} 
+	    			 constructorDeclaratorRest
+	    			
     |   interfaceDeclaration
     |   classDeclaration
     ;
@@ -221,14 +223,12 @@ methodDeclaration
     			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
     			lv=-1;
     			p="";
-    			isMethod=true;
     			}
-    			
-    			 methodDeclaratorRest
+    			 {param=true;}methodDeclaratorRest{isMethod=false;}
     ;
 
 fieldDeclaration
-    :   variableDeclarators ';'{classMemberFlag=true;}
+    :   variableDeclarators ';'
     ;
         
 interfaceBodyDeclaration
@@ -254,7 +254,7 @@ interfaceMethodOrFieldRest
     ;
     
 methodDeclaratorRest
-    :   formalParameters ('[' ']')* 
+    :   formalParameters ('[' ']')* {isMethod=true;}
         ('throws' qualifiedNameList)?
         (   methodBody
         |   ';'
@@ -262,7 +262,7 @@ methodDeclaratorRest
     ;
     
 voidMethodDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)?
+    :   formalParameters ('throws' qualifiedNameList)?{isMethod=true;}
         (   methodBody
         |   ';'
         )
@@ -282,7 +282,7 @@ voidInterfaceMethodDeclaratorRest
     ;
     
 constructorDeclaratorRest
-    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? constructorBody
+    :   {classMemberFlag=false;param=true;}formalParameters{param=false;} ('throws' qualifiedNameList)? constructorBody
     ;
 
 constantDeclarator
@@ -311,15 +311,27 @@ variableDeclaratorId
     			v++;
     			c.getDM().get(v).settype(type);
     			c.getDM().get(v).setp(p);
-    			classMemberFlag=false;}
+    			c.getDM().get(v).setabs(isabt);
+    			c.getDM().get(v).sets(isstat);
+    			c.getDM().get(v).setf(isf);
+    			classMemberFlag=false;
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;}
     			
     			else if(isMethod){
     			c.getMethod().get(l).addVar(new DataMem($Identifier.text));
     			lv++;
     			c.getMethod().get(l).getVar().get(lv).settype(type);
     			c.getMethod().get(l).getVar().get(lv).setp(p);
+    			c.getMethod().get(l).getVar().get(lv).setabs(isabt);
+    			c.getMethod().get(l).getVar().get(lv).sets(isstat);
+    			c.getMethod().get(l).getVar().get(lv).setf(isf);
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
     			
     			}
+    			else if (param){
+    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));
+    			}
+    			
     			} ('[' ']')*
     ;
 
@@ -409,7 +421,7 @@ qualifiedNameList
     ;
 
 formalParameters
-    :   '(' formalParameterDecls? ')'
+    :   '(' formalParameterDecls? {param=false;}')'
     ;
     
 formalParameterDecls
@@ -580,7 +592,7 @@ catches
     ;
     
 catchClause
-    :   'catch' '(' formalParameter ')' block
+    :   'catch' '(' formalParameter ')'  block
     ;
 
 formalParameter
