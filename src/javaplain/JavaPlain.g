@@ -5,12 +5,13 @@ options {backtrack=true; memoize=true;}
 package javaplain;
 }
 @members{
-boolean isExtends=false, isImp=false, isMethod=false;
+boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=0;
+ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
-ArrayList<Method> m = new ArrayList<Method>();
 int l = -1;
 int v = -1;
+int lv = -1;
 String type="";
 String p ="";
 boolean classMemberFlag=true;
@@ -57,13 +58,13 @@ classOrInterfaceModifiers
 
 classOrInterfaceModifier
     :   annotation   // class or interface
-    |   'public'     {System.out.println("found public");}// class or interface
-    |   'protected'   {System.out.println("found protected");}// class or interface
-    |   'private'     {System.out.println("found private");}// class or interface
-    |   'abstract'   // class or interface
+    |   'public'     // class or interface
+    |   'protected'  {c.setProtect(true);}// class or interface
+    |   'private'    // class or interface
+    |   'abstract'   {c.setAbs(true);}// class or interface
     |   'static'     {c.setStatic(true);}// class or interface
     |   'final'      {c.setfinal(true);}// class only -- does not apply to interfaces
-    |   'strictfp'   // class or interface
+    |   'strictfp'   {c.setStrifp(true);}// class or interface
     ;
 
 modifiers
@@ -87,7 +88,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
+    :   Identifier{System.out.println($Identifier.text);} ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -148,13 +149,41 @@ memberDecl
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
-    				c.getMethod().get(l).setp(p);} 
+    				c.getMethod().get(l).setp(p);
+    				c.getMethod().get(l).setf(isf);
+	    			c.getMethod().get(l).setabs(isabt);
+	    			c.getMethod().get(l).sets(isstat);
+	    			c.getMethod().get(l).setProtect(isProtect);
+	    			c.getMethod().get(l).setStrifp(isstrict);
+	    			c.getMethod().get(l).setNatives(isnative);
+	    			c.getMethod().get(l).setTransients(istran);
+	    			c.getMethod().get(l).setVola(isvolatile);
+	    			c.getMethod().get(l).setSync(issync);
+	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+	    			lv=-1;
+	    			p="";
+	    			isMethod=true;
+	    			} 
     				voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest{c.addMethod(new Method("constructor"));
+    |   Identifier constructorDeclaratorRest{c.addMethod(new Method(""));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
-    				c.getMethod().get(l).setp(p);} 
+    				c.getMethod().get(l).setp(p);
+    				c.getMethod().get(l).setf(isf);
+	    			c.getMethod().get(l).setabs(isabt);
+	    			c.getMethod().get(l).sets(isstat);
+	    			c.getMethod().get(l).setProtect(isProtect);
+	    			c.getMethod().get(l).setStrifp(isstrict);
+	    			c.getMethod().get(l).setNatives(isnative);
+	    			c.getMethod().get(l).setTransients(istran);
+	    			c.getMethod().get(l).setVola(isvolatile);
+	    			c.getMethod().get(l).setSync(issync);
+	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+	    			lv=-1;
+	    			p="";
+	    			isMethod=true;
+	    			} 
     |   interfaceDeclaration
     |   classDeclaration
     ;
@@ -179,7 +208,22 @@ methodDeclaration
     			c.addMethod(new Method(type));
     			l++;
     			c.getMethod().get(l).addName($Identifier.text);
-    			c.getMethod().get(l).setp(p);}
+    			c.getMethod().get(l).setp(p);
+    			c.getMethod().get(l).setf(isf);
+    			c.getMethod().get(l).setabs(isabt);
+    			c.getMethod().get(l).sets(isstat);
+    			c.getMethod().get(l).setProtect(isProtect);
+    			c.getMethod().get(l).setStrifp(isstrict);
+    			c.getMethod().get(l).setNatives(isnative);
+    			c.getMethod().get(l).setTransients(istran);
+    			c.getMethod().get(l).setVola(isvolatile);
+    			c.getMethod().get(l).setSync(issync);
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+    			lv=-1;
+    			p="";
+    			isMethod=true;
+    			}
+    			
     			 methodDeclaratorRest
     ;
 
@@ -267,7 +311,16 @@ variableDeclaratorId
     			v++;
     			c.getDM().get(v).settype(type);
     			c.getDM().get(v).setp(p);
-    			classMemberFlag=false;}} ('[' ']')*
+    			classMemberFlag=false;}
+    			
+    			else if(isMethod){
+    			c.getMethod().get(l).addVar(new DataMem($Identifier.text));
+    			lv++;
+    			c.getMethod().get(l).getVar().get(lv).settype(type);
+    			c.getMethod().get(l).getVar().get(lv).setp(p);
+    			
+    			}
+    			} ('[' ']')*
     ;
 
 variableInitializer
@@ -282,16 +335,16 @@ arrayInitializer
 modifier
     :   annotation
     |   'public' {p="public";}
-    |   'protected'
+    |   'protected' {isProtect=true;}//{mod.add("static");}
     |   'private' {p="private";}
-    |   'static'
-    |   'abstract'
-    |   'final'
-    |   'native'
-    |   'synchronized'
-    |   'transient'
-    |   'volatile'
-    |   'strictfp'
+    |   'static' {isstat=true;}//{mod.add("static");}
+    |   'abstract' {isabt=true;}//{mod.add("static");}
+    |   'final' {isf=true;}//{mod.add("static");}
+    |   'native' {isnative=true;}//{mod.add("static");}
+    |   'synchronized'{issync=true;} //{mod.add("static");}
+    |   'transient' {istran=true;}//{mod.add("static");}
+    |   'volatile' {isvolatile=true;}//{mod.add("static");}
+    |   'strictfp' {isstrict=true;}//{mod.add("static");}
     ;
 
 packageOrTypeName

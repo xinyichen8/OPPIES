@@ -5,15 +5,15 @@ options {backtrack=true; memoize=true;}
 package javaplain;
 }
 @members{
-boolean isExtends=false, isImp=false, isMethod=false;
+boolean isExtends=false, isImp=false, isMethod=false;//, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=0;
+ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
-ArrayList<Method> m = new ArrayList<Method>();
 int l = -1;
 int v = -1;
 String type="";
 String p ="";
-boolean classMemberFlag=false;
+boolean classMemberFlag=true;
 }
 @lexer::header{
 package javaplain;
@@ -57,13 +57,13 @@ classOrInterfaceModifiers
 
 classOrInterfaceModifier
     :   annotation   // class or interface
-    |   'public'     {System.out.println("found public");}// class or interface
-    |   'protected'   {System.out.println("found protected");}// class or interface
-    |   'private'     {System.out.println("found private");}// class or interface
-    |   'abstract'   // class or interface
+    |   'public'     // class or interface
+    |   'protected'  {c.setProtect(true);}// class or interface
+    |   'private'    // class or interface
+    |   'abstract'   {c.setAbs(true);}// class or interface
     |   'static'     {c.setStatic(true);}// class or interface
     |   'final'      {c.setfinal(true);}// class only -- does not apply to interfaces
-    |   'strictfp'   // class or interface
+    |   'strictfp'   {c.setStrifp(true);}// class or interface
     ;
 
 modifiers
@@ -87,7 +87,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
+    :   Identifier{System.out.println($Identifier.text);} ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -145,11 +145,13 @@ memberDecl
     :   genericMethodOrConstructorDecl
     |   memberDeclaration
     |   'void' Identifier{c.addMethod(new Method("void"));
+    				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
     				c.getMethod().get(l).setp(p);} 
     				voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest{c.addMethod(new Method("constructor"));
+    |   Identifier constructorDeclaratorRest{c.addMethod(new Method(""));
+    				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
     				c.getMethod().get(l).setp(p);} 
@@ -172,7 +174,9 @@ genericMethodOrConstructorRest
 
 //method type and name here
 methodDeclaration
-    :   Identifier{c.addMethod(new Method(type));
+    :   Identifier{
+    			classMemberFlag=false;
+    			c.addMethod(new Method(type));
     			l++;
     			c.getMethod().get(l).addName($Identifier.text);
     			c.getMethod().get(l).setp(p);}
@@ -184,7 +188,7 @@ fieldDeclaration
     ;
         
 interfaceBodyDeclaration
-    :   modifiers interfaceMemberDecl
+    :   {mod.clear();}modifiers{c.addModifier(mod);} interfaceMemberDecl
     |   ';'
     ;
 
@@ -230,11 +234,11 @@ interfaceGenericMethodDecl
     ;
     
 voidInterfaceMethodDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)? ';'
+    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? ';'
     ;
     
 constructorDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)? constructorBody
+    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? constructorBody
     ;
 
 constantDeclarator
@@ -278,16 +282,16 @@ arrayInitializer
 modifier
     :   annotation
     |   'public' {p="public";}
-    |   'protected'
+    |   'protected' {mod.add("static");}
     |   'private' {p="private";}
-    |   'static'
-    |   'abstract'
-    |   'final'
-    |   'native'
-    |   'synchronized'
-    |   'transient'
-    |   'volatile'
-    |   'strictfp'
+    |   'static' {mod.add("static");}
+    |   'abstract' {mod.add("static");}
+    |   'final' {mod.add("static");}
+    |   'native' {mod.add("static");}
+    |   'synchronized' {mod.add("static");}
+    |   'transient' {mod.add("static");}
+    |   'volatile' {mod.add("static");}
+    |   'strictfp' {mod.add("static");}
     ;
 
 packageOrTypeName
