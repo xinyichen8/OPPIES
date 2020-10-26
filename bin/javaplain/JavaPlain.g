@@ -5,14 +5,18 @@ options {backtrack=true; memoize=true;}
 package javaplain;
 }
 @members{
-boolean isExtends=false, isImp=false, isMethod=false;//, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
+boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=0;
+boolean param=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
 int v = -1;
+int lv = -1;
+int pa=-1;
 String type="";
 String p ="";
+StringBuilder sb = new StringBuilder();
 boolean classMemberFlag=true;
 }
 @lexer::header{
@@ -148,13 +152,41 @@ memberDecl
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
-    				c.getMethod().get(l).setp(p);} 
-    				voidMethodDeclaratorRest
-    |   Identifier constructorDeclaratorRest{c.addMethod(new Method(""));
+    				c.getMethod().get(l).setp(p);
+    				c.getMethod().get(l).setf(isf);
+	    			c.getMethod().get(l).setabs(isabt);
+	    			c.getMethod().get(l).sets(isstat);
+	    			c.getMethod().get(l).setProtect(isProtect);
+	    			c.getMethod().get(l).setStrifp(isstrict);
+	    			c.getMethod().get(l).setNatives(isnative);
+	    			c.getMethod().get(l).setTransients(istran);
+	    			c.getMethod().get(l).setVola(isvolatile);
+	    			c.getMethod().get(l).setSync(issync);
+	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+	    			lv=-1;
+	    			p="";
+	    			} 
+    				{param=true;}voidMethodDeclaratorRest{isMethod=false;}
+    |   Identifier{c.addMethod(new Method(""));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
-    				c.getMethod().get(l).setp(p);} 
+    				c.getMethod().get(l).setp(p);
+    				c.getMethod().get(l).setf(isf);
+	    			c.getMethod().get(l).setabs(isabt);
+	    			c.getMethod().get(l).sets(isstat);
+	    			c.getMethod().get(l).setProtect(isProtect);
+	    			c.getMethod().get(l).setStrifp(isstrict);
+	    			c.getMethod().get(l).setNatives(isnative);
+	    			c.getMethod().get(l).setTransients(istran);
+	    			c.getMethod().get(l).setVola(isvolatile);
+	    			c.getMethod().get(l).setSync(issync);
+	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+	    			lv=-1;
+	    			p="";
+	    			} 
+	    			 constructorDeclaratorRest
+	    			
     |   interfaceDeclaration
     |   classDeclaration
     ;
@@ -179,16 +211,29 @@ methodDeclaration
     			c.addMethod(new Method(type));
     			l++;
     			c.getMethod().get(l).addName($Identifier.text);
-    			c.getMethod().get(l).setp(p);}
-    			 methodDeclaratorRest
+    			c.getMethod().get(l).setp(p);
+    			c.getMethod().get(l).setf(isf);
+    			c.getMethod().get(l).setabs(isabt);
+    			c.getMethod().get(l).sets(isstat);
+    			c.getMethod().get(l).setProtect(isProtect);
+    			c.getMethod().get(l).setStrifp(isstrict);
+    			c.getMethod().get(l).setNatives(isnative);
+    			c.getMethod().get(l).setTransients(istran);
+    			c.getMethod().get(l).setVola(isvolatile);
+    			c.getMethod().get(l).setSync(issync);
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+    			lv=-1;
+    			p="";
+    			}
+    			 {param=true;}methodDeclaratorRest{isMethod=false;}
     ;
 
 fieldDeclaration
-    :   variableDeclarators ';'{classMemberFlag=true;}
+    :   variableDeclarators ';'
     ;
         
 interfaceBodyDeclaration
-    :   {mod.clear();}modifiers{c.addModifier(mod);} interfaceMemberDecl
+    :   modifiers interfaceMemberDecl
     |   ';'
     ;
 
@@ -210,7 +255,7 @@ interfaceMethodOrFieldRest
     ;
     
 methodDeclaratorRest
-    :   formalParameters ('[' ']')* 
+    :   formalParameters ('[' ']')* {isMethod=true;}
         ('throws' qualifiedNameList)?
         (   methodBody
         |   ';'
@@ -218,7 +263,7 @@ methodDeclaratorRest
     ;
     
 voidMethodDeclaratorRest
-    :   formalParameters ('throws' qualifiedNameList)?
+    :   formalParameters ('throws' qualifiedNameList)?{isMethod=true;}
         (   methodBody
         |   ';'
         )
@@ -238,7 +283,7 @@ voidInterfaceMethodDeclaratorRest
     ;
     
 constructorDeclaratorRest
-    :   {classMemberFlag=false;}formalParameters ('throws' qualifiedNameList)? constructorBody
+    :   {classMemberFlag=false;param=true;}formalParameters{param=false;} ('throws' qualifiedNameList)? constructorBody
     ;
 
 constantDeclarator
@@ -267,7 +312,28 @@ variableDeclaratorId
     			v++;
     			c.getDM().get(v).settype(type);
     			c.getDM().get(v).setp(p);
-    			classMemberFlag=false;}} ('[' ']')*
+    			c.getDM().get(v).setabs(isabt);
+    			c.getDM().get(v).sets(isstat);
+    			c.getDM().get(v).setf(isf);
+    			classMemberFlag=false;
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;}
+    			
+    			else if(isMethod){
+    			c.getMethod().get(l).addVar(new DataMem($Identifier.text));
+    			lv++;
+    			c.getMethod().get(l).getVar().get(lv).settype(type);
+    			c.getMethod().get(l).getVar().get(lv).setp(p);
+    			c.getMethod().get(l).getVar().get(lv).setabs(isabt);
+    			c.getMethod().get(l).getVar().get(lv).sets(isstat);
+    			c.getMethod().get(l).getVar().get(lv).setf(isf);
+    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
+    			
+    			}
+    			else if (param){
+    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));
+    			}
+    			
+    			} ('[' ']')*
     ;
 
 variableInitializer
@@ -282,16 +348,16 @@ arrayInitializer
 modifier
     :   annotation
     |   'public' {p="public";}
-    |   'protected' {mod.add("static");}
+    |   'protected' {isProtect=true;}//{mod.add("static");}
     |   'private' {p="private";}
-    |   'static' {mod.add("static");}
-    |   'abstract' {mod.add("static");}
-    |   'final' {mod.add("static");}
-    |   'native' {mod.add("static");}
-    |   'synchronized' {mod.add("static");}
-    |   'transient' {mod.add("static");}
-    |   'volatile' {mod.add("static");}
-    |   'strictfp' {mod.add("static");}
+    |   'static' {isstat=true;}//{mod.add("static");}
+    |   'abstract' {isabt=true;}//{mod.add("static");}
+    |   'final' {isf=true;}//{mod.add("static");}
+    |   'native' {isnative=true;}//{mod.add("static");}
+    |   'synchronized'{issync=true;} //{mod.add("static");}
+    |   'transient' {istran=true;}//{mod.add("static");}
+    |   'volatile' {isvolatile=true;}//{mod.add("static");}
+    |   'strictfp' {isstrict=true;}//{mod.add("static");}
     ;
 
 packageOrTypeName
@@ -320,7 +386,6 @@ classOrInterfaceType
 	                       	  isImp=false;
 	                       } 
 	                       else
-	                       System.out.println("Found type " + $I1.text);
 	                       
 	                       type = $I1.text;}
 	         typeArguments? ('.' Identifier typeArguments?)*
@@ -356,7 +421,7 @@ qualifiedNameList
     ;
 
 formalParameters
-    :   '(' formalParameterDecls? ')'
+    :   '(' formalParameterDecls? {param=false;}')'
     ;
     
 formalParameterDecls
@@ -527,7 +592,7 @@ catches
     ;
     
 catchClause
-    :   'catch' '(' formalParameter ')' block
+    :   'catch' '(' formalParameter ')'  block
     ;
 
 formalParameter
@@ -708,7 +773,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   primary selector* ('++'|'--')?
+    |   {sb.setLength(0);}primary selector* ('++'|'--')?
     ;
 
 castExpression
@@ -722,7 +787,7 @@ primary
     |   'super' superSuffix
     |   literal
     |   'new' creator
-    |   Identifier ('.' Identifier)* identifierSuffix?
+    |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class'
     |   'void' '.' 'class'
     ;

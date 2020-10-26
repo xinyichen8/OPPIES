@@ -20,13 +20,20 @@ public class opp {
 			{
 				for(Param p:s.getParam())
 				{
-					System.out.println("    parameter "+p.getParam());
+					System.out.println("    "+p.getParam());
 				}
 			}
 			if(s.getVar().size()>0) {
 				for(DataMem d : s.getVar())
 				{
 					System.out.println("  "+d.getp()+" " + d.getType()+ " " + d.getName());
+				}
+			}
+			if(s.getCall().size()>0)
+			{
+				for(Call c : s.getCall())
+				{
+					System.out.println(c.getCall());
 				}
 			}
 			

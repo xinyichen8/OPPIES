@@ -16,6 +16,7 @@ int lv = -1;
 int pa=-1;
 String type="";
 String p ="";
+StringBuilder sb = new StringBuilder();
 boolean classMemberFlag=true;
 }
 @lexer::header{
@@ -183,6 +184,7 @@ memberDecl
 	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
 	    			lv=-1;
 	    			p="";
+
 	    			} 
 	    			 constructorDeclaratorRest
 	    			
@@ -385,7 +387,6 @@ classOrInterfaceType
 	                       	  isImp=false;
 	                       } 
 	                       else
-	                       System.out.println("Found type " + $I1.text);
 	                       
 	                       type = $I1.text;}
 	         typeArguments? ('.' Identifier typeArguments?)*
@@ -773,7 +774,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   primary selector* ('++'|'--')?
+    |   {sb.setLength(0);}primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}} selector* ('++'|'--')?
     ;
 
 castExpression
@@ -787,7 +788,7 @@ primary
     |   'super' superSuffix
     |   literal
     |   'new' creator
-    |   Identifier ('.' Identifier)* identifierSuffix?
+    |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class'
     |   'void' '.' 'class'
     ;
