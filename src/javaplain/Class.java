@@ -10,6 +10,10 @@ public class Class
 	private boolean isFinal;
 	private boolean isStatic;
 	private String extend;
+	private boolean protect;
+	private boolean fin;
+	private boolean strifp;
+	private boolean isAbs;
 	private ArrayList<String> implement;
 	public Class()
 	{
@@ -116,4 +120,39 @@ public class Class
 		}
 		return this.name;
 	}
+
+
+	public boolean isProtect() {
+		return protect;
+	}
+
+	public void setProtect(boolean protect) {
+		this.protect = protect;
+	}
+
+	public boolean isFin() {
+		return fin;
+	}
+
+	public void setFin(boolean fin) {
+		this.fin = fin;
+	}
+
+	public boolean isStrifp() {
+		return strifp;
+	}
+
+	public void setStrifp(boolean strifp) {
+		this.strifp = strifp;
+	}
+
+	public boolean isAbs() {
+		return isAbs;
+	}
+
+	public void setAbs(boolean isAbs) {
+		this.isAbs = isAbs;
+	}
+
+	
 }

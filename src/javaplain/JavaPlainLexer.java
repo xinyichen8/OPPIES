@@ -1,4 +1,4 @@
-// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-25 12:50:19
+// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-26 15:02:37
 
 package javaplain;
 
@@ -1990,8 +1990,8 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = HexLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:859:12: ( '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )? )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:859:14: '0' ( 'x' | 'X' ) ( HexDigit )+ ( IntegerTypeSuffix )?
 			{
 			match('0'); 
 			if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -2002,7 +2002,7 @@ public class JavaPlainLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:28: ( HexDigit )+
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:859:28: ( HexDigit )+
 			int cnt1=0;
 			loop1:
 			while (true) {
@@ -2035,7 +2035,7 @@ public class JavaPlainLexer extends Lexer {
 				cnt1++;
 			}
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:38: ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:859:38: ( IntegerTypeSuffix )?
 			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0=='L'||LA2_0=='l') ) {
@@ -2074,10 +2074,10 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = DecimalLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:16: ( ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )? )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:18: ( '0' | '1' .. '9' ( '0' .. '9' )* ) ( IntegerTypeSuffix )?
 			{
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:18: ( '0' | '1' .. '9' ( '0' .. '9' )* )
 			int alt4=2;
 			int LA4_0 = input.LA(1);
 			if ( (LA4_0=='0') ) {
@@ -2095,16 +2095,16 @@ public class JavaPlainLexer extends Lexer {
 
 			switch (alt4) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:19: '0'
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:19: '0'
 					{
 					match('0'); 
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:25: '1' .. '9' ( '0' .. '9' )*
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:25: '1' .. '9' ( '0' .. '9' )*
 					{
 					matchRange('1','9'); 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:34: ( '0' .. '9' )*
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:34: ( '0' .. '9' )*
 					loop3:
 					while (true) {
 						int alt3=2;
@@ -2138,7 +2138,7 @@ public class JavaPlainLexer extends Lexer {
 
 			}
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:795:45: ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:861:45: ( IntegerTypeSuffix )?
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='L'||LA5_0=='l') ) {
@@ -2177,11 +2177,11 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = OctalLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:797:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:797:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:863:14: ( '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )? )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:863:16: '0' ( '0' .. '7' )+ ( IntegerTypeSuffix )?
 			{
 			match('0'); 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:797:20: ( '0' .. '7' )+
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:863:20: ( '0' .. '7' )+
 			int cnt6=0;
 			loop6:
 			while (true) {
@@ -2214,7 +2214,7 @@ public class JavaPlainLexer extends Lexer {
 				cnt6++;
 			}
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:797:32: ( IntegerTypeSuffix )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:863:32: ( IntegerTypeSuffix )?
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0=='L'||LA7_0=='l') ) {
@@ -2251,7 +2251,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "HexDigit"
 	public final void mHexDigit() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:801:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:867:10: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -2274,7 +2274,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "IntegerTypeSuffix"
 	public final void mIntegerTypeSuffix() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:804:19: ( ( 'l' | 'L' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:870:19: ( ( 'l' | 'L' ) )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:
 			{
 			if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
@@ -2299,14 +2299,14 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = FloatingPointLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:5: ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix )
 			int alt18=4;
 			alt18 = dfa18.predict(input);
 			switch (alt18) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:9: ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )?
 					{
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:9: ( '0' .. '9' )+
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:9: ( '0' .. '9' )+
 					int cnt8=0;
 					loop8:
 					while (true) {
@@ -2340,7 +2340,7 @@ public class JavaPlainLexer extends Lexer {
 					}
 
 					match('.'); 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:25: ( '0' .. '9' )*
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:25: ( '0' .. '9' )*
 					loop9:
 					while (true) {
 						int alt9=2;
@@ -2369,7 +2369,7 @@ public class JavaPlainLexer extends Lexer {
 						}
 					}
 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:37: ( Exponent )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:37: ( Exponent )?
 					int alt10=2;
 					int LA10_0 = input.LA(1);
 					if ( (LA10_0=='E'||LA10_0=='e') ) {
@@ -2377,7 +2377,7 @@ public class JavaPlainLexer extends Lexer {
 					}
 					switch (alt10) {
 						case 1 :
-							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:37: Exponent
+							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:37: Exponent
 							{
 							mExponent(); 
 
@@ -2386,7 +2386,7 @@ public class JavaPlainLexer extends Lexer {
 
 					}
 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:806:47: ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:872:47: ( FloatTypeSuffix )?
 					int alt11=2;
 					int LA11_0 = input.LA(1);
 					if ( (LA11_0=='D'||LA11_0=='F'||LA11_0=='d'||LA11_0=='f') ) {
@@ -2412,10 +2412,10 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:807:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:873:9: '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )?
 					{
 					match('.'); 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:807:13: ( '0' .. '9' )+
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:873:13: ( '0' .. '9' )+
 					int cnt12=0;
 					loop12:
 					while (true) {
@@ -2448,7 +2448,7 @@ public class JavaPlainLexer extends Lexer {
 						cnt12++;
 					}
 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:807:25: ( Exponent )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:873:25: ( Exponent )?
 					int alt13=2;
 					int LA13_0 = input.LA(1);
 					if ( (LA13_0=='E'||LA13_0=='e') ) {
@@ -2456,7 +2456,7 @@ public class JavaPlainLexer extends Lexer {
 					}
 					switch (alt13) {
 						case 1 :
-							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:807:25: Exponent
+							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:873:25: Exponent
 							{
 							mExponent(); 
 
@@ -2465,7 +2465,7 @@ public class JavaPlainLexer extends Lexer {
 
 					}
 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:807:35: ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:873:35: ( FloatTypeSuffix )?
 					int alt14=2;
 					int LA14_0 = input.LA(1);
 					if ( (LA14_0=='D'||LA14_0=='F'||LA14_0=='d'||LA14_0=='f') ) {
@@ -2491,9 +2491,9 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:808:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:874:9: ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )?
 					{
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:808:9: ( '0' .. '9' )+
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:874:9: ( '0' .. '9' )+
 					int cnt15=0;
 					loop15:
 					while (true) {
@@ -2528,7 +2528,7 @@ public class JavaPlainLexer extends Lexer {
 
 					mExponent(); 
 
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:808:30: ( FloatTypeSuffix )?
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:874:30: ( FloatTypeSuffix )?
 					int alt16=2;
 					int LA16_0 = input.LA(1);
 					if ( (LA16_0=='D'||LA16_0=='F'||LA16_0=='d'||LA16_0=='f') ) {
@@ -2554,9 +2554,9 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 4 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:809:9: ( '0' .. '9' )+ FloatTypeSuffix
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:875:9: ( '0' .. '9' )+ FloatTypeSuffix
 					{
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:809:9: ( '0' .. '9' )+
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:875:9: ( '0' .. '9' )+
 					int cnt17=0;
 					loop17:
 					while (true) {
@@ -2607,8 +2607,8 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "Exponent"
 	public final void mExponent() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:814:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:814:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:880:10: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:880:12: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
 			{
 			if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
 				input.consume();
@@ -2618,7 +2618,7 @@ public class JavaPlainLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:814:22: ( '+' | '-' )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:880:22: ( '+' | '-' )?
 			int alt19=2;
 			int LA19_0 = input.LA(1);
 			if ( (LA19_0=='+'||LA19_0=='-') ) {
@@ -2641,7 +2641,7 @@ public class JavaPlainLexer extends Lexer {
 
 			}
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:814:33: ( '0' .. '9' )+
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:880:33: ( '0' .. '9' )+
 			int cnt20=0;
 			loop20:
 			while (true) {
@@ -2686,7 +2686,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "FloatTypeSuffix"
 	public final void mFloatTypeSuffix() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:817:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:883:17: ( ( 'f' | 'F' | 'd' | 'D' ) )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:
 			{
 			if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='d'||input.LA(1)=='f' ) {
@@ -2711,11 +2711,11 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = CharacterLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\'' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\''
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:885:5: ( '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\'' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:885:9: '\\'' ( EscapeSequence |~ ( '\\'' | '\\\\' ) ) '\\''
 			{
 			match('\''); 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:14: ( EscapeSequence |~ ( '\\'' | '\\\\' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:885:14: ( EscapeSequence |~ ( '\\'' | '\\\\' ) )
 			int alt21=2;
 			int LA21_0 = input.LA(1);
 			if ( (LA21_0=='\\') ) {
@@ -2733,14 +2733,14 @@ public class JavaPlainLexer extends Lexer {
 
 			switch (alt21) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:16: EscapeSequence
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:885:16: EscapeSequence
 					{
 					mEscapeSequence(); 
 
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:33: ~ ( '\\'' | '\\\\' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:885:33: ~ ( '\\'' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2772,11 +2772,11 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = StringLiteral;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:8: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"'
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:889:5: ( '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:889:8: '\"' ( EscapeSequence |~ ( '\\\\' | '\"' ) )* '\"'
 			{
 			match('\"'); 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:12: ( EscapeSequence |~ ( '\\\\' | '\"' ) )*
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:889:12: ( EscapeSequence |~ ( '\\\\' | '\"' ) )*
 			loop22:
 			while (true) {
 				int alt22=3;
@@ -2790,14 +2790,14 @@ public class JavaPlainLexer extends Lexer {
 
 				switch (alt22) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:14: EscapeSequence
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:889:14: EscapeSequence
 					{
 					mEscapeSequence(); 
 
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:31: ~ ( '\\\\' | '\"' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:889:31: ~ ( '\\\\' | '\"' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -2830,7 +2830,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "EscapeSequence"
 	public final void mEscapeSequence() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:829:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:895:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UnicodeEscape | OctalEscape )
 			int alt23=3;
 			int LA23_0 = input.LA(1);
 			if ( (LA23_0=='\\') ) {
@@ -2885,7 +2885,7 @@ public class JavaPlainLexer extends Lexer {
 
 			switch (alt23) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:829:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:895:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2899,14 +2899,14 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:830:9: UnicodeEscape
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:896:9: UnicodeEscape
 					{
 					mUnicodeEscape(); 
 
 					}
 					break;
 				case 3 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:831:9: OctalEscape
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:897:9: OctalEscape
 					{
 					mOctalEscape(); 
 
@@ -2924,7 +2924,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "OctalEscape"
 	public final void mOctalEscape() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:836:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:902:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt24=3;
 			int LA24_0 = input.LA(1);
 			if ( (LA24_0=='\\') ) {
@@ -2982,7 +2982,7 @@ public class JavaPlainLexer extends Lexer {
 
 			switch (alt24) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:836:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:902:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -3012,7 +3012,7 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:837:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -3034,7 +3034,7 @@ public class JavaPlainLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:838:9: '\\\\' ( '0' .. '7' )
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:904:9: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -3059,8 +3059,8 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "UnicodeEscape"
 	public final void mUnicodeEscape() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:843:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:843:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:909:5: ( '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:909:9: '\\\\' 'u' HexDigit HexDigit HexDigit HexDigit
 			{
 			match('\\'); 
 			match('u'); 
@@ -3086,8 +3086,8 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = ENUM;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:845:5: ( 'enum' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:845:9: 'enum'
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:911:5: ( 'enum' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:911:9: 'enum'
 			{
 			match("enum"); 
 
@@ -3108,8 +3108,8 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = ASSERT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:849:5: ( 'assert' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:849:9: 'assert'
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:915:5: ( 'assert' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:915:9: 'assert'
 			{
 			match("assert"); 
 
@@ -3130,12 +3130,12 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = Identifier;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:853:5: ( Letter ( Letter | JavaIDDigit )* )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:853:9: Letter ( Letter | JavaIDDigit )*
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:919:5: ( Letter ( Letter | JavaIDDigit )* )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:919:9: Letter ( Letter | JavaIDDigit )*
 			{
 			mLetter(); 
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:853:16: ( Letter | JavaIDDigit )*
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:919:16: ( Letter | JavaIDDigit )*
 			loop25:
 			while (true) {
 				int alt25=2;
@@ -3178,7 +3178,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "Letter"
 	public final void mLetter() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:865:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:931:5: ( '\\u0024' | '\\u0041' .. '\\u005a' | '\\u005f' | '\\u0061' .. '\\u007a' | '\\u00c0' .. '\\u00d6' | '\\u00d8' .. '\\u00f6' | '\\u00f8' .. '\\u00ff' | '\\u0100' .. '\\u1fff' | '\\u3040' .. '\\u318f' | '\\u3300' .. '\\u337f' | '\\u3400' .. '\\u3d2d' | '\\u4e00' .. '\\u9fff' | '\\uf900' .. '\\ufaff' )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:
 			{
 			if ( input.LA(1)=='$'||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z')||(input.LA(1) >= '\u00C0' && input.LA(1) <= '\u00D6')||(input.LA(1) >= '\u00D8' && input.LA(1) <= '\u00F6')||(input.LA(1) >= '\u00F8' && input.LA(1) <= '\u1FFF')||(input.LA(1) >= '\u3040' && input.LA(1) <= '\u318F')||(input.LA(1) >= '\u3300' && input.LA(1) <= '\u337F')||(input.LA(1) >= '\u3400' && input.LA(1) <= '\u3D2D')||(input.LA(1) >= '\u4E00' && input.LA(1) <= '\u9FFF')||(input.LA(1) >= '\uF900' && input.LA(1) <= '\uFAFF') ) {
@@ -3201,7 +3201,7 @@ public class JavaPlainLexer extends Lexer {
 	// $ANTLR start "JavaIDDigit"
 	public final void mJavaIDDigit() throws RecognitionException {
 		try {
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:879:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:945:5: ( '\\u0030' .. '\\u0039' | '\\u0660' .. '\\u0669' | '\\u06f0' .. '\\u06f9' | '\\u0966' .. '\\u096f' | '\\u09e6' .. '\\u09ef' | '\\u0a66' .. '\\u0a6f' | '\\u0ae6' .. '\\u0aef' | '\\u0b66' .. '\\u0b6f' | '\\u0be7' .. '\\u0bef' | '\\u0c66' .. '\\u0c6f' | '\\u0ce6' .. '\\u0cef' | '\\u0d66' .. '\\u0d6f' | '\\u0e50' .. '\\u0e59' | '\\u0ed0' .. '\\u0ed9' | '\\u1040' .. '\\u1049' )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= '\u0660' && input.LA(1) <= '\u0669')||(input.LA(1) >= '\u06F0' && input.LA(1) <= '\u06F9')||(input.LA(1) >= '\u0966' && input.LA(1) <= '\u096F')||(input.LA(1) >= '\u09E6' && input.LA(1) <= '\u09EF')||(input.LA(1) >= '\u0A66' && input.LA(1) <= '\u0A6F')||(input.LA(1) >= '\u0AE6' && input.LA(1) <= '\u0AEF')||(input.LA(1) >= '\u0B66' && input.LA(1) <= '\u0B6F')||(input.LA(1) >= '\u0BE7' && input.LA(1) <= '\u0BEF')||(input.LA(1) >= '\u0C66' && input.LA(1) <= '\u0C6F')||(input.LA(1) >= '\u0CE6' && input.LA(1) <= '\u0CEF')||(input.LA(1) >= '\u0D66' && input.LA(1) <= '\u0D6F')||(input.LA(1) >= '\u0E50' && input.LA(1) <= '\u0E59')||(input.LA(1) >= '\u0ED0' && input.LA(1) <= '\u0ED9')||(input.LA(1) >= '\u1040' && input.LA(1) <= '\u1049') ) {
@@ -3226,8 +3226,8 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:895:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:895:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:961:5: ( ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' ) )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:961:8: ( ' ' | '\\r' | '\\t' | '\\u000C' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||(input.LA(1) >= '\f' && input.LA(1) <= '\r')||input.LA(1)==' ' ) {
 				input.consume();
@@ -3254,12 +3254,12 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:899:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:899:9: '/*' ( options {greedy=false; } : . )* '*/'
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:965:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:965:9: '/*' ( options {greedy=false; } : . )* '*/'
 			{
 			match("/*"); 
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:899:14: ( options {greedy=false; } : . )*
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:965:14: ( options {greedy=false; } : . )*
 			loop26:
 			while (true) {
 				int alt26=2;
@@ -3280,7 +3280,7 @@ public class JavaPlainLexer extends Lexer {
 
 				switch (alt26) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:899:42: .
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:965:42: .
 					{
 					matchAny(); 
 					}
@@ -3310,12 +3310,12 @@ public class JavaPlainLexer extends Lexer {
 		try {
 			int _type = LINE_COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:969:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:969:7: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 			{
 			match("//"); 
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:12: (~ ( '\\n' | '\\r' ) )*
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:969:12: (~ ( '\\n' | '\\r' ) )*
 			loop27:
 			while (true) {
 				int alt27=2;
@@ -3344,7 +3344,7 @@ public class JavaPlainLexer extends Lexer {
 				}
 			}
 
-			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:26: ( '\\r' )?
+			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:969:26: ( '\\r' )?
 			int alt28=2;
 			int LA28_0 = input.LA(1);
 			if ( (LA28_0=='\r') ) {
@@ -3352,7 +3352,7 @@ public class JavaPlainLexer extends Lexer {
 			}
 			switch (alt28) {
 				case 1 :
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:903:26: '\\r'
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:969:26: '\\r'
 					{
 					match('\r'); 
 					}
@@ -4145,7 +4145,7 @@ public class JavaPlainLexer extends Lexer {
 		}
 		@Override
 		public String getDescription() {
-			return "805:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
+			return "871:1: FloatingPointLiteral : ( ( '0' .. '9' )+ '.' ( '0' .. '9' )* ( Exponent )? ( FloatTypeSuffix )? | '.' ( '0' .. '9' )+ ( Exponent )? ( FloatTypeSuffix )? | ( '0' .. '9' )+ Exponent ( FloatTypeSuffix )? | ( '0' .. '9' )+ FloatTypeSuffix );";
 		}
 	}
 

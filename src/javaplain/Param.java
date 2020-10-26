@@ -12,6 +12,6 @@ public class Param
 	
 	public String getParam()
 	{
-		return type+" "+name;
+		return this.type+" "+this.name;
 	}
 }

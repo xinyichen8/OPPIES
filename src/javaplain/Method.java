@@ -9,6 +9,14 @@ public class Method {
 	private boolean abs;
 	private boolean isFinal;
 	private boolean isStatic;
+	private boolean protect;
+	private boolean strifp;
+	private boolean natives;
+	private boolean transients;
+	private boolean vola;
+	private boolean sync;
+	
+	
 	private ArrayList<DataMem> localVar;
 	private ArrayList<Call> call;
 	private ArrayList<Param> param;
@@ -115,4 +123,55 @@ public class Method {
 	{
 		return this.param;
 	}
+
+	public boolean isProtect() {
+		return protect;
+	}
+
+	public void setProtect(boolean protect) {
+		this.protect = protect;
+	}
+
+	public boolean isStrifp() {
+		return strifp;
+	}
+
+	public void setStrifp(boolean strifp) {
+		this.strifp = strifp;
+	}
+
+	public boolean isNatives() {
+		return natives;
+	}
+
+	public void setNatives(boolean natives) {
+		this.natives = natives;
+	}
+
+	public boolean isTransients() {
+		return transients;
+	}
+
+	public void setTransients(boolean transients) {
+		this.transients = transients;
+	}
+
+	public boolean isVola() {
+		return vola;
+	}
+
+	public void setVola(boolean vola) {
+		this.vola = vola;
+	}
+
+	public boolean isSync() {
+		return sync;
+	}
+
+	public void setSync(boolean sync) {
+		this.sync = sync;
+	}
+
+
+
 }
