@@ -2,7 +2,7 @@ package javaplain;
 
 import java.util.ArrayList;
 
-public class Class 
+public class Class
 {
 	private String name;
 	private ArrayList<Method> method;
@@ -15,6 +15,8 @@ public class Class
 	private boolean strifp;
 	private boolean isAbs;
 	private ArrayList<String> implement;
+
+
 	public Class()
 	{
 		this.name="";
@@ -25,6 +27,7 @@ public class Class
 		this.method=new ArrayList<Method>();
 		this.dm=new ArrayList<DataMem>();
 	}
+
 	
 	public void addName(String name)
 	{
