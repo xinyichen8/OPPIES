@@ -784,8 +784,8 @@ castExpression
 
 primary
     :   parExpression
-    |   'this' ('.' Identifier)* identifierSuffix?
-    |   'super' superSuffix
+    |   'this'{sb.append("this");} ('.' II0=Identifier{sb.append("."+$II0.text);})* identifierSuffix?
+    |   'super'{sb.append("super");} superSuffix
     |   literal
     |   'new' creator
     |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
@@ -847,7 +847,7 @@ selector
     
 superSuffix
     :   arguments
-    |   '.' Identifier arguments?
+    |   '.' Identifier{sb.append("."+$Identifier.text);} arguments?
     ;
 
 arguments
