@@ -184,6 +184,7 @@ memberDecl
 	    			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;
 	    			lv=-1;
 	    			p="";
+
 	    			} 
 	    			 constructorDeclaratorRest
 	    			
@@ -315,7 +316,7 @@ variableDeclaratorId
     			c.getDM().get(v).setabs(isabt);
     			c.getDM().get(v).sets(isstat);
     			c.getDM().get(v).setf(isf);
-    			classMemberFlag=false;
+    			//classMemberFlag=false;
     			isf=false;isabt=false; isstat=false; isProtect=false; isstrict=false; isnative=false; istran=false; isvolatile=false; issync=false;}
     			
     			else if(isMethod){
@@ -773,7 +774,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   {sb.setLength(0);}primary selector* ('++'|'--')?
+    |   primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{sb.setLength(0);}selector* ('++'|'--')?
     ;
 
 castExpression
