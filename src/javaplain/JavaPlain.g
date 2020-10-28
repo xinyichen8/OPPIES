@@ -259,13 +259,13 @@ methodDeclaratorRest
     :   formalParameters ('[' ']')* {isMethod=true;}
         ('throws' qualifiedNameList)?
         (   methodBody
-        |   ';'
+        |   ';'{sb.setLength(0);}
         )
     ;
     
 voidMethodDeclaratorRest
     :   formalParameters ('throws' qualifiedNameList)?{isMethod=true;}
-        (   methodBody
+        (   methodBody{sb.setLength(0);}
         |   ';'
         )
     ;
@@ -591,8 +591,8 @@ statement
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
-    |   ';' 
-    |   statementExpression ';'
+    |   ';' {sb.setLength(0);}
+    |   statementExpression ';'{sb.setLength(0);}
     |   Identifier ':' statement
     ;
     
