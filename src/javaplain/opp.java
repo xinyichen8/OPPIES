@@ -1,8 +1,8 @@
 package javaplain;
 
-//import com.fasterxml.jackson.core.JsonGenerationException;
-//import com.fasterxml.jackson.databind.JsonMappingException;
-//import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -21,7 +21,7 @@ public class opp {
         Class newClass = new Class();
         ListOfClass = new ArrayList<>();
         File sfile = new File("test.json");
-        //ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
         List<String> callNames = new ArrayList<>();
         File folder = new File(args[0]);
         File[] listOfFiles = folder.listFiles();
@@ -37,15 +37,15 @@ public class opp {
                 newClass = parser.c;
                 ListOfClass.add(newClass);
                 //save class into json file
-//                try {
-//                    mapper.writeValue(sfile, newClass);
-//                } catch (JsonMappingException e) {
-//                    e.printStackTrace();
-//                } catch (JsonGenerationException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    mapper.writeValue(sfile, newClass);
+                } catch (JsonMappingException e) {
+                    e.printStackTrace();
+                } catch (JsonGenerationException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         //store child into parent class
