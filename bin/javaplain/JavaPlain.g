@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=-1;
-boolean param=false;
+boolean param=false, isConst=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
@@ -91,7 +91,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier{System.out.println($Identifier.text);} ('extends' typeBound)? {c.setExtend($Identifier.text);}
+    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -387,10 +387,12 @@ classOrInterfaceType
 	                       	  c.addImplement($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
-	                       else if($I1.text.contains("Class"))
+	                       else if(isConst==true)
 	                       {
 	                       sb.append($I1.text);
     				if(sb.length()!=0 && l>=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}
+    				isConst=false;
+    				sb.setLength(0);
 	                       }
 	                       else
 	                       type = $I1.text;}
@@ -666,7 +668,7 @@ expression
     ;
     
 assignmentOperator
-    :   '='
+    :   '=' 
     |   '+='
     |   '-='
     |   '*='
@@ -780,7 +782,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |	primary   {sb.setLength(0);} selector* ('++'|'--')?
+    |	primary    selector* ('++'|'--')?{sb.setLength(0);}
     ;
 
 castExpression
@@ -793,7 +795,7 @@ primary
     |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
     |   'super' superSuffix
     |   literal
-    |   'new' creator 
+    |   'new'{isConst=true;} creator 
     |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class' 
     |   'void' '.' 'class' 
@@ -857,7 +859,7 @@ superSuffix
     ;
 
 arguments
-    :   '(' expressionList? ')'{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}
+    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{isConst=false;}
     ;
 
 // LEXER
