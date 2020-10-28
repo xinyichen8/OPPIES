@@ -774,7 +774,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   {sb.setLength(0);}primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}} selector* ('++'|'--')?
+    |   {sb.setLength(0);}primary selector* ('++'|'--')?
     ;
 
 castExpression
@@ -851,7 +851,7 @@ superSuffix
     ;
 
 arguments
-    :   '(' expressionList? ')'
+    :   '(' expressionList? ')'{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}
     ;
 
 // LEXER
