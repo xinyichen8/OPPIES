@@ -3,6 +3,7 @@ package javaplain;
 //import com.fasterxml.jackson.core.JsonGenerationException;
 //import com.fasterxml.jackson.databind.JsonMappingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -56,9 +57,14 @@ public class opp {
 
         for (int i = 0; i < ListOfClass.size(); i++) {
 
-            //printClass(ListOfClass.get(i));
+            printClass(ListOfClass.get(i));
+        }
+
+        for (int i = 0; i < ListOfClass.size(); i++) {
+
             printCall(ListOfClass.get(i));
         }
+
 //		//load json file
 //		try{
 //			Class a = mapper.readValue(file,Class.class);
@@ -128,65 +134,66 @@ public class opp {
 
     private static void printCall(Class c) {
         for (Method s : c.getMethod()) {
-            if (s.getCall().size() >= 2) {
+
+            if (s.getCall().size() > 0) {
+
                 System.out.println("Method Calls: " + s.getName());
-            }
-            if (s.getVar().size() >= 0) {
-                if (s.getCall().size() > 0) {
+
+                if (s.getVar().size() >= 0) {
                     for (Call call : s.getCall()) {
                         if (!call.getCall().equals("System.out.println") && call.getCall().contains("System.out.println")) {
-                            System.out.println("       " + call.getCall().substring(18));
+                            System.out.println("       -->" + call.getCall().substring(18));
+                            int index = getCallIndex(c, call.getCall().substring(18));
+                            if (index >= 0) {
+                                printInnerCall(c.getMethod().get(index));
+                            }
                         } else {
-                            System.out.println("       " + call.getCall());
+                            System.out.println("       -->" + call.getCall() + "  ");
+                            int index = getCallIndex(c, call.getCall());
+//                            System.out.println(index);
+                            if (index >= 0) {
+//                                System.out.println(c.getMethod().get(index).getName());
 
+                                printInnerCall(c.getMethod().get(index));
+                            }
                         }
                     }
+
+                }
+            }
+        }
+    }
+
+    private static int getCallIndex(Class c, String name) {
+        int pos = 0;
+        for (Method m : c.getMethod()) {
+            if (name.equals(m.getName())) {
+                return pos;
+            }
+            pos++;
+        }
+        return -1;
+    }
+
+    private static void printInnerCall(Method s) {
+
+
+        if (s.getCall().size() >=0) {
+
+
+            for (Call call : s.getCall()) {
+                if (!call.getCall().equals("System.out.println") && call.getCall().contains("System.out.println")) {
+                    System.out.println("       ---->" + call.getCall().substring(18));
+
+                } else {
+                    System.out.println("       ---->" + call.getCall() + "  ");
                 }
             }
 
 
         }
+
     }
 
-//
-//		for(Method s: newClass.getMethod())
-//		{
-//			System.out.println(s.getp()+" " +s.getType()+" "+ s.getName()+" "+s.gets());
-//			if(s.getParam().size()>0)
-//			{
-//				for(Param p:s.getParam())
-//				{
-//					System.out.println("    "+p.getParam());
-//				}
-//			}
-//			if(s.getVar().size()>0) {
-//				for(DataMem d : s.getVar())
-//				{
-//					System.out.println("222222" +d.getp()+" " + d.getType()+ " " + d.getName());
-//					if(s.getCall().size()>0)
-//					{
-//						for(Call c : s.getCall())
-//						{
-//							if(!c.getCall().equals("System.out.println") && c.getCall().contains("System.out.println")){
-//								System.out.println(c.getCall().substring(18));
-//								System.out.println(c);
-//
-//							}else{
-//								System.out.println("3     "+c.getCall());
-//							}
-//						}
-//					}
-//				}
-//			}
-//
-//
-//		}
-//		System.out.println("===========================");
-//		System.out.println(parser.c.getName());
-//		for(DataMem dataMem : parser.c.getDM())
-//			System.out.println(dataMem.getp()+" " + dataMem.getType()+" " +dataMem.getName()+" "+dataMem.gets());
-//		System.out.println("isAbs: " + parser.c.isAbs());
 
-
-//    }
 }

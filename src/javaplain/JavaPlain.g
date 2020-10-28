@@ -6,7 +6,7 @@ package javaplain;
 }
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
-int intCount=0;
+int intCount=-1;
 boolean param=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
@@ -308,7 +308,8 @@ constantDeclaratorRest
     ;
     
 variableDeclaratorId
-    :   Identifier {if(classMemberFlag){
+    :   Identifier 
+    {if(classMemberFlag){
     			c.addDM(new DataMem($Identifier.text));
     			v++;
     			c.getDM().get(v).settype(type);
@@ -331,9 +332,8 @@ variableDeclaratorId
     			
     			}
     			else if (param){
-    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));
+    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));    			
     			}
-    			
     			} ('[' ']')*
     ;
 
@@ -379,16 +379,22 @@ type
 	;
 
 classOrInterfaceType
-	:	I1=Identifier {if(isExtends){ 
+	:	I1=Identifier 
+				{if(isExtends){ 
 	                          c.setExtend($I1.text); isExtends=false;} 
 	                       else 
 	                       if(isImp){
 	                       	  c.addImplement($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
+	                       else if($I1.text.contains("Class"))
+	                       {
+	                       sb.append($I1.text);
+    				if(sb.length()!=0 && l>=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}
+	                       }
 	                       else
-	                       
 	                       type = $I1.text;}
+	                       
 	         typeArguments? ('.' Identifier typeArguments?)*
 	;
 
@@ -456,7 +462,7 @@ literal
     :   integerLiteral
     |   FloatingPointLiteral
     |   CharacterLiteral
-    |   StringLiteral
+    |   StringLiteral    {if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}			
     |   booleanLiteral
     |   'null'
     ;
@@ -774,7 +780,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |  primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}} {sb.setLength(0);} selector* ('++'|'--')?
+    |	primary   {sb.setLength(0);} selector* ('++'|'--')?
     ;
 
 castExpression
@@ -783,14 +789,14 @@ castExpression
     ;
 
 primary
-    :   parExpression
+    :   parExpression 
     |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
     |   'super' superSuffix
     |   literal
-    |   'new' creator
+    |   'new' creator 
     |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
-    |   primitiveType ('[' ']')* '.' 'class'
-    |   'void' '.' 'class'
+    |   primitiveType ('[' ']')* '.' 'class' 
+    |   'void' '.' 'class' 
     ;
 
 identifierSuffix
@@ -851,7 +857,7 @@ superSuffix
     ;
 
 arguments
-    :   '(' expressionList? ')'
+    :   '(' expressionList? ')'{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}
     ;
 
 // LEXER
@@ -886,7 +892,7 @@ CharacterLiteral
     ;
 
 StringLiteral
-    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
+    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"' 
     ;
 
 fragment
