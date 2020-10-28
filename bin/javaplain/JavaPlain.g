@@ -464,7 +464,7 @@ literal
     :   integerLiteral
     |   FloatingPointLiteral
     |   CharacterLiteral
-    |   StringLiteral    {if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}			
+    |   StringLiteral    {if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}	{sb.setLength(0);}		
     |   booleanLiteral
     |   'null'
     ;
@@ -591,8 +591,8 @@ statement
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
-    |   ';' 
-    |   statementExpression ';'
+    |   ';' {sb.setLength(0);}
+    |   statementExpression ';'  {sb.setLength(0);}
     |   Identifier ':' statement
     ;
     
@@ -782,7 +782,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |	primary    selector* ('++'|'--')?{sb.setLength(0);}
+    |	primary    selector* ('++'|'--')?
     ;
 
 castExpression
@@ -859,7 +859,7 @@ superSuffix
     ;
 
 arguments
-    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{isConst=false;}
+    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{isConst=false;}{sb.setLength(0);}
     ;
 
 // LEXER

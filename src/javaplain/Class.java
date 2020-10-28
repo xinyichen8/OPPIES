@@ -7,6 +7,9 @@ public class Class
 	private String name;
 	private ArrayList<Method> method;
 	private ArrayList<DataMem> dm;
+	private ArrayList<String> agg;
+	private ArrayList<String> ass;
+
 	private boolean isFinal;
 	private boolean isStatic;
 	private String extend;
@@ -28,8 +31,18 @@ public class Class
 		this.isStatic=false;
 		this.method=new ArrayList<Method>();
 		this.dm=new ArrayList<DataMem>();
+		this.agg = new ArrayList<String>();
+		this.ass = new ArrayList<>();
 	}
 
+	public void addAss(String a){ass.add(a);};
+	public ArrayList<String> getAss(){
+		return this.ass;
+	}
+	public void addAgg(String a){agg.add(a);};
+	public ArrayList<String> getAgg(){
+		return this.agg;
+	}
 	
 	public void addName(String name)
 	{
