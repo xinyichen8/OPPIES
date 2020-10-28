@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g 2020-10-27 02:58:12
+// $ANTLR 3.5.1 D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g 2020-10-27 18:44:16
 
 package javaplain;
 
@@ -10056,15 +10056,15 @@ public class JavaPlainParser extends Parser {
 					}
 					break;
 				case 4 :
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:9: primary ( selector )* ( '++' | '--' )?
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:8: primary ( selector )* ( '++' | '--' )?
 					{
-					pushFollow(FOLLOW_primary_in_unaryExpressionNotPlusMinus5146);
+					pushFollow(FOLLOW_primary_in_unaryExpressionNotPlusMinus5145);
 					primary();
 					state._fsp--;
 					if (state.failed) return;
 					if ( state.backtracking==0 ) {if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}
 					if ( state.backtracking==0 ) {sb.setLength(0);}
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:110: ( selector )*
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:111: ( selector )*
 					loop144:
 					while (true) {
 						int alt144=2;
@@ -10075,9 +10075,9 @@ public class JavaPlainParser extends Parser {
 
 						switch (alt144) {
 						case 1 :
-							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:110: selector
+							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:111: selector
 							{
-							pushFollow(FOLLOW_selector_in_unaryExpressionNotPlusMinus5149);
+							pushFollow(FOLLOW_selector_in_unaryExpressionNotPlusMinus5150);
 							selector();
 							state._fsp--;
 							if (state.failed) return;
@@ -10089,7 +10089,7 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:120: ( '++' | '--' )?
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:777:121: ( '++' | '--' )?
 					int alt145=2;
 					int LA145_0 = input.LA(1);
 					if ( (LA145_0==37||LA145_0==41) ) {
@@ -10166,13 +10166,13 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:781:8: '(' primitiveType ')' unaryExpression
 					{
-					match(input,32,FOLLOW_32_in_castExpression5175); if (state.failed) return;
-					pushFollow(FOLLOW_primitiveType_in_castExpression5177);
+					match(input,32,FOLLOW_32_in_castExpression5176); if (state.failed) return;
+					pushFollow(FOLLOW_primitiveType_in_castExpression5178);
 					primitiveType();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,33,FOLLOW_33_in_castExpression5179); if (state.failed) return;
-					pushFollow(FOLLOW_unaryExpression_in_castExpression5181);
+					match(input,33,FOLLOW_33_in_castExpression5180); if (state.failed) return;
+					pushFollow(FOLLOW_unaryExpression_in_castExpression5182);
 					unaryExpression();
 					state._fsp--;
 					if (state.failed) return;
@@ -10181,7 +10181,7 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:8: '(' ( type | expression ) ')' unaryExpressionNotPlusMinus
 					{
-					match(input,32,FOLLOW_32_in_castExpression5190); if (state.failed) return;
+					match(input,32,FOLLOW_32_in_castExpression5191); if (state.failed) return;
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:12: ( type | expression )
 					int alt147=2;
 					alt147 = dfa147.predict(input);
@@ -10189,7 +10189,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:13: type
 							{
-							pushFollow(FOLLOW_type_in_castExpression5193);
+							pushFollow(FOLLOW_type_in_castExpression5194);
 							type();
 							state._fsp--;
 							if (state.failed) return;
@@ -10198,7 +10198,7 @@ public class JavaPlainParser extends Parser {
 						case 2 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:20: expression
 							{
-							pushFollow(FOLLOW_expression_in_castExpression5197);
+							pushFollow(FOLLOW_expression_in_castExpression5198);
 							expression();
 							state._fsp--;
 							if (state.failed) return;
@@ -10207,8 +10207,8 @@ public class JavaPlainParser extends Parser {
 
 					}
 
-					match(input,33,FOLLOW_33_in_castExpression5200); if (state.failed) return;
-					pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_castExpression5202);
+					match(input,33,FOLLOW_33_in_castExpression5201); if (state.failed) return;
+					pushFollow(FOLLOW_unaryExpressionNotPlusMinus_in_castExpression5203);
 					unaryExpressionNotPlusMinus();
 					state._fsp--;
 					if (state.failed) return;
@@ -10232,17 +10232,18 @@ public class JavaPlainParser extends Parser {
 
 
 	// $ANTLR start "primary"
-	// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:785:1: primary : ( parExpression | 'this' ( '.' Identifier )* ( identifierSuffix )? | 'super' superSuffix | literal | 'new' creator |II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )? | primitiveType ( '[' ']' )* '.' 'class' | 'void' '.' 'class' );
+	// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:785:1: primary : ( parExpression | 'this' ( '.' II0= Identifier )* ( identifierSuffix )? | 'super' superSuffix | literal | 'new' creator |II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )? | primitiveType ( '[' ']' )* '.' 'class' | 'void' '.' 'class' );
 	public final void primary() throws RecognitionException {
 		int primary_StartIndex = input.index();
 
+		Token II0=null;
 		Token II1=null;
 		Token II2=null;
 
 		try {
 			if ( state.backtracking>0 && alreadyParsedRule(input, 124) ) { return; }
 
-			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:786:5: ( parExpression | 'this' ( '.' Identifier )* ( identifierSuffix )? | 'super' superSuffix | literal | 'new' creator |II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )? | primitiveType ( '[' ']' )* '.' 'class' | 'void' '.' 'class' )
+			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:786:5: ( parExpression | 'this' ( '.' II0= Identifier )* ( identifierSuffix )? | 'super' superSuffix | literal | 'new' creator |II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )? | primitiveType ( '[' ']' )* '.' 'class' | 'void' '.' 'class' )
 			int alt154=8;
 			switch ( input.LA(1) ) {
 			case 32:
@@ -10310,17 +10311,17 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:786:9: parExpression
 					{
-					pushFollow(FOLLOW_parExpression_in_primary5221);
+					pushFollow(FOLLOW_parExpression_in_primary5222);
 					parExpression();
 					state._fsp--;
 					if (state.failed) return;
 					}
 					break;
 				case 2 :
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:9: 'this' ( '.' Identifier )* ( identifierSuffix )?
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:9: 'this' ( '.' II0= Identifier )* ( identifierSuffix )?
 					{
-					match(input,99,FOLLOW_99_in_primary5231); if (state.failed) return;
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:16: ( '.' Identifier )*
+					match(input,99,FOLLOW_99_in_primary5232); if (state.failed) return;
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:16: ( '.' II0= Identifier )*
 					loop149:
 					while (true) {
 						int alt149=2;
@@ -10339,10 +10340,11 @@ public class JavaPlainParser extends Parser {
 
 						switch (alt149) {
 						case 1 :
-							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: '.' Identifier
+							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: '.' II0= Identifier
 							{
-							match(input,43,FOLLOW_43_in_primary5234); if (state.failed) return;
-							match(input,Identifier,FOLLOW_Identifier_in_primary5236); if (state.failed) return;
+							match(input,43,FOLLOW_43_in_primary5235); if (state.failed) return;
+							II0=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5239); if (state.failed) return;
+							if ( state.backtracking==0 ) {sb.append((II0!=null?II0.getText():null));}
 							}
 							break;
 
@@ -10351,7 +10353,7 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:34: ( identifierSuffix )?
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:61: ( identifierSuffix )?
 					int alt150=2;
 					switch ( input.LA(1) ) {
 						case 55:
@@ -10378,9 +10380,9 @@ public class JavaPlainParser extends Parser {
 					}
 					switch (alt150) {
 						case 1 :
-							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:34: identifierSuffix
+							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:61: identifierSuffix
 							{
-							pushFollow(FOLLOW_identifierSuffix_in_primary5240);
+							pushFollow(FOLLOW_identifierSuffix_in_primary5244);
 							identifierSuffix();
 							state._fsp--;
 							if (state.failed) return;
@@ -10394,8 +10396,8 @@ public class JavaPlainParser extends Parser {
 				case 3 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:788:9: 'super' superSuffix
 					{
-					match(input,96,FOLLOW_96_in_primary5251); if (state.failed) return;
-					pushFollow(FOLLOW_superSuffix_in_primary5253);
+					match(input,96,FOLLOW_96_in_primary5255); if (state.failed) return;
+					pushFollow(FOLLOW_superSuffix_in_primary5257);
 					superSuffix();
 					state._fsp--;
 					if (state.failed) return;
@@ -10404,7 +10406,7 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:789:9: literal
 					{
-					pushFollow(FOLLOW_literal_in_primary5263);
+					pushFollow(FOLLOW_literal_in_primary5267);
 					literal();
 					state._fsp--;
 					if (state.failed) return;
@@ -10413,8 +10415,8 @@ public class JavaPlainParser extends Parser {
 				case 5 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:790:9: 'new' creator
 					{
-					match(input,86,FOLLOW_86_in_primary5273); if (state.failed) return;
-					pushFollow(FOLLOW_creator_in_primary5275);
+					match(input,86,FOLLOW_86_in_primary5277); if (state.failed) return;
+					pushFollow(FOLLOW_creator_in_primary5279);
 					creator();
 					state._fsp--;
 					if (state.failed) return;
@@ -10423,7 +10425,7 @@ public class JavaPlainParser extends Parser {
 				case 6 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:9: II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )?
 					{
-					II1=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5287); if (state.failed) return;
+					II1=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5291); if (state.failed) return;
 					if ( state.backtracking==0 ) {sb.append((II1!=null?II1.getText():null));}
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:47: ( '.' II2= Identifier )*
 					loop151:
@@ -10446,8 +10448,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:48: '.' II2= Identifier
 							{
-							match(input,43,FOLLOW_43_in_primary5291); if (state.failed) return;
-							II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5295); if (state.failed) return;
+							match(input,43,FOLLOW_43_in_primary5295); if (state.failed) return;
+							II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5299); if (state.failed) return;
 							if ( state.backtracking==0 ) {sb.append("."+(II2!=null?II2.getText():null));}
 							}
 							break;
@@ -10486,7 +10488,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:96: identifierSuffix
 							{
-							pushFollow(FOLLOW_identifierSuffix_in_primary5300);
+							pushFollow(FOLLOW_identifierSuffix_in_primary5304);
 							identifierSuffix();
 							state._fsp--;
 							if (state.failed) return;
@@ -10500,7 +10502,7 @@ public class JavaPlainParser extends Parser {
 				case 7 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:792:9: primitiveType ( '[' ']' )* '.' 'class'
 					{
-					pushFollow(FOLLOW_primitiveType_in_primary5311);
+					pushFollow(FOLLOW_primitiveType_in_primary5315);
 					primitiveType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10517,8 +10519,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:792:24: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_primary5314); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_primary5316); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_primary5318); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_primary5320); if (state.failed) return;
 							}
 							break;
 
@@ -10527,16 +10529,16 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					match(input,43,FOLLOW_43_in_primary5320); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_primary5322); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_primary5324); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_primary5326); if (state.failed) return;
 					}
 					break;
 				case 8 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:793:9: 'void' '.' 'class'
 					{
-					match(input,105,FOLLOW_105_in_primary5332); if (state.failed) return;
-					match(input,43,FOLLOW_43_in_primary5334); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_primary5336); if (state.failed) return;
+					match(input,105,FOLLOW_105_in_primary5336); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_primary5338); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_primary5340); if (state.failed) return;
 					}
 					break;
 
@@ -10663,8 +10665,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:797:10: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_identifierSuffix5356); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_identifierSuffix5358); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_identifierSuffix5360); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_identifierSuffix5362); if (state.failed) return;
 							}
 							break;
 
@@ -10677,8 +10679,8 @@ public class JavaPlainParser extends Parser {
 						cnt155++;
 					}
 
-					match(input,43,FOLLOW_43_in_identifierSuffix5362); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_identifierSuffix5364); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5366); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_identifierSuffix5368); if (state.failed) return;
 					}
 					break;
 				case 2 :
@@ -10702,12 +10704,12 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:798:10: '[' expression ']'
 							{
-							match(input,55,FOLLOW_55_in_identifierSuffix5375); if (state.failed) return;
-							pushFollow(FOLLOW_expression_in_identifierSuffix5377);
+							match(input,55,FOLLOW_55_in_identifierSuffix5379); if (state.failed) return;
+							pushFollow(FOLLOW_expression_in_identifierSuffix5381);
 							expression();
 							state._fsp--;
 							if (state.failed) return;
-							match(input,56,FOLLOW_56_in_identifierSuffix5379); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_identifierSuffix5383); if (state.failed) return;
 							}
 							break;
 
@@ -10725,7 +10727,7 @@ public class JavaPlainParser extends Parser {
 				case 3 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:799:9: arguments
 					{
-					pushFollow(FOLLOW_arguments_in_identifierSuffix5392);
+					pushFollow(FOLLOW_arguments_in_identifierSuffix5396);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10734,15 +10736,15 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:800:9: '.' 'class'
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5402); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_identifierSuffix5404); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5406); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_identifierSuffix5408); if (state.failed) return;
 					}
 					break;
 				case 5 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:801:9: '.' explicitGenericInvocation
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5414); if (state.failed) return;
-					pushFollow(FOLLOW_explicitGenericInvocation_in_identifierSuffix5416);
+					match(input,43,FOLLOW_43_in_identifierSuffix5418); if (state.failed) return;
+					pushFollow(FOLLOW_explicitGenericInvocation_in_identifierSuffix5420);
 					explicitGenericInvocation();
 					state._fsp--;
 					if (state.failed) return;
@@ -10751,16 +10753,16 @@ public class JavaPlainParser extends Parser {
 				case 6 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:802:9: '.' 'this'
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5426); if (state.failed) return;
-					match(input,99,FOLLOW_99_in_identifierSuffix5428); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5430); if (state.failed) return;
+					match(input,99,FOLLOW_99_in_identifierSuffix5432); if (state.failed) return;
 					}
 					break;
 				case 7 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:803:9: '.' 'super' arguments
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5438); if (state.failed) return;
-					match(input,96,FOLLOW_96_in_identifierSuffix5440); if (state.failed) return;
-					pushFollow(FOLLOW_arguments_in_identifierSuffix5442);
+					match(input,43,FOLLOW_43_in_identifierSuffix5442); if (state.failed) return;
+					match(input,96,FOLLOW_96_in_identifierSuffix5444); if (state.failed) return;
+					pushFollow(FOLLOW_arguments_in_identifierSuffix5446);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10769,9 +10771,9 @@ public class JavaPlainParser extends Parser {
 				case 8 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:804:9: '.' 'new' innerCreator
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5452); if (state.failed) return;
-					match(input,86,FOLLOW_86_in_identifierSuffix5454); if (state.failed) return;
-					pushFollow(FOLLOW_innerCreator_in_identifierSuffix5456);
+					match(input,43,FOLLOW_43_in_identifierSuffix5456); if (state.failed) return;
+					match(input,86,FOLLOW_86_in_identifierSuffix5458); if (state.failed) return;
+					pushFollow(FOLLOW_innerCreator_in_identifierSuffix5460);
 					innerCreator();
 					state._fsp--;
 					if (state.failed) return;
@@ -10823,15 +10825,15 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:808:9: nonWildcardTypeArguments createdName classCreatorRest
 					{
-					pushFollow(FOLLOW_nonWildcardTypeArguments_in_creator5475);
+					pushFollow(FOLLOW_nonWildcardTypeArguments_in_creator5479);
 					nonWildcardTypeArguments();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_createdName_in_creator5477);
+					pushFollow(FOLLOW_createdName_in_creator5481);
 					createdName();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_classCreatorRest_in_creator5479);
+					pushFollow(FOLLOW_classCreatorRest_in_creator5483);
 					classCreatorRest();
 					state._fsp--;
 					if (state.failed) return;
@@ -10840,7 +10842,7 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:809:9: createdName ( arrayCreatorRest | classCreatorRest )
 					{
-					pushFollow(FOLLOW_createdName_in_creator5489);
+					pushFollow(FOLLOW_createdName_in_creator5493);
 					createdName();
 					state._fsp--;
 					if (state.failed) return;
@@ -10865,7 +10867,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:809:22: arrayCreatorRest
 							{
-							pushFollow(FOLLOW_arrayCreatorRest_in_creator5492);
+							pushFollow(FOLLOW_arrayCreatorRest_in_creator5496);
 							arrayCreatorRest();
 							state._fsp--;
 							if (state.failed) return;
@@ -10874,7 +10876,7 @@ public class JavaPlainParser extends Parser {
 						case 2 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:809:41: classCreatorRest
 							{
-							pushFollow(FOLLOW_classCreatorRest_in_creator5496);
+							pushFollow(FOLLOW_classCreatorRest_in_creator5500);
 							classCreatorRest();
 							state._fsp--;
 							if (state.failed) return;
@@ -10931,7 +10933,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:813:9: classOrInterfaceType
 					{
-					pushFollow(FOLLOW_classOrInterfaceType_in_createdName5516);
+					pushFollow(FOLLOW_classOrInterfaceType_in_createdName5520);
 					classOrInterfaceType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10940,7 +10942,7 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:814:9: primitiveType
 					{
-					pushFollow(FOLLOW_primitiveType_in_createdName5526);
+					pushFollow(FOLLOW_primitiveType_in_createdName5530);
 					primitiveType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10984,7 +10986,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:818:9: nonWildcardTypeArguments
 					{
-					pushFollow(FOLLOW_nonWildcardTypeArguments_in_innerCreator5549);
+					pushFollow(FOLLOW_nonWildcardTypeArguments_in_innerCreator5553);
 					nonWildcardTypeArguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10993,8 +10995,8 @@ public class JavaPlainParser extends Parser {
 
 			}
 
-			match(input,Identifier,FOLLOW_Identifier_in_innerCreator5552); if (state.failed) return;
-			pushFollow(FOLLOW_classCreatorRest_in_innerCreator5554);
+			match(input,Identifier,FOLLOW_Identifier_in_innerCreator5556); if (state.failed) return;
+			pushFollow(FOLLOW_classCreatorRest_in_innerCreator5558);
 			classCreatorRest();
 			state._fsp--;
 			if (state.failed) return;
@@ -11026,7 +11028,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:822:5: ( '[' ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* ) )
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:822:9: '[' ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* )
 			{
-			match(input,55,FOLLOW_55_in_arrayCreatorRest5573); if (state.failed) return;
+			match(input,55,FOLLOW_55_in_arrayCreatorRest5577); if (state.failed) return;
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:823:9: ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* )
 			int alt165=2;
 			int LA165_0 = input.LA(1);
@@ -11048,7 +11050,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:823:13: ']' ( '[' ']' )* arrayInitializer
 					{
-					match(input,56,FOLLOW_56_in_arrayCreatorRest5587); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_arrayCreatorRest5591); if (state.failed) return;
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:823:17: ( '[' ']' )*
 					loop162:
 					while (true) {
@@ -11062,8 +11064,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:823:18: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5590); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5592); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5594); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5596); if (state.failed) return;
 							}
 							break;
 
@@ -11072,7 +11074,7 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest5596);
+					pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest5600);
 					arrayInitializer();
 					state._fsp--;
 					if (state.failed) return;
@@ -11081,11 +11083,11 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:13: expression ']' ( '[' expression ']' )* ( '[' ']' )*
 					{
-					pushFollow(FOLLOW_expression_in_arrayCreatorRest5610);
+					pushFollow(FOLLOW_expression_in_arrayCreatorRest5614);
 					expression();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,56,FOLLOW_56_in_arrayCreatorRest5612); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_arrayCreatorRest5616); if (state.failed) return;
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:28: ( '[' expression ']' )*
 					loop163:
 					while (true) {
@@ -11103,12 +11105,12 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:29: '[' expression ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5615); if (state.failed) return;
-							pushFollow(FOLLOW_expression_in_arrayCreatorRest5617);
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5619); if (state.failed) return;
+							pushFollow(FOLLOW_expression_in_arrayCreatorRest5621);
 							expression();
 							state._fsp--;
 							if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5619); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5623); if (state.failed) return;
 							}
 							break;
 
@@ -11134,8 +11136,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:51: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5624); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5626); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5628); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5630); if (state.failed) return;
 							}
 							break;
 
@@ -11177,7 +11179,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:829:5: ( arguments ( classBody )? )
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:829:9: arguments ( classBody )?
 			{
-			pushFollow(FOLLOW_arguments_in_classCreatorRest5657);
+			pushFollow(FOLLOW_arguments_in_classCreatorRest5661);
 			arguments();
 			state._fsp--;
 			if (state.failed) return;
@@ -11191,7 +11193,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:829:19: classBody
 					{
-					pushFollow(FOLLOW_classBody_in_classCreatorRest5659);
+					pushFollow(FOLLOW_classBody_in_classCreatorRest5663);
 					classBody();
 					state._fsp--;
 					if (state.failed) return;
@@ -11228,12 +11230,12 @@ public class JavaPlainParser extends Parser {
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:833:5: ( nonWildcardTypeArguments Identifier arguments )
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:833:9: nonWildcardTypeArguments Identifier arguments
 			{
-			pushFollow(FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5683);
+			pushFollow(FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5687);
 			nonWildcardTypeArguments();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,Identifier,FOLLOW_Identifier_in_explicitGenericInvocation5685); if (state.failed) return;
-			pushFollow(FOLLOW_arguments_in_explicitGenericInvocation5687);
+			match(input,Identifier,FOLLOW_Identifier_in_explicitGenericInvocation5689); if (state.failed) return;
+			pushFollow(FOLLOW_arguments_in_explicitGenericInvocation5691);
 			arguments();
 			state._fsp--;
 			if (state.failed) return;
@@ -11265,12 +11267,12 @@ public class JavaPlainParser extends Parser {
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:837:5: ( '<' typeList '>' )
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:837:9: '<' typeList '>'
 			{
-			match(input,49,FOLLOW_49_in_nonWildcardTypeArguments5710); if (state.failed) return;
-			pushFollow(FOLLOW_typeList_in_nonWildcardTypeArguments5712);
+			match(input,49,FOLLOW_49_in_nonWildcardTypeArguments5714); if (state.failed) return;
+			pushFollow(FOLLOW_typeList_in_nonWildcardTypeArguments5716);
 			typeList();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,52,FOLLOW_52_in_nonWildcardTypeArguments5714); if (state.failed) return;
+			match(input,52,FOLLOW_52_in_nonWildcardTypeArguments5718); if (state.failed) return;
 			}
 
 		}
@@ -11349,8 +11351,8 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:841:9: '.' Identifier ( arguments )?
 					{
-					match(input,43,FOLLOW_43_in_selector5737); if (state.failed) return;
-					match(input,Identifier,FOLLOW_Identifier_in_selector5739); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_selector5741); if (state.failed) return;
+					match(input,Identifier,FOLLOW_Identifier_in_selector5743); if (state.failed) return;
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:841:24: ( arguments )?
 					int alt167=2;
 					int LA167_0 = input.LA(1);
@@ -11361,7 +11363,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:841:24: arguments
 							{
-							pushFollow(FOLLOW_arguments_in_selector5741);
+							pushFollow(FOLLOW_arguments_in_selector5745);
 							arguments();
 							state._fsp--;
 							if (state.failed) return;
@@ -11375,16 +11377,16 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:842:9: '.' 'this'
 					{
-					match(input,43,FOLLOW_43_in_selector5752); if (state.failed) return;
-					match(input,99,FOLLOW_99_in_selector5754); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_selector5756); if (state.failed) return;
+					match(input,99,FOLLOW_99_in_selector5758); if (state.failed) return;
 					}
 					break;
 				case 3 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:843:9: '.' 'super' superSuffix
 					{
-					match(input,43,FOLLOW_43_in_selector5764); if (state.failed) return;
-					match(input,96,FOLLOW_96_in_selector5766); if (state.failed) return;
-					pushFollow(FOLLOW_superSuffix_in_selector5768);
+					match(input,43,FOLLOW_43_in_selector5768); if (state.failed) return;
+					match(input,96,FOLLOW_96_in_selector5770); if (state.failed) return;
+					pushFollow(FOLLOW_superSuffix_in_selector5772);
 					superSuffix();
 					state._fsp--;
 					if (state.failed) return;
@@ -11393,9 +11395,9 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:844:9: '.' 'new' innerCreator
 					{
-					match(input,43,FOLLOW_43_in_selector5778); if (state.failed) return;
-					match(input,86,FOLLOW_86_in_selector5780); if (state.failed) return;
-					pushFollow(FOLLOW_innerCreator_in_selector5782);
+					match(input,43,FOLLOW_43_in_selector5782); if (state.failed) return;
+					match(input,86,FOLLOW_86_in_selector5784); if (state.failed) return;
+					pushFollow(FOLLOW_innerCreator_in_selector5786);
 					innerCreator();
 					state._fsp--;
 					if (state.failed) return;
@@ -11404,12 +11406,12 @@ public class JavaPlainParser extends Parser {
 				case 5 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:845:9: '[' expression ']'
 					{
-					match(input,55,FOLLOW_55_in_selector5792); if (state.failed) return;
-					pushFollow(FOLLOW_expression_in_selector5794);
+					match(input,55,FOLLOW_55_in_selector5796); if (state.failed) return;
+					pushFollow(FOLLOW_expression_in_selector5798);
 					expression();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,56,FOLLOW_56_in_selector5796); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_selector5800); if (state.failed) return;
 					}
 					break;
 
@@ -11433,6 +11435,8 @@ public class JavaPlainParser extends Parser {
 	// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:848:1: superSuffix : ( arguments | '.' Identifier ( arguments )? );
 	public final void superSuffix() throws RecognitionException {
 		int superSuffix_StartIndex = input.index();
+
+		Token Identifier8=null;
 
 		try {
 			if ( state.backtracking>0 && alreadyParsedRule(input, 134) ) { return; }
@@ -11458,7 +11462,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:849:9: arguments
 					{
-					pushFollow(FOLLOW_arguments_in_superSuffix5819);
+					pushFollow(FOLLOW_arguments_in_superSuffix5823);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -11467,9 +11471,10 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:850:9: '.' Identifier ( arguments )?
 					{
-					match(input,43,FOLLOW_43_in_superSuffix5829); if (state.failed) return;
-					match(input,Identifier,FOLLOW_Identifier_in_superSuffix5831); if (state.failed) return;
-					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:850:24: ( arguments )?
+					match(input,43,FOLLOW_43_in_superSuffix5833); if (state.failed) return;
+					Identifier8=(Token)match(input,Identifier,FOLLOW_Identifier_in_superSuffix5835); if (state.failed) return;
+					if ( state.backtracking==0 ) {sb.append((Identifier8!=null?Identifier8.getText():null));}
+					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:850:54: ( arguments )?
 					int alt169=2;
 					int LA169_0 = input.LA(1);
 					if ( (LA169_0==32) ) {
@@ -11477,9 +11482,9 @@ public class JavaPlainParser extends Parser {
 					}
 					switch (alt169) {
 						case 1 :
-							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:850:24: arguments
+							// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:850:54: arguments
 							{
-							pushFollow(FOLLOW_arguments_in_superSuffix5833);
+							pushFollow(FOLLOW_arguments_in_superSuffix5838);
 							arguments();
 							state._fsp--;
 							if (state.failed) return;
@@ -11518,7 +11523,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:854:5: ( '(' ( expressionList )? ')' )
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:854:9: '(' ( expressionList )? ')'
 			{
-			match(input,32,FOLLOW_32_in_arguments5853); if (state.failed) return;
+			match(input,32,FOLLOW_32_in_arguments5858); if (state.failed) return;
 			// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:854:13: ( expressionList )?
 			int alt171=2;
 			int LA171_0 = input.LA(1);
@@ -11529,7 +11534,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:854:13: expressionList
 					{
-					pushFollow(FOLLOW_expressionList_in_arguments5855);
+					pushFollow(FOLLOW_expressionList_in_arguments5860);
 					expressionList();
 					state._fsp--;
 					if (state.failed) return;
@@ -11538,7 +11543,7 @@ public class JavaPlainParser extends Parser {
 
 			}
 
-			match(input,33,FOLLOW_33_in_arguments5858); if (state.failed) return;
+			match(input,33,FOLLOW_33_in_arguments5863); if (state.failed) return;
 			}
 
 		}
@@ -12042,13 +12047,13 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:781:8: ( '(' primitiveType ')' unaryExpression )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:781:8: '(' primitiveType ')' unaryExpression
 		{
-		match(input,32,FOLLOW_32_in_synpred233_JavaPlain5175); if (state.failed) return;
-		pushFollow(FOLLOW_primitiveType_in_synpred233_JavaPlain5177);
+		match(input,32,FOLLOW_32_in_synpred233_JavaPlain5176); if (state.failed) return;
+		pushFollow(FOLLOW_primitiveType_in_synpred233_JavaPlain5178);
 		primitiveType();
 		state._fsp--;
 		if (state.failed) return;
-		match(input,33,FOLLOW_33_in_synpred233_JavaPlain5179); if (state.failed) return;
-		pushFollow(FOLLOW_unaryExpression_in_synpred233_JavaPlain5181);
+		match(input,33,FOLLOW_33_in_synpred233_JavaPlain5180); if (state.failed) return;
+		pushFollow(FOLLOW_unaryExpression_in_synpred233_JavaPlain5182);
 		unaryExpression();
 		state._fsp--;
 		if (state.failed) return;
@@ -12062,7 +12067,7 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:13: ( type )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:782:13: type
 		{
-		pushFollow(FOLLOW_type_in_synpred234_JavaPlain5193);
+		pushFollow(FOLLOW_type_in_synpred234_JavaPlain5194);
 		type();
 		state._fsp--;
 		if (state.failed) return;
@@ -12073,11 +12078,13 @@ public class JavaPlainParser extends Parser {
 
 	// $ANTLR start synpred236_JavaPlain
 	public final void synpred236_JavaPlain_fragment() throws RecognitionException {
-		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: ( '.' Identifier )
-		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: '.' Identifier
+		Token II0=null;
+
+		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: ( '.' II0= Identifier )
+		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:17: '.' II0= Identifier
 		{
-		match(input,43,FOLLOW_43_in_synpred236_JavaPlain5234); if (state.failed) return;
-		match(input,Identifier,FOLLOW_Identifier_in_synpred236_JavaPlain5236); if (state.failed) return;
+		match(input,43,FOLLOW_43_in_synpred236_JavaPlain5235); if (state.failed) return;
+		II0=(Token)match(input,Identifier,FOLLOW_Identifier_in_synpred236_JavaPlain5239); if (state.failed) return;
 		}
 
 	}
@@ -12085,10 +12092,10 @@ public class JavaPlainParser extends Parser {
 
 	// $ANTLR start synpred237_JavaPlain
 	public final void synpred237_JavaPlain_fragment() throws RecognitionException {
-		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:34: ( identifierSuffix )
-		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:34: identifierSuffix
+		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:61: ( identifierSuffix )
+		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:787:61: identifierSuffix
 		{
-		pushFollow(FOLLOW_identifierSuffix_in_synpred237_JavaPlain5240);
+		pushFollow(FOLLOW_identifierSuffix_in_synpred237_JavaPlain5244);
 		identifierSuffix();
 		state._fsp--;
 		if (state.failed) return;
@@ -12104,8 +12111,8 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:48: ( '.' II2= Identifier )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:48: '.' II2= Identifier
 		{
-		match(input,43,FOLLOW_43_in_synpred242_JavaPlain5291); if (state.failed) return;
-		II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_synpred242_JavaPlain5295); if (state.failed) return;
+		match(input,43,FOLLOW_43_in_synpred242_JavaPlain5295); if (state.failed) return;
+		II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_synpred242_JavaPlain5299); if (state.failed) return;
 		}
 
 	}
@@ -12116,7 +12123,7 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:96: ( identifierSuffix )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:791:96: identifierSuffix
 		{
-		pushFollow(FOLLOW_identifierSuffix_in_synpred243_JavaPlain5300);
+		pushFollow(FOLLOW_identifierSuffix_in_synpred243_JavaPlain5304);
 		identifierSuffix();
 		state._fsp--;
 		if (state.failed) return;
@@ -12130,12 +12137,12 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:798:10: ( '[' expression ']' )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:798:10: '[' expression ']'
 		{
-		match(input,55,FOLLOW_55_in_synpred249_JavaPlain5375); if (state.failed) return;
-		pushFollow(FOLLOW_expression_in_synpred249_JavaPlain5377);
+		match(input,55,FOLLOW_55_in_synpred249_JavaPlain5379); if (state.failed) return;
+		pushFollow(FOLLOW_expression_in_synpred249_JavaPlain5381);
 		expression();
 		state._fsp--;
 		if (state.failed) return;
-		match(input,56,FOLLOW_56_in_synpred249_JavaPlain5379); if (state.failed) return;
+		match(input,56,FOLLOW_56_in_synpred249_JavaPlain5383); if (state.failed) return;
 		}
 
 	}
@@ -12146,12 +12153,12 @@ public class JavaPlainParser extends Parser {
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:29: ( '[' expression ']' )
 		// D:\\git\\CECS 547\\src\\javaplain\\JavaPlain.g:824:29: '[' expression ']'
 		{
-		match(input,55,FOLLOW_55_in_synpred262_JavaPlain5615); if (state.failed) return;
-		pushFollow(FOLLOW_expression_in_synpred262_JavaPlain5617);
+		match(input,55,FOLLOW_55_in_synpred262_JavaPlain5619); if (state.failed) return;
+		pushFollow(FOLLOW_expression_in_synpred262_JavaPlain5621);
 		expression();
 		state._fsp--;
 		if (state.failed) return;
-		match(input,56,FOLLOW_56_in_synpred262_JavaPlain5619); if (state.failed) return;
+		match(input,56,FOLLOW_56_in_synpred262_JavaPlain5623); if (state.failed) return;
 		}
 
 	}
@@ -14427,111 +14434,111 @@ public class JavaPlainParser extends Parser {
 	public static final BitSet FOLLOW_25_in_unaryExpressionNotPlusMinus5124 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
 	public static final BitSet FOLLOW_unaryExpression_in_unaryExpressionNotPlusMinus5126 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_castExpression_in_unaryExpressionNotPlusMinus5136 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_primary_in_unaryExpressionNotPlusMinus5146 = new BitSet(new long[]{0x00800A2000000002L});
-	public static final BitSet FOLLOW_selector_in_unaryExpressionNotPlusMinus5149 = new BitSet(new long[]{0x00800A2000000002L});
-	public static final BitSet FOLLOW_32_in_castExpression5175 = new BitSet(new long[]{0x5000000000000000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_primitiveType_in_castExpression5177 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_33_in_castExpression5179 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_unaryExpression_in_castExpression5181 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_32_in_castExpression5190 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_type_in_castExpression5193 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_expression_in_castExpression5197 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_33_in_castExpression5200 = new BitSet(new long[]{0x500000010260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_castExpression5202 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_parExpression_in_primary5221 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_99_in_primary5231 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_43_in_primary5234 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_primary5236 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_primary5240 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_96_in_primary5251 = new BitSet(new long[]{0x0000080100000000L});
-	public static final BitSet FOLLOW_superSuffix_in_primary5253 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_literal_in_primary5263 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_86_in_primary5273 = new BitSet(new long[]{0x5002000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_creator_in_primary5275 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Identifier_in_primary5287 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_43_in_primary5291 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_primary5295 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_primary5300 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_primitiveType_in_primary5311 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_55_in_primary5314 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_primary5316 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_43_in_primary5320 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_primary5322 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_105_in_primary5332 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_primary5334 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_primary5336 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_identifierSuffix5356 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_identifierSuffix5358 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5362 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_identifierSuffix5364 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_identifierSuffix5375 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_identifierSuffix5377 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_identifierSuffix5379 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_arguments_in_identifierSuffix5392 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5402 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_identifierSuffix5404 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5414 = new BitSet(new long[]{0x0002000000000000L});
-	public static final BitSet FOLLOW_explicitGenericInvocation_in_identifierSuffix5416 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5426 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_identifierSuffix5428 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5438 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-	public static final BitSet FOLLOW_96_in_identifierSuffix5440 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_arguments_in_identifierSuffix5442 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5452 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_identifierSuffix5454 = new BitSet(new long[]{0x0002000000008000L});
-	public static final BitSet FOLLOW_innerCreator_in_identifierSuffix5456 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_creator5475 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_createdName_in_creator5477 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_classCreatorRest_in_creator5479 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_createdName_in_creator5489 = new BitSet(new long[]{0x0080000100000000L});
-	public static final BitSet FOLLOW_arrayCreatorRest_in_creator5492 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_classCreatorRest_in_creator5496 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_classOrInterfaceType_in_createdName5516 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_primitiveType_in_createdName5526 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_innerCreator5549 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_innerCreator5552 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_classCreatorRest_in_innerCreator5554 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5573 = new BitSet(new long[]{0x510003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5587 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5590 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5592 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
-	public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest5596 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5610 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5612 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5615 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5617 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5619 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5624 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5626 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_arguments_in_classCreatorRest5657 = new BitSet(new long[]{0x0000000000000002L,0x0000100000000000L});
-	public static final BitSet FOLLOW_classBody_in_classCreatorRest5659 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5683 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_explicitGenericInvocation5685 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_arguments_in_explicitGenericInvocation5687 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_49_in_nonWildcardTypeArguments5710 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_typeList_in_nonWildcardTypeArguments5712 = new BitSet(new long[]{0x0010000000000000L});
-	public static final BitSet FOLLOW_52_in_nonWildcardTypeArguments5714 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5737 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_selector5739 = new BitSet(new long[]{0x0000000100000002L});
-	public static final BitSet FOLLOW_arguments_in_selector5741 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5752 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_selector5754 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5764 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-	public static final BitSet FOLLOW_96_in_selector5766 = new BitSet(new long[]{0x0000080100000000L});
-	public static final BitSet FOLLOW_superSuffix_in_selector5768 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5778 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_selector5780 = new BitSet(new long[]{0x0002000000008000L});
-	public static final BitSet FOLLOW_innerCreator_in_selector5782 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_selector5792 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_selector5794 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_selector5796 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_arguments_in_superSuffix5819 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_superSuffix5829 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_superSuffix5831 = new BitSet(new long[]{0x0000000100000002L});
-	public static final BitSet FOLLOW_arguments_in_superSuffix5833 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_32_in_arguments5853 = new BitSet(new long[]{0x500003330260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expressionList_in_arguments5855 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_33_in_arguments5858 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_primary_in_unaryExpressionNotPlusMinus5145 = new BitSet(new long[]{0x00800A2000000002L});
+	public static final BitSet FOLLOW_selector_in_unaryExpressionNotPlusMinus5150 = new BitSet(new long[]{0x00800A2000000002L});
+	public static final BitSet FOLLOW_32_in_castExpression5176 = new BitSet(new long[]{0x5000000000000000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_primitiveType_in_castExpression5178 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_33_in_castExpression5180 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_unaryExpression_in_castExpression5182 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_32_in_castExpression5191 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_type_in_castExpression5194 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_expression_in_castExpression5198 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_33_in_castExpression5201 = new BitSet(new long[]{0x500000010260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_unaryExpressionNotPlusMinus_in_castExpression5203 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_parExpression_in_primary5222 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_99_in_primary5232 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_43_in_primary5235 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_primary5239 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_primary5244 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_96_in_primary5255 = new BitSet(new long[]{0x0000080100000000L});
+	public static final BitSet FOLLOW_superSuffix_in_primary5257 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_literal_in_primary5267 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_86_in_primary5277 = new BitSet(new long[]{0x5002000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_creator_in_primary5279 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Identifier_in_primary5291 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_43_in_primary5295 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_primary5299 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_primary5304 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_primitiveType_in_primary5315 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_55_in_primary5318 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_primary5320 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_43_in_primary5324 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_primary5326 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_105_in_primary5336 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_primary5338 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_primary5340 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_identifierSuffix5360 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_identifierSuffix5362 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5366 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_identifierSuffix5368 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_identifierSuffix5379 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_identifierSuffix5381 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_identifierSuffix5383 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_arguments_in_identifierSuffix5396 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5406 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_identifierSuffix5408 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5418 = new BitSet(new long[]{0x0002000000000000L});
+	public static final BitSet FOLLOW_explicitGenericInvocation_in_identifierSuffix5420 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5430 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_identifierSuffix5432 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5442 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+	public static final BitSet FOLLOW_96_in_identifierSuffix5444 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_arguments_in_identifierSuffix5446 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5456 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_identifierSuffix5458 = new BitSet(new long[]{0x0002000000008000L});
+	public static final BitSet FOLLOW_innerCreator_in_identifierSuffix5460 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_creator5479 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_createdName_in_creator5481 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_classCreatorRest_in_creator5483 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_createdName_in_creator5493 = new BitSet(new long[]{0x0080000100000000L});
+	public static final BitSet FOLLOW_arrayCreatorRest_in_creator5496 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_classCreatorRest_in_creator5500 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_classOrInterfaceType_in_createdName5520 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_primitiveType_in_createdName5530 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_innerCreator5553 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_innerCreator5556 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_classCreatorRest_in_innerCreator5558 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5577 = new BitSet(new long[]{0x510003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5591 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5594 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5596 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
+	public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest5600 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5614 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5616 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5619 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5621 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5623 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5628 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5630 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_arguments_in_classCreatorRest5661 = new BitSet(new long[]{0x0000000000000002L,0x0000100000000000L});
+	public static final BitSet FOLLOW_classBody_in_classCreatorRest5663 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5687 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_explicitGenericInvocation5689 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_arguments_in_explicitGenericInvocation5691 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_49_in_nonWildcardTypeArguments5714 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_typeList_in_nonWildcardTypeArguments5716 = new BitSet(new long[]{0x0010000000000000L});
+	public static final BitSet FOLLOW_52_in_nonWildcardTypeArguments5718 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5741 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_selector5743 = new BitSet(new long[]{0x0000000100000002L});
+	public static final BitSet FOLLOW_arguments_in_selector5745 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5756 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_selector5758 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5768 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+	public static final BitSet FOLLOW_96_in_selector5770 = new BitSet(new long[]{0x0000080100000000L});
+	public static final BitSet FOLLOW_superSuffix_in_selector5772 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5782 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_selector5784 = new BitSet(new long[]{0x0002000000008000L});
+	public static final BitSet FOLLOW_innerCreator_in_selector5786 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_selector5796 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_selector5798 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_selector5800 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_arguments_in_superSuffix5823 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_superSuffix5833 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_superSuffix5835 = new BitSet(new long[]{0x0000000100000002L});
+	public static final BitSet FOLLOW_arguments_in_superSuffix5838 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_32_in_arguments5858 = new BitSet(new long[]{0x500003330260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expressionList_in_arguments5860 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_33_in_arguments5863 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_annotations_in_synpred5_JavaPlain55 = new BitSet(new long[]{0x0840000000000100L,0x00000000CF080404L});
 	public static final BitSet FOLLOW_packageDeclaration_in_synpred5_JavaPlain69 = new BitSet(new long[]{0x0841000000000102L,0x00000000CE090404L});
 	public static final BitSet FOLLOW_importDeclaration_in_synpred5_JavaPlain71 = new BitSet(new long[]{0x0841000000000102L,0x00000000CE090404L});
@@ -14585,21 +14592,21 @@ public class JavaPlainParser extends Parser {
 	public static final BitSet FOLLOW_52_in_synpred217_JavaPlain4925 = new BitSet(new long[]{0x0010000000000000L});
 	public static final BitSet FOLLOW_52_in_synpred217_JavaPlain4927 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_castExpression_in_synpred229_JavaPlain5136 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_32_in_synpred233_JavaPlain5175 = new BitSet(new long[]{0x5000000000000000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_primitiveType_in_synpred233_JavaPlain5177 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_33_in_synpred233_JavaPlain5179 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_unaryExpression_in_synpred233_JavaPlain5181 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_type_in_synpred234_JavaPlain5193 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_synpred236_JavaPlain5234 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_synpred236_JavaPlain5236 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_synpred237_JavaPlain5240 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_synpred242_JavaPlain5291 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_synpred242_JavaPlain5295 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_synpred243_JavaPlain5300 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_synpred249_JavaPlain5375 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_synpred249_JavaPlain5377 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_synpred249_JavaPlain5379 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_synpred262_JavaPlain5615 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_synpred262_JavaPlain5617 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_synpred262_JavaPlain5619 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_32_in_synpred233_JavaPlain5176 = new BitSet(new long[]{0x5000000000000000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_primitiveType_in_synpred233_JavaPlain5178 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_33_in_synpred233_JavaPlain5180 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_unaryExpression_in_synpred233_JavaPlain5182 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_type_in_synpred234_JavaPlain5194 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_synpred236_JavaPlain5235 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_synpred236_JavaPlain5239 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_synpred237_JavaPlain5244 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_synpred242_JavaPlain5295 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_synpred242_JavaPlain5299 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_synpred243_JavaPlain5304 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_synpred249_JavaPlain5379 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_synpred249_JavaPlain5381 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_synpred249_JavaPlain5383 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_synpred262_JavaPlain5619 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_synpred262_JavaPlain5621 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_synpred262_JavaPlain5623 = new BitSet(new long[]{0x0000000000000002L});
 }

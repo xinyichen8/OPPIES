@@ -14,6 +14,7 @@ public class Class
 	private boolean fin;
 	private boolean strifp;
 	private boolean isAbs;
+	private String child;
 	private ArrayList<String> implement;
 
 
@@ -21,6 +22,7 @@ public class Class
 	{
 		this.name="";
 		this.extend="";
+		this.child ="";
 		this.implement=new ArrayList<String>();
 		this.isFinal=false;
 		this.isStatic=false;
@@ -89,6 +91,9 @@ public class Class
 	{
 		return this.extend;
 	}
+
+	public void setChild(String c) {this.child =c;}
+	public String child() { return this.child;}
 	
 	public String getName()
 	{

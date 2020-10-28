@@ -774,7 +774,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{sb.setLength(0);}selector* ('++'|'--')?
+    |  primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}} {sb.setLength(0);} selector* ('++'|'--')?
     ;
 
 castExpression
@@ -784,7 +784,7 @@ castExpression
 
 primary
     :   parExpression
-    |   'this' ('.' Identifier)* identifierSuffix?
+    |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
     |   'super' superSuffix
     |   literal
     |   'new' creator
@@ -847,7 +847,7 @@ selector
     
 superSuffix
     :   arguments
-    |   '.' Identifier arguments?
+    |   '.' Identifier{sb.append($Identifier.text);} arguments?
     ;
 
 arguments
