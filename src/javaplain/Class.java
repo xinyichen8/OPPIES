@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Class
 {
 	private String name;
+	private String assV;
 	private ArrayList<Method> method;
 	private ArrayList<DataMem> dm;
 	private ArrayList<String> agg;
@@ -17,7 +18,7 @@ public class Class
 	private boolean fin;
 	private boolean strifp;
 	private boolean isAbs;
-	private String child;
+	private ArrayList<String> child;
 	private ArrayList<String> implement;
 
 
@@ -25,7 +26,7 @@ public class Class
 	{
 		this.name="";
 		this.extend="";
-		this.child ="";
+		this.child = new ArrayList<String>();
 		this.implement=new ArrayList<String>();
 		this.isFinal=false;
 		this.isStatic=false;
@@ -33,6 +34,13 @@ public class Class
 		this.dm=new ArrayList<DataMem>();
 		this.agg = new ArrayList<String>();
 		this.ass = new ArrayList<>();
+		this.assV = "";
+	}
+	public void addAssV(String name) {
+		this.assV=name;
+	}
+	public String getAssV(){
+		return this.assV;
 	}
 
 	public void addAss(String a){ass.add(a);};
@@ -100,13 +108,13 @@ public class Class
 		return this.isStatic;
 	}
 	
-	public String parent()
+	public String getParent()
 	{
 		return this.extend;
 	}
 
-	public void setChild(String c) {this.child =c;}
-	public String child() { return this.child;}
+	public void setChild(String c) {this.child.add(c);}
+	public ArrayList<String> child() { return this.child;}
 	
 	public String getName()
 	{
@@ -175,5 +183,6 @@ public class Class
 		this.isAbs = isAbs;
 	}
 
-	
+
+
 }

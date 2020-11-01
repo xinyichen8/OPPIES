@@ -3,7 +3,6 @@ package javaplain;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -15,7 +14,7 @@ import java.util.List;
 
 
 public class opp {
-    public static List<Class> ListOfClass ;
+    public static List<Class> ListOfClass;
 
     public static void main(String[] args) throws IOException, RecognitionException {
         Class newClass = new Class();
@@ -36,25 +35,30 @@ public class opp {
 
                 newClass = parser.c;
                 ListOfClass.add(newClass);
-                //save class into json file
-                try {
-                    mapper.writeValue(sfile, newClass);
-                } catch (JsonMappingException e) {
-                    e.printStackTrace();
-                } catch (JsonGenerationException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         }
+
+        //save class into json file
+        try {
+
+            mapper.writeValue(sfile, ListOfClass);
+
+        } catch (JsonMappingException e) {
+            e.printStackTrace();
+        } catch (JsonGenerationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //store child into parent class
         for (int i = 0; i < ListOfClass.size(); i++) {
             callNames.add(ListOfClass.get(i).getName().split(" ")[0]);
-            if (!ListOfClass.get(i).parent().equals("")) {
+            if (!ListOfClass.get(i).getParent().equals("")) {
                 int index = getIndexOf(ListOfClass, ListOfClass.get(i).getName());
                 if (index != -1) {
-                    int parentIndex = getIndexOf(ListOfClass, ListOfClass.get(i).parent());
+                    int parentIndex = getIndexOf(ListOfClass, ListOfClass.get(i).getParent());
                     if (parentIndex != -1) {
                         ListOfClass.get(parentIndex).setChild(ListOfClass.get(i).getName().split(" ")[0]);
                     }
@@ -65,8 +69,9 @@ public class opp {
         //Aggreagtes
         for (int i = 0; i < ListOfClass.size(); i++) {
             for (DataMem dataMem : ListOfClass.get(i).getDM()) {
-                if (dataMem.getp() == "" || callNames.contains(dataMem.getType())) {
-//                    System.out.println(dataMem.getType());
+                if (callNames.contains(dataMem.getType())) {
+                    ListOfClass.get(i).addAgg(dataMem.getType());
+                }else if(dataMem.getp().equals("") || dataMem.getType().equals("Base2")){
                     ListOfClass.get(i).addAgg(dataMem.getType());
                 }
             }
@@ -76,13 +81,15 @@ public class opp {
         //Associates
         for (int i = 0; i < ListOfClass.size(); i++) {
             for (Method m : ListOfClass.get(i).getMethod()) {
-                if (m.getVar().size() > 0) {
+                if (m.getVar().size() > 0 || m.getParam().size()>0) {
                     for (DataMem d : m.getVar()) {
                         for (Param p : m.getParam()) {
                             if (callNames.contains(d.getType())) {
                                 ListOfClass.get(i).addAss(d.getType());
+                                ListOfClass.get(i).addAssV(d.getName());
                             } else if (callNames.contains(m.getParam().get(0).getParam().split(" ")[0])) {
                                 ListOfClass.get(i).addAss(p.getParam().split(" ")[0]);
+                                ListOfClass.get(i).addAssV(d.getName());
                             }
                         }
 
@@ -95,12 +102,13 @@ public class opp {
         for (int i = 0; i < ListOfClass.size(); i++) {
 
             printClass(ListOfClass.get(i));
-        }
-
-        for (int i = 0; i < ListOfClass.size(); i++) {
-
             printCall(ListOfClass.get(i));
+
         }
+
+//        for (int i = 0; i < ListOfClass.size(); i++) {
+//
+//        }
 
 //		//load json file
 //		try{
@@ -116,7 +124,7 @@ public class opp {
     private static int getIndexOf(List<Class> c, String name) {
         int pos = 0;
         for (Class a : c) {
-            if (name.equals(a.getName())) {
+            if (name.split(" ")[0].equals(a.getName().split(" ")[0])) {
                 return pos;
             }
             pos++;
@@ -126,7 +134,28 @@ public class opp {
 
     private static void printClass(Class c) {
         //print Data Members
-        System.out.println("Class: " + c.getName().split(" ")[0]);
+        System.out.println("Class: " + c.getName());
+
+        //print Descendent/ancestor
+        if (!c.getParent().equals("")) {
+            System.out.println("       Ancestor Classes:");
+            System.out.println("              " + c.getParent());
+        }else{
+            System.out.println("       No Ancestors");
+        }
+
+        System.out.println("       Descendent Classes:");
+        if (c.child().size()>0) {
+        for(String s:c.child()){
+
+                System.out.println("              " + s);
+            }
+        }else{
+            System.out.println("       No descendants");
+        }
+
+
+        //print stats
         if (c.isAbs()) {
             System.out.println("is abstract");
         }
@@ -162,50 +191,55 @@ public class opp {
 
         System.out.println("       Data Members:");
         for (DataMem dataMem : c.getDM()) {
-            System.out.println("              " + dataMem.getp() + " " + dataMem.getType() + " " + dataMem.getName() + " ");
+            System.out.print("              ");
+            if(dataMem.gets()){
+                System.out.print("static ");
+            }
+            System.out.println(dataMem.getp() + " " + dataMem.getType() + " " + dataMem.getName() + " ");
         }
 
         //print Method memebers
         System.out.println("       Method Members:");
         for (Method m : c.getMethod()) {
-            if (m.getName().equals("main")) {
-                System.out.print("              main(");
-            } else {
-                System.out.print("              " + m.getp() + " " + m.getType() + " " + m.getName() + "(");
-            }
-            int count = 0;
+//            if (m.getName().equals("main")) {
+//                System.out.print("              main(");
+//            } else {
+                System.out.print("              " + m.getName() + " returns " + m.getType() + " is " + m.getp());
+                if(m.getabs()){
+                    System.out.println(" abstract");
+                }else{
+                    System.out.println();
+                }
+                //System.out.print("              " + m.getp() + " " + m.getType() + " " + m.getName() + "(");
+//            }
+
+            if(m.getParam().size()>0){
+                System.out.print("                  Parameters: ");
+
             for (Param p : m.getParam()) {
-                if (count > 0 && count < m.getParam().size()) {
-                    System.out.print(", ");
-                }
-                if (m.getName().equals("main")) {
-                    System.out.print(p.getParam().split(" ")[1]);
-                } else {
-                    System.out.print(p.getParam());
-                }
-                count++;
+                System.out.print(p.getParam());
             }
-            System.out.println(")");
+            System.out.println();
+            }
+
+            if (c.getAss().size() > 0) {
+                System.out.print("                  Local vars: ");
+                for (String s : c.getAss()) {
+                    System.out.println(s + " " +c.getAssV());
+                }
+            }
         }
 
-        //print Descendent/ancestor
-        if (!c.parent().equals("")) {
-            System.out.println("       Ancestor Classes:");
-            System.out.println("              " + c.parent());
-        }
-        if (!c.child().equals("")) {
-            System.out.println("       Descendent Classes:");
-            System.out.println("              " + c.child());
-        }
+        System.out.println();
 
-        System.out.println("==============================================================");
+
     }
 
 
     private static void printCall(Class c) {
 
         for (Method s : c.getMethod()) {
-            String newS="";
+            String newS = "";
 
             if (s.getCall().size() > 0) {
 
@@ -223,14 +257,15 @@ public class opp {
                             System.out.println("       -->" + call.getCall() + "  ");
                             newS = call.getCall();
                         }
-                        if (newS.contains(".") && newS!="") {
+                        if (newS.contains(".") && newS != "") {
 
                             String vName = newS.split("\\.")[1];
 
-                            String cName ="";
-                            for(DataMem d:s.getVar()){
-                                if(s.getVar().size()>0){
-                                    if(d.getName().equals(vName));{
+                            String cName = "";
+                            for (DataMem d : s.getVar()) {
+                                if (s.getVar().size() > 0) {
+                                    if (d.getName().equals(vName)) ;
+                                    {
                                         cName = d.getType();
                                     }
 
@@ -238,21 +273,24 @@ public class opp {
                             }
 
                             newS = newS.split("\\.")[1];
-                            if(cName!=""){
-                                if(getIndexOf(ListOfClass,cName)>=0){
-                                    c = ListOfClass.get(getIndexOf(ListOfClass,cName));
+                            if (cName != "") {
+                                if (getIndexOf(ListOfClass, cName) >= 0) {
+                                    c = ListOfClass.get(getIndexOf(ListOfClass, cName));
                                 }
                             }
                         }
-                        int index = getCallIndex(c, newS);
-                        if (index >= 0) {
-                            printInnerCall(c.getMethod().get(index));
-                        }
+//                        int index = getCallIndex(c, newS);
+//                        if (index >= 0) {
+//                            printInnerCall(c.getMethod().get(index));
+//                        }
                     }
 
                 }
             }
         }
+        System.out.println("==============================================================");
+        System.out.println();
+
     }
 
     private static int getCallIndex(Class c, String name) {
@@ -270,7 +308,6 @@ public class opp {
 
         if (s.getCall().size() >= 0) {
             if (s.getVar().size() >= 0) {
-
 
                 for (Call call : s.getCall()) {
                     if (!call.getCall().equals("System.out.println") && call.getCall().contains("System.out.println")) {

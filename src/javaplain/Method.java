@@ -91,6 +91,7 @@ public class Method {
 	
 	public String getp()
 	{
+
 		return this.pri_pub;
 	}
 	

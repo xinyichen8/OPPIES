@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=-1;
-boolean param=false;
+boolean param=false,ent=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
@@ -167,7 +167,7 @@ memberDecl
 	    			p="";
 	    			} 
     				{param=true;}voidMethodDeclaratorRest{isMethod=false;}
-    |   Identifier{c.addMethod(new Method(""));
+    |   Identifier{c.addMethod(new Method("constructor"));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
@@ -789,7 +789,7 @@ primary
     |   'super' superSuffix
     |   literal
     |   'new' creator 
-    |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
+    |   II1=Identifier{ent=true;} ({if(ent==true){sb.append($II1.text);ent=false;}}'.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class' 
     |   'void' '.' 'class' 
     ;
