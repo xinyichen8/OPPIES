@@ -1,4 +1,4 @@
-// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-31 19:56:34
+// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-31 19:58:03
 
 package javaplain;
 
@@ -2159,7 +2159,7 @@ public class JavaPlainParser extends Parser {
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:170:9: Identifier constructorDeclaratorRest
 					{
 					Identifier5=(Token)match(input,Identifier,FOLLOW_Identifier_in_memberDecl1026); if (state.failed) return;
-					if ( state.backtracking==0 ) {c.addMethod(new Method(""));
+					if ( state.backtracking==0 ) {c.addMethod(new Method("constructor"));
 					    				classMemberFlag=false;
 					    				l++;
 					    				c.getMethod().get(l).addName((Identifier5!=null?Identifier5.getText():null));

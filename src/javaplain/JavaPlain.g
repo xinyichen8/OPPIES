@@ -167,7 +167,7 @@ memberDecl
 	    			p="";
 	    			} 
     				{param=true;}voidMethodDeclaratorRest{isMethod=false;}
-    |   Identifier{c.addMethod(new Method(""));
+    |   Identifier{c.addMethod(new Method("constructor"));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
