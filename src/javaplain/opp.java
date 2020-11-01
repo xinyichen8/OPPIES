@@ -83,20 +83,23 @@ public class opp {
             for (Method m : ListOfClass.get(i).getMethod()) {
                 if (m.getVar().size() > 0 || m.getParam().size()>0) {
                     for (DataMem d : m.getVar()) {
-                        for (Param p : m.getParam()) {
-                            if (callNames.contains(d.getType())) {
-                                ListOfClass.get(i).addAss(d.getType());
-                                ListOfClass.get(i).addAssV(d.getName());
-                            } else if (callNames.contains(m.getParam().get(0).getParam().split(" ")[0])) {
-                                ListOfClass.get(i).addAss(p.getParam().split(" ")[0]);
-                                ListOfClass.get(i).addAssV(d.getName());
-                            }
+                    	if (callNames.contains(d.getType())) {
+                            ListOfClass.get(i).addAss(d.getType());
+                            ListOfClass.get(i).addAssV(d.getName());
                         }
-
+                    }
+                    for (Param p : m.getParam()) 
+                    {
+                         if (callNames.contains(p.getParam().split(" ")[0])) {
+                            ListOfClass.get(i).addAss(p.getParam().split(" ")[0]);
+                            ListOfClass.get(i).addAssV(p.getParam().split(" ")[1]);
+                        }
                     }
                 }
             }
         }
+        
+        
 
 
         for (int i = 0; i < ListOfClass.size(); i++) {
