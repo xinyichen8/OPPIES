@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=-1;
-boolean param=false, isConst=false;
+boolean param=false,ent=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
@@ -387,13 +387,6 @@ classOrInterfaceType
 	                       	  c.addImplement($I1.text); isExtends=false;
 	                       	  isImp=false;
 	                       } 
-	                       else if(isConst==true)
-	                       {
-	                       sb.append($I1.text);
-    				if(sb.length()!=0 && l>=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}
-    				isConst=false;
-    				sb.setLength(0);
-	                       }
 	                       else
 	                       type = $I1.text;}
 	                       
@@ -795,8 +788,8 @@ primary
     |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
     |   'super' superSuffix
     |   literal
-    |   'new'{isConst=true;} creator 
-    |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
+    |   'new' creator 
+    |   II1=Identifier{ent=true;} ({if(ent==true){sb.append($II1.text);ent=false;}}'.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
     |   primitiveType ('[' ']')* '.' 'class' 
     |   'void' '.' 'class' 
     ;
@@ -859,7 +852,7 @@ superSuffix
     ;
 
 arguments
-    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{isConst=false;}{sb.setLength(0);}
+    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{sb.setLength(0);}
     ;
 
 // LEXER

@@ -128,7 +128,7 @@ public class opp {
         //print Data Members
         System.out.println("Class: " + c.getName().split(" ")[0]);
         if (c.isAbs()) {
-            System.out.println("is absolute");
+            System.out.println("is abstract");
         }
         if (c.isf()) {
             System.out.println("is final");
