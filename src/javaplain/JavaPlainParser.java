@@ -1,4 +1,4 @@
-// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-10-31 19:58:03
+// $ANTLR null D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g 2020-11-01 10:58:03
 
 package javaplain;
 
@@ -167,7 +167,7 @@ public class JavaPlainParser extends Parser {
 
 	boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 	int intCount=-1;
-	boolean param=false,ent=false;
+	boolean param=false,ent=false,sp=false;
 	ArrayList<String> mod = new ArrayList<String>();
 	Class c = new Class();
 	int l = -1;
@@ -10396,7 +10396,8 @@ public class JavaPlainParser extends Parser {
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:789:9: 'super' superSuffix
 					{
 					match(input,96,FOLLOW_96_in_primary5303); if (state.failed) return;
-					pushFollow(FOLLOW_superSuffix_in_primary5305);
+					if ( state.backtracking==0 ) {sp=true;}
+					pushFollow(FOLLOW_superSuffix_in_primary5306);
 					superSuffix();
 					state._fsp--;
 					if (state.failed) return;
@@ -10405,7 +10406,7 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:790:9: literal
 					{
-					pushFollow(FOLLOW_literal_in_primary5315);
+					pushFollow(FOLLOW_literal_in_primary5317);
 					literal();
 					state._fsp--;
 					if (state.failed) return;
@@ -10414,8 +10415,8 @@ public class JavaPlainParser extends Parser {
 				case 5 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:791:9: 'new' creator
 					{
-					match(input,86,FOLLOW_86_in_primary5325); if (state.failed) return;
-					pushFollow(FOLLOW_creator_in_primary5327);
+					match(input,86,FOLLOW_86_in_primary5327); if (state.failed) return;
+					pushFollow(FOLLOW_creator_in_primary5329);
 					creator();
 					state._fsp--;
 					if (state.failed) return;
@@ -10424,7 +10425,7 @@ public class JavaPlainParser extends Parser {
 				case 6 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:9: II1= Identifier ( '.' II2= Identifier )* ( identifierSuffix )?
 					{
-					II1=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5340); if (state.failed) return;
+					II1=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5342); if (state.failed) return;
 					if ( state.backtracking==0 ) {ent=true;}
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:35: ( '.' II2= Identifier )*
 					loop151:
@@ -10448,8 +10449,8 @@ public class JavaPlainParser extends Parser {
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:36: '.' II2= Identifier
 							{
 							if ( state.backtracking==0 ) {if(ent==true){sb.append((II1!=null?II1.getText():null));ent=false;}}
-							match(input,43,FOLLOW_43_in_primary5345); if (state.failed) return;
-							II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5349); if (state.failed) return;
+							match(input,43,FOLLOW_43_in_primary5347); if (state.failed) return;
+							II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_primary5351); if (state.failed) return;
 							if ( state.backtracking==0 ) {sb.append("."+(II2!=null?II2.getText():null));}
 							}
 							break;
@@ -10488,7 +10489,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:132: identifierSuffix
 							{
-							pushFollow(FOLLOW_identifierSuffix_in_primary5354);
+							pushFollow(FOLLOW_identifierSuffix_in_primary5356);
 							identifierSuffix();
 							state._fsp--;
 							if (state.failed) return;
@@ -10502,7 +10503,7 @@ public class JavaPlainParser extends Parser {
 				case 7 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:9: primitiveType ( '[' ']' )* '.' 'class'
 					{
-					pushFollow(FOLLOW_primitiveType_in_primary5365);
+					pushFollow(FOLLOW_primitiveType_in_primary5367);
 					primitiveType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10519,8 +10520,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:793:24: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_primary5368); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_primary5370); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_primary5370); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_primary5372); if (state.failed) return;
 							}
 							break;
 
@@ -10529,16 +10530,16 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					match(input,43,FOLLOW_43_in_primary5374); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_primary5376); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_primary5376); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_primary5378); if (state.failed) return;
 					}
 					break;
 				case 8 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:794:9: 'void' '.' 'class'
 					{
-					match(input,105,FOLLOW_105_in_primary5387); if (state.failed) return;
-					match(input,43,FOLLOW_43_in_primary5389); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_primary5391); if (state.failed) return;
+					match(input,105,FOLLOW_105_in_primary5389); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_primary5391); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_primary5393); if (state.failed) return;
 					}
 					break;
 
@@ -10665,8 +10666,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:798:10: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_identifierSuffix5412); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_identifierSuffix5414); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_identifierSuffix5414); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_identifierSuffix5416); if (state.failed) return;
 							}
 							break;
 
@@ -10679,8 +10680,8 @@ public class JavaPlainParser extends Parser {
 						cnt155++;
 					}
 
-					match(input,43,FOLLOW_43_in_identifierSuffix5418); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_identifierSuffix5420); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5420); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_identifierSuffix5422); if (state.failed) return;
 					}
 					break;
 				case 2 :
@@ -10704,12 +10705,12 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:799:10: '[' expression ']'
 							{
-							match(input,55,FOLLOW_55_in_identifierSuffix5431); if (state.failed) return;
-							pushFollow(FOLLOW_expression_in_identifierSuffix5433);
+							match(input,55,FOLLOW_55_in_identifierSuffix5433); if (state.failed) return;
+							pushFollow(FOLLOW_expression_in_identifierSuffix5435);
 							expression();
 							state._fsp--;
 							if (state.failed) return;
-							match(input,56,FOLLOW_56_in_identifierSuffix5435); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_identifierSuffix5437); if (state.failed) return;
 							}
 							break;
 
@@ -10727,7 +10728,7 @@ public class JavaPlainParser extends Parser {
 				case 3 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:800:9: arguments
 					{
-					pushFollow(FOLLOW_arguments_in_identifierSuffix5448);
+					pushFollow(FOLLOW_arguments_in_identifierSuffix5450);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10736,15 +10737,15 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:801:9: '.' 'class'
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5458); if (state.failed) return;
-					match(input,66,FOLLOW_66_in_identifierSuffix5460); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5460); if (state.failed) return;
+					match(input,66,FOLLOW_66_in_identifierSuffix5462); if (state.failed) return;
 					}
 					break;
 				case 5 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:802:9: '.' explicitGenericInvocation
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5470); if (state.failed) return;
-					pushFollow(FOLLOW_explicitGenericInvocation_in_identifierSuffix5472);
+					match(input,43,FOLLOW_43_in_identifierSuffix5472); if (state.failed) return;
+					pushFollow(FOLLOW_explicitGenericInvocation_in_identifierSuffix5474);
 					explicitGenericInvocation();
 					state._fsp--;
 					if (state.failed) return;
@@ -10753,16 +10754,16 @@ public class JavaPlainParser extends Parser {
 				case 6 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:803:9: '.' 'this'
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5482); if (state.failed) return;
-					match(input,99,FOLLOW_99_in_identifierSuffix5484); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_identifierSuffix5484); if (state.failed) return;
+					match(input,99,FOLLOW_99_in_identifierSuffix5486); if (state.failed) return;
 					}
 					break;
 				case 7 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:804:9: '.' 'super' arguments
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5494); if (state.failed) return;
-					match(input,96,FOLLOW_96_in_identifierSuffix5496); if (state.failed) return;
-					pushFollow(FOLLOW_arguments_in_identifierSuffix5498);
+					match(input,43,FOLLOW_43_in_identifierSuffix5496); if (state.failed) return;
+					match(input,96,FOLLOW_96_in_identifierSuffix5498); if (state.failed) return;
+					pushFollow(FOLLOW_arguments_in_identifierSuffix5500);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10771,9 +10772,9 @@ public class JavaPlainParser extends Parser {
 				case 8 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:805:9: '.' 'new' innerCreator
 					{
-					match(input,43,FOLLOW_43_in_identifierSuffix5508); if (state.failed) return;
-					match(input,86,FOLLOW_86_in_identifierSuffix5510); if (state.failed) return;
-					pushFollow(FOLLOW_innerCreator_in_identifierSuffix5512);
+					match(input,43,FOLLOW_43_in_identifierSuffix5510); if (state.failed) return;
+					match(input,86,FOLLOW_86_in_identifierSuffix5512); if (state.failed) return;
+					pushFollow(FOLLOW_innerCreator_in_identifierSuffix5514);
 					innerCreator();
 					state._fsp--;
 					if (state.failed) return;
@@ -10825,15 +10826,15 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:809:9: nonWildcardTypeArguments createdName classCreatorRest
 					{
-					pushFollow(FOLLOW_nonWildcardTypeArguments_in_creator5531);
+					pushFollow(FOLLOW_nonWildcardTypeArguments_in_creator5533);
 					nonWildcardTypeArguments();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_createdName_in_creator5533);
+					pushFollow(FOLLOW_createdName_in_creator5535);
 					createdName();
 					state._fsp--;
 					if (state.failed) return;
-					pushFollow(FOLLOW_classCreatorRest_in_creator5535);
+					pushFollow(FOLLOW_classCreatorRest_in_creator5537);
 					classCreatorRest();
 					state._fsp--;
 					if (state.failed) return;
@@ -10842,7 +10843,7 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:810:9: createdName ( arrayCreatorRest | classCreatorRest )
 					{
-					pushFollow(FOLLOW_createdName_in_creator5545);
+					pushFollow(FOLLOW_createdName_in_creator5547);
 					createdName();
 					state._fsp--;
 					if (state.failed) return;
@@ -10867,7 +10868,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:810:22: arrayCreatorRest
 							{
-							pushFollow(FOLLOW_arrayCreatorRest_in_creator5548);
+							pushFollow(FOLLOW_arrayCreatorRest_in_creator5550);
 							arrayCreatorRest();
 							state._fsp--;
 							if (state.failed) return;
@@ -10876,7 +10877,7 @@ public class JavaPlainParser extends Parser {
 						case 2 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:810:41: classCreatorRest
 							{
-							pushFollow(FOLLOW_classCreatorRest_in_creator5552);
+							pushFollow(FOLLOW_classCreatorRest_in_creator5554);
 							classCreatorRest();
 							state._fsp--;
 							if (state.failed) return;
@@ -10933,7 +10934,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:814:9: classOrInterfaceType
 					{
-					pushFollow(FOLLOW_classOrInterfaceType_in_createdName5572);
+					pushFollow(FOLLOW_classOrInterfaceType_in_createdName5574);
 					classOrInterfaceType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10942,7 +10943,7 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:815:9: primitiveType
 					{
-					pushFollow(FOLLOW_primitiveType_in_createdName5582);
+					pushFollow(FOLLOW_primitiveType_in_createdName5584);
 					primitiveType();
 					state._fsp--;
 					if (state.failed) return;
@@ -10986,7 +10987,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:819:9: nonWildcardTypeArguments
 					{
-					pushFollow(FOLLOW_nonWildcardTypeArguments_in_innerCreator5605);
+					pushFollow(FOLLOW_nonWildcardTypeArguments_in_innerCreator5607);
 					nonWildcardTypeArguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -10995,8 +10996,8 @@ public class JavaPlainParser extends Parser {
 
 			}
 
-			match(input,Identifier,FOLLOW_Identifier_in_innerCreator5608); if (state.failed) return;
-			pushFollow(FOLLOW_classCreatorRest_in_innerCreator5610);
+			match(input,Identifier,FOLLOW_Identifier_in_innerCreator5610); if (state.failed) return;
+			pushFollow(FOLLOW_classCreatorRest_in_innerCreator5612);
 			classCreatorRest();
 			state._fsp--;
 			if (state.failed) return;
@@ -11028,7 +11029,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:5: ( '[' ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* ) )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:823:9: '[' ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* )
 			{
-			match(input,55,FOLLOW_55_in_arrayCreatorRest5629); if (state.failed) return;
+			match(input,55,FOLLOW_55_in_arrayCreatorRest5631); if (state.failed) return;
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:824:9: ( ']' ( '[' ']' )* arrayInitializer | expression ']' ( '[' expression ']' )* ( '[' ']' )* )
 			int alt165=2;
 			int LA165_0 = input.LA(1);
@@ -11050,7 +11051,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:824:13: ']' ( '[' ']' )* arrayInitializer
 					{
-					match(input,56,FOLLOW_56_in_arrayCreatorRest5643); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_arrayCreatorRest5645); if (state.failed) return;
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:824:17: ( '[' ']' )*
 					loop162:
 					while (true) {
@@ -11064,8 +11065,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:824:18: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5646); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5648); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5648); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5650); if (state.failed) return;
 							}
 							break;
 
@@ -11074,7 +11075,7 @@ public class JavaPlainParser extends Parser {
 						}
 					}
 
-					pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest5652);
+					pushFollow(FOLLOW_arrayInitializer_in_arrayCreatorRest5654);
 					arrayInitializer();
 					state._fsp--;
 					if (state.failed) return;
@@ -11083,11 +11084,11 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:13: expression ']' ( '[' expression ']' )* ( '[' ']' )*
 					{
-					pushFollow(FOLLOW_expression_in_arrayCreatorRest5666);
+					pushFollow(FOLLOW_expression_in_arrayCreatorRest5668);
 					expression();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,56,FOLLOW_56_in_arrayCreatorRest5668); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_arrayCreatorRest5670); if (state.failed) return;
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:28: ( '[' expression ']' )*
 					loop163:
 					while (true) {
@@ -11105,12 +11106,12 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:29: '[' expression ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5671); if (state.failed) return;
-							pushFollow(FOLLOW_expression_in_arrayCreatorRest5673);
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5673); if (state.failed) return;
+							pushFollow(FOLLOW_expression_in_arrayCreatorRest5675);
 							expression();
 							state._fsp--;
 							if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5675); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5677); if (state.failed) return;
 							}
 							break;
 
@@ -11136,8 +11137,8 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:51: '[' ']'
 							{
-							match(input,55,FOLLOW_55_in_arrayCreatorRest5680); if (state.failed) return;
-							match(input,56,FOLLOW_56_in_arrayCreatorRest5682); if (state.failed) return;
+							match(input,55,FOLLOW_55_in_arrayCreatorRest5682); if (state.failed) return;
+							match(input,56,FOLLOW_56_in_arrayCreatorRest5684); if (state.failed) return;
 							}
 							break;
 
@@ -11179,7 +11180,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:830:5: ( arguments ( classBody )? )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:830:9: arguments ( classBody )?
 			{
-			pushFollow(FOLLOW_arguments_in_classCreatorRest5713);
+			pushFollow(FOLLOW_arguments_in_classCreatorRest5715);
 			arguments();
 			state._fsp--;
 			if (state.failed) return;
@@ -11193,7 +11194,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:830:19: classBody
 					{
-					pushFollow(FOLLOW_classBody_in_classCreatorRest5715);
+					pushFollow(FOLLOW_classBody_in_classCreatorRest5717);
 					classBody();
 					state._fsp--;
 					if (state.failed) return;
@@ -11230,12 +11231,12 @@ public class JavaPlainParser extends Parser {
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:834:5: ( nonWildcardTypeArguments Identifier arguments )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:834:9: nonWildcardTypeArguments Identifier arguments
 			{
-			pushFollow(FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5739);
+			pushFollow(FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5741);
 			nonWildcardTypeArguments();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,Identifier,FOLLOW_Identifier_in_explicitGenericInvocation5741); if (state.failed) return;
-			pushFollow(FOLLOW_arguments_in_explicitGenericInvocation5743);
+			match(input,Identifier,FOLLOW_Identifier_in_explicitGenericInvocation5743); if (state.failed) return;
+			pushFollow(FOLLOW_arguments_in_explicitGenericInvocation5745);
 			arguments();
 			state._fsp--;
 			if (state.failed) return;
@@ -11267,12 +11268,12 @@ public class JavaPlainParser extends Parser {
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:838:5: ( '<' typeList '>' )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:838:9: '<' typeList '>'
 			{
-			match(input,49,FOLLOW_49_in_nonWildcardTypeArguments5766); if (state.failed) return;
-			pushFollow(FOLLOW_typeList_in_nonWildcardTypeArguments5768);
+			match(input,49,FOLLOW_49_in_nonWildcardTypeArguments5768); if (state.failed) return;
+			pushFollow(FOLLOW_typeList_in_nonWildcardTypeArguments5770);
 			typeList();
 			state._fsp--;
 			if (state.failed) return;
-			match(input,52,FOLLOW_52_in_nonWildcardTypeArguments5770); if (state.failed) return;
+			match(input,52,FOLLOW_52_in_nonWildcardTypeArguments5772); if (state.failed) return;
 			}
 
 		}
@@ -11351,8 +11352,8 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:842:9: '.' Identifier ( arguments )?
 					{
-					match(input,43,FOLLOW_43_in_selector5793); if (state.failed) return;
-					match(input,Identifier,FOLLOW_Identifier_in_selector5795); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_selector5795); if (state.failed) return;
+					match(input,Identifier,FOLLOW_Identifier_in_selector5797); if (state.failed) return;
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:842:24: ( arguments )?
 					int alt167=2;
 					int LA167_0 = input.LA(1);
@@ -11363,7 +11364,7 @@ public class JavaPlainParser extends Parser {
 						case 1 :
 							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:842:24: arguments
 							{
-							pushFollow(FOLLOW_arguments_in_selector5797);
+							pushFollow(FOLLOW_arguments_in_selector5799);
 							arguments();
 							state._fsp--;
 							if (state.failed) return;
@@ -11377,16 +11378,16 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:843:9: '.' 'this'
 					{
-					match(input,43,FOLLOW_43_in_selector5808); if (state.failed) return;
-					match(input,99,FOLLOW_99_in_selector5810); if (state.failed) return;
+					match(input,43,FOLLOW_43_in_selector5810); if (state.failed) return;
+					match(input,99,FOLLOW_99_in_selector5812); if (state.failed) return;
 					}
 					break;
 				case 3 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:844:9: '.' 'super' superSuffix
 					{
-					match(input,43,FOLLOW_43_in_selector5820); if (state.failed) return;
-					match(input,96,FOLLOW_96_in_selector5822); if (state.failed) return;
-					pushFollow(FOLLOW_superSuffix_in_selector5824);
+					match(input,43,FOLLOW_43_in_selector5822); if (state.failed) return;
+					match(input,96,FOLLOW_96_in_selector5824); if (state.failed) return;
+					pushFollow(FOLLOW_superSuffix_in_selector5826);
 					superSuffix();
 					state._fsp--;
 					if (state.failed) return;
@@ -11395,9 +11396,9 @@ public class JavaPlainParser extends Parser {
 				case 4 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:845:9: '.' 'new' innerCreator
 					{
-					match(input,43,FOLLOW_43_in_selector5834); if (state.failed) return;
-					match(input,86,FOLLOW_86_in_selector5836); if (state.failed) return;
-					pushFollow(FOLLOW_innerCreator_in_selector5838);
+					match(input,43,FOLLOW_43_in_selector5836); if (state.failed) return;
+					match(input,86,FOLLOW_86_in_selector5838); if (state.failed) return;
+					pushFollow(FOLLOW_innerCreator_in_selector5840);
 					innerCreator();
 					state._fsp--;
 					if (state.failed) return;
@@ -11406,12 +11407,12 @@ public class JavaPlainParser extends Parser {
 				case 5 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:846:9: '[' expression ']'
 					{
-					match(input,55,FOLLOW_55_in_selector5848); if (state.failed) return;
-					pushFollow(FOLLOW_expression_in_selector5850);
+					match(input,55,FOLLOW_55_in_selector5850); if (state.failed) return;
+					pushFollow(FOLLOW_expression_in_selector5852);
 					expression();
 					state._fsp--;
 					if (state.failed) return;
-					match(input,56,FOLLOW_56_in_selector5852); if (state.failed) return;
+					match(input,56,FOLLOW_56_in_selector5854); if (state.failed) return;
 					}
 					break;
 
@@ -11462,7 +11463,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:850:9: arguments
 					{
-					pushFollow(FOLLOW_arguments_in_superSuffix5875);
+					pushFollow(FOLLOW_arguments_in_superSuffix5877);
 					arguments();
 					state._fsp--;
 					if (state.failed) return;
@@ -11471,10 +11472,11 @@ public class JavaPlainParser extends Parser {
 				case 2 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:851:9: '.' Identifier ( arguments )?
 					{
-					match(input,43,FOLLOW_43_in_superSuffix5885); if (state.failed) return;
-					Identifier8=(Token)match(input,Identifier,FOLLOW_Identifier_in_superSuffix5887); if (state.failed) return;
-					if ( state.backtracking==0 ) {sb.append((Identifier8!=null?Identifier8.getText():null));}
-					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:851:54: ( arguments )?
+					if ( state.backtracking==0 ) {if (sp==true){sb.append("super");}}
+					match(input,43,FOLLOW_43_in_superSuffix5888); if (state.failed) return;
+					Identifier8=(Token)match(input,Identifier,FOLLOW_Identifier_in_superSuffix5890); if (state.failed) return;
+					if ( state.backtracking==0 ) {sb.append("."+(Identifier8!=null?Identifier8.getText():null));}
+					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:851:94: ( arguments )?
 					int alt169=2;
 					int LA169_0 = input.LA(1);
 					if ( (LA169_0==32) ) {
@@ -11482,9 +11484,9 @@ public class JavaPlainParser extends Parser {
 					}
 					switch (alt169) {
 						case 1 :
-							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:851:54: arguments
+							// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:851:94: arguments
 							{
-							pushFollow(FOLLOW_arguments_in_superSuffix5890);
+							pushFollow(FOLLOW_arguments_in_superSuffix5893);
 							arguments();
 							state._fsp--;
 							if (state.failed) return;
@@ -11523,7 +11525,7 @@ public class JavaPlainParser extends Parser {
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:855:5: ( '(' ( expressionList )? ')' )
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:855:9: '(' ( expressionList )? ')'
 			{
-			match(input,32,FOLLOW_32_in_arguments5910); if (state.failed) return;
+			match(input,32,FOLLOW_32_in_arguments5913); if (state.failed) return;
 			// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:855:13: ( expressionList )?
 			int alt171=2;
 			int LA171_0 = input.LA(1);
@@ -11534,7 +11536,7 @@ public class JavaPlainParser extends Parser {
 				case 1 :
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:855:13: expressionList
 					{
-					pushFollow(FOLLOW_expressionList_in_arguments5912);
+					pushFollow(FOLLOW_expressionList_in_arguments5915);
 					expressionList();
 					state._fsp--;
 					if (state.failed) return;
@@ -11543,7 +11545,7 @@ public class JavaPlainParser extends Parser {
 
 			}
 
-			match(input,33,FOLLOW_33_in_arguments5915); if (state.failed) return;
+			match(input,33,FOLLOW_33_in_arguments5918); if (state.failed) return;
 			if ( state.backtracking==0 ) {if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}
 			if ( state.backtracking==0 ) {sb.setLength(0);}
 			}
@@ -12113,8 +12115,8 @@ public class JavaPlainParser extends Parser {
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:36: ( '.' II2= Identifier )
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:36: '.' II2= Identifier
 		{
-		match(input,43,FOLLOW_43_in_synpred242_JavaPlain5345); if (state.failed) return;
-		II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_synpred242_JavaPlain5349); if (state.failed) return;
+		match(input,43,FOLLOW_43_in_synpred242_JavaPlain5347); if (state.failed) return;
+		II2=(Token)match(input,Identifier,FOLLOW_Identifier_in_synpred242_JavaPlain5351); if (state.failed) return;
 		}
 
 	}
@@ -12125,7 +12127,7 @@ public class JavaPlainParser extends Parser {
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:132: ( identifierSuffix )
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:792:132: identifierSuffix
 		{
-		pushFollow(FOLLOW_identifierSuffix_in_synpred243_JavaPlain5354);
+		pushFollow(FOLLOW_identifierSuffix_in_synpred243_JavaPlain5356);
 		identifierSuffix();
 		state._fsp--;
 		if (state.failed) return;
@@ -12139,12 +12141,12 @@ public class JavaPlainParser extends Parser {
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:799:10: ( '[' expression ']' )
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:799:10: '[' expression ']'
 		{
-		match(input,55,FOLLOW_55_in_synpred249_JavaPlain5431); if (state.failed) return;
-		pushFollow(FOLLOW_expression_in_synpred249_JavaPlain5433);
+		match(input,55,FOLLOW_55_in_synpred249_JavaPlain5433); if (state.failed) return;
+		pushFollow(FOLLOW_expression_in_synpred249_JavaPlain5435);
 		expression();
 		state._fsp--;
 		if (state.failed) return;
-		match(input,56,FOLLOW_56_in_synpred249_JavaPlain5435); if (state.failed) return;
+		match(input,56,FOLLOW_56_in_synpred249_JavaPlain5437); if (state.failed) return;
 		}
 
 	}
@@ -12155,12 +12157,12 @@ public class JavaPlainParser extends Parser {
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:29: ( '[' expression ']' )
 		// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:825:29: '[' expression ']'
 		{
-		match(input,55,FOLLOW_55_in_synpred262_JavaPlain5671); if (state.failed) return;
-		pushFollow(FOLLOW_expression_in_synpred262_JavaPlain5673);
+		match(input,55,FOLLOW_55_in_synpred262_JavaPlain5673); if (state.failed) return;
+		pushFollow(FOLLOW_expression_in_synpred262_JavaPlain5675);
 		expression();
 		state._fsp--;
 		if (state.failed) return;
-		match(input,56,FOLLOW_56_in_synpred262_JavaPlain5675); if (state.failed) return;
+		match(input,56,FOLLOW_56_in_synpred262_JavaPlain5677); if (state.failed) return;
 		}
 
 	}
@@ -14453,94 +14455,94 @@ public class JavaPlainParser extends Parser {
 	public static final BitSet FOLLOW_Identifier_in_primary5287 = new BitSet(new long[]{0x0080080100000002L});
 	public static final BitSet FOLLOW_identifierSuffix_in_primary5292 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_96_in_primary5303 = new BitSet(new long[]{0x0000080100000000L});
-	public static final BitSet FOLLOW_superSuffix_in_primary5305 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_literal_in_primary5315 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_86_in_primary5325 = new BitSet(new long[]{0x5002000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_creator_in_primary5327 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_Identifier_in_primary5340 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_43_in_primary5345 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_primary5349 = new BitSet(new long[]{0x0080080100000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_primary5354 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_primitiveType_in_primary5365 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_55_in_primary5368 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_primary5370 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_43_in_primary5374 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_primary5376 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_105_in_primary5387 = new BitSet(new long[]{0x0000080000000000L});
-	public static final BitSet FOLLOW_43_in_primary5389 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_primary5391 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_identifierSuffix5412 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_identifierSuffix5414 = new BitSet(new long[]{0x0080080000000000L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5418 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_identifierSuffix5420 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_identifierSuffix5431 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_identifierSuffix5433 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_identifierSuffix5435 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_arguments_in_identifierSuffix5448 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5458 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
-	public static final BitSet FOLLOW_66_in_identifierSuffix5460 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5470 = new BitSet(new long[]{0x0002000000000000L});
-	public static final BitSet FOLLOW_explicitGenericInvocation_in_identifierSuffix5472 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5482 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_identifierSuffix5484 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5494 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-	public static final BitSet FOLLOW_96_in_identifierSuffix5496 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_arguments_in_identifierSuffix5498 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_identifierSuffix5508 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_identifierSuffix5510 = new BitSet(new long[]{0x0002000000008000L});
-	public static final BitSet FOLLOW_innerCreator_in_identifierSuffix5512 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_creator5531 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_createdName_in_creator5533 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_classCreatorRest_in_creator5535 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_createdName_in_creator5545 = new BitSet(new long[]{0x0080000100000000L});
-	public static final BitSet FOLLOW_arrayCreatorRest_in_creator5548 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_classCreatorRest_in_creator5552 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_classOrInterfaceType_in_createdName5572 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_primitiveType_in_createdName5582 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_innerCreator5605 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_innerCreator5608 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_classCreatorRest_in_innerCreator5610 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5629 = new BitSet(new long[]{0x510003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5643 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5646 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5648 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
-	public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest5652 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5666 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5668 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5671 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5673 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5675 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_55_in_arrayCreatorRest5680 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_arrayCreatorRest5682 = new BitSet(new long[]{0x0080000000000002L});
-	public static final BitSet FOLLOW_arguments_in_classCreatorRest5713 = new BitSet(new long[]{0x0000000000000002L,0x0000100000000000L});
-	public static final BitSet FOLLOW_classBody_in_classCreatorRest5715 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5739 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_explicitGenericInvocation5741 = new BitSet(new long[]{0x0000000100000000L});
-	public static final BitSet FOLLOW_arguments_in_explicitGenericInvocation5743 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_49_in_nonWildcardTypeArguments5766 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
-	public static final BitSet FOLLOW_typeList_in_nonWildcardTypeArguments5768 = new BitSet(new long[]{0x0010000000000000L});
-	public static final BitSet FOLLOW_52_in_nonWildcardTypeArguments5770 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5793 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_selector5795 = new BitSet(new long[]{0x0000000100000002L});
-	public static final BitSet FOLLOW_arguments_in_selector5797 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5808 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-	public static final BitSet FOLLOW_99_in_selector5810 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5820 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-	public static final BitSet FOLLOW_96_in_selector5822 = new BitSet(new long[]{0x0000080100000000L});
-	public static final BitSet FOLLOW_superSuffix_in_selector5824 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_selector5834 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-	public static final BitSet FOLLOW_86_in_selector5836 = new BitSet(new long[]{0x0002000000008000L});
-	public static final BitSet FOLLOW_innerCreator_in_selector5838 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_selector5848 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_selector5850 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_selector5852 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_arguments_in_superSuffix5875 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_superSuffix5885 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_superSuffix5887 = new BitSet(new long[]{0x0000000100000002L});
-	public static final BitSet FOLLOW_arguments_in_superSuffix5890 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_32_in_arguments5910 = new BitSet(new long[]{0x500003330260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expressionList_in_arguments5912 = new BitSet(new long[]{0x0000000200000000L});
-	public static final BitSet FOLLOW_33_in_arguments5915 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_superSuffix_in_primary5306 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_literal_in_primary5317 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_86_in_primary5327 = new BitSet(new long[]{0x5002000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_creator_in_primary5329 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_Identifier_in_primary5342 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_43_in_primary5347 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_primary5351 = new BitSet(new long[]{0x0080080100000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_primary5356 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_primitiveType_in_primary5367 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_55_in_primary5370 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_primary5372 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_43_in_primary5376 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_primary5378 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_105_in_primary5389 = new BitSet(new long[]{0x0000080000000000L});
+	public static final BitSet FOLLOW_43_in_primary5391 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_primary5393 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_identifierSuffix5414 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_identifierSuffix5416 = new BitSet(new long[]{0x0080080000000000L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5420 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_identifierSuffix5422 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_identifierSuffix5433 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_identifierSuffix5435 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_identifierSuffix5437 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_arguments_in_identifierSuffix5450 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5460 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
+	public static final BitSet FOLLOW_66_in_identifierSuffix5462 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5472 = new BitSet(new long[]{0x0002000000000000L});
+	public static final BitSet FOLLOW_explicitGenericInvocation_in_identifierSuffix5474 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5484 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_identifierSuffix5486 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5496 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+	public static final BitSet FOLLOW_96_in_identifierSuffix5498 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_arguments_in_identifierSuffix5500 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_identifierSuffix5510 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_identifierSuffix5512 = new BitSet(new long[]{0x0002000000008000L});
+	public static final BitSet FOLLOW_innerCreator_in_identifierSuffix5514 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_creator5533 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_createdName_in_creator5535 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_classCreatorRest_in_creator5537 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_createdName_in_creator5547 = new BitSet(new long[]{0x0080000100000000L});
+	public static final BitSet FOLLOW_arrayCreatorRest_in_creator5550 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_classCreatorRest_in_creator5554 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_classOrInterfaceType_in_createdName5574 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_primitiveType_in_createdName5584 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_innerCreator5607 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_innerCreator5610 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_classCreatorRest_in_innerCreator5612 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5631 = new BitSet(new long[]{0x510003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5645 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5648 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5650 = new BitSet(new long[]{0x0080000000000000L,0x0000100000000000L});
+	public static final BitSet FOLLOW_arrayInitializer_in_arrayCreatorRest5654 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5668 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5670 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5673 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_arrayCreatorRest5675 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5677 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_55_in_arrayCreatorRest5682 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_arrayCreatorRest5684 = new BitSet(new long[]{0x0080000000000002L});
+	public static final BitSet FOLLOW_arguments_in_classCreatorRest5715 = new BitSet(new long[]{0x0000000000000002L,0x0000100000000000L});
+	public static final BitSet FOLLOW_classBody_in_classCreatorRest5717 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_nonWildcardTypeArguments_in_explicitGenericInvocation5741 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_explicitGenericInvocation5743 = new BitSet(new long[]{0x0000000100000000L});
+	public static final BitSet FOLLOW_arguments_in_explicitGenericInvocation5745 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_49_in_nonWildcardTypeArguments5768 = new BitSet(new long[]{0x5000000000008000L,0x0000000020141042L});
+	public static final BitSet FOLLOW_typeList_in_nonWildcardTypeArguments5770 = new BitSet(new long[]{0x0010000000000000L});
+	public static final BitSet FOLLOW_52_in_nonWildcardTypeArguments5772 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5795 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_selector5797 = new BitSet(new long[]{0x0000000100000002L});
+	public static final BitSet FOLLOW_arguments_in_selector5799 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5810 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+	public static final BitSet FOLLOW_99_in_selector5812 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5822 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+	public static final BitSet FOLLOW_96_in_selector5824 = new BitSet(new long[]{0x0000080100000000L});
+	public static final BitSet FOLLOW_superSuffix_in_selector5826 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_selector5836 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+	public static final BitSet FOLLOW_86_in_selector5838 = new BitSet(new long[]{0x0002000000008000L});
+	public static final BitSet FOLLOW_innerCreator_in_selector5840 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_selector5850 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_selector5852 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_selector5854 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_arguments_in_superSuffix5877 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_superSuffix5888 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_superSuffix5890 = new BitSet(new long[]{0x0000000100000002L});
+	public static final BitSet FOLLOW_arguments_in_superSuffix5893 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_32_in_arguments5913 = new BitSet(new long[]{0x500003330260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expressionList_in_arguments5915 = new BitSet(new long[]{0x0000000200000000L});
+	public static final BitSet FOLLOW_33_in_arguments5918 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_annotations_in_synpred5_JavaPlain55 = new BitSet(new long[]{0x0840000000000100L,0x00000000CF080404L});
 	public static final BitSet FOLLOW_packageDeclaration_in_synpred5_JavaPlain69 = new BitSet(new long[]{0x0841000000000102L,0x00000000CE090404L});
 	public static final BitSet FOLLOW_importDeclaration_in_synpred5_JavaPlain71 = new BitSet(new long[]{0x0841000000000102L,0x00000000CE090404L});
@@ -14602,13 +14604,13 @@ public class JavaPlainParser extends Parser {
 	public static final BitSet FOLLOW_43_in_synpred236_JavaPlain5283 = new BitSet(new long[]{0x0000000000008000L});
 	public static final BitSet FOLLOW_Identifier_in_synpred236_JavaPlain5287 = new BitSet(new long[]{0x0000000000000002L});
 	public static final BitSet FOLLOW_identifierSuffix_in_synpred237_JavaPlain5292 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_43_in_synpred242_JavaPlain5345 = new BitSet(new long[]{0x0000000000008000L});
-	public static final BitSet FOLLOW_Identifier_in_synpred242_JavaPlain5349 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_identifierSuffix_in_synpred243_JavaPlain5354 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_synpred249_JavaPlain5431 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_synpred249_JavaPlain5433 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_synpred249_JavaPlain5435 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_55_in_synpred262_JavaPlain5671 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
-	public static final BitSet FOLLOW_expression_in_synpred262_JavaPlain5673 = new BitSet(new long[]{0x0100000000000000L});
-	public static final BitSet FOLLOW_56_in_synpred262_JavaPlain5675 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_43_in_synpred242_JavaPlain5347 = new BitSet(new long[]{0x0000000000008000L});
+	public static final BitSet FOLLOW_Identifier_in_synpred242_JavaPlain5351 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_identifierSuffix_in_synpred243_JavaPlain5356 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_synpred249_JavaPlain5433 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_synpred249_JavaPlain5435 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_synpred249_JavaPlain5437 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_55_in_synpred262_JavaPlain5673 = new BitSet(new long[]{0x500003310260D0C0L,0x0002028920D41242L});
+	public static final BitSet FOLLOW_expression_in_synpred262_JavaPlain5675 = new BitSet(new long[]{0x0100000000000000L});
+	public static final BitSet FOLLOW_56_in_synpred262_JavaPlain5677 = new BitSet(new long[]{0x0000000000000002L});
 }
