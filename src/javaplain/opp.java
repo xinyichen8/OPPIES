@@ -55,16 +55,22 @@ public class opp {
         //store child into parent class
         for (int i = 0; i < ListOfClass.size(); i++) {
             callNames.add(ListOfClass.get(i).getName().split(" ")[0]);
-            if (!ListOfClass.get(i).getParent().equals("")) {
-                int index = getIndexOf(ListOfClass, ListOfClass.get(i).getName());
-                if (index != -1) {
-                    int parentIndex = getIndexOf(ListOfClass, ListOfClass.get(i).getParent());
+            if (ListOfClass.get(i).getParent().size()>0) {
+                int childIndex = getIndexOf(ListOfClass, ListOfClass.get(i).getName());
+                if (childIndex != -1) {
+                    int parentIndex = getIndexOf(ListOfClass, ListOfClass.get(i).getParent().get(0));
                     if (parentIndex != -1) {
+                        checkAncestors(ListOfClass,childIndex,parentIndex);
                         ListOfClass.get(parentIndex).setChild(ListOfClass.get(i).getName().split(" ")[0]);
+                        for(String child: ListOfClass.get(i).child()){
+                            ListOfClass.get(parentIndex).setChild(child);
+                        }
+
                     }
                 }
             }
         }
+
 
         //Aggreagtes
         for (int i = 0; i < ListOfClass.size(); i++) {
@@ -125,6 +131,23 @@ public class opp {
 
     }
 
+    private static void checkAncestors(List<Class> LC, int childIndex, int parentIndex){
+        if(LC.get(parentIndex).getParent().size()==0){
+            return;
+        }
+        int index = getIndexOf(LC,LC.get(parentIndex).getName().split(" ")[0]);
+        if(index!=-1){
+            for(String s: LC.get(parentIndex).getParent()) {
+            int Aindex = getIndexOf(LC,s);
+            if(Aindex!=-1){
+                LC.get(childIndex).setParent(s);
+                checkAncestors(LC,childIndex,Aindex);
+                }
+            }
+        }
+        return;
+    }
+
     private static int getIndexOf(List<Class> c, String name) {
         int pos = 0;
         for (Class a : c) {
@@ -141,17 +164,21 @@ public class opp {
         System.out.println("Class: " + c.getName());
 
         //print Descendent/ancestor
-        if (!c.getParent().equals("")) {
+        if (c.getParent().size()>=1) {
             System.out.println("       Ancestor Classes:");
-            System.out.println("              " + c.getParent());
-        }else{
-            System.out.println("       No Ancestors");
+            List<String> checker = new ArrayList<>();
+            for(String s: c.getParent()){
+                if(!checker.contains(s)){
+                    checker.add(s);
+                    System.out.println("              " + s);
+                }
+            }
+
         }
 
-        System.out.println("       Descendent Classes:");
         if (c.child().size()>0) {
-        for(String s:c.child()){
-
+            System.out.println("       Descendent Classes:");
+            for(String s:c.child()){
                 System.out.println("              " + s);
             }
         }else{

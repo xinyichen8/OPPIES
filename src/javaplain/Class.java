@@ -10,6 +10,7 @@ public class Class
 	private ArrayList<DataMem> dm;
 	private ArrayList<String> agg;
 	private ArrayList<String> ass;
+	private ArrayList<String> parent;
 
 	private boolean isFinal;
 	private boolean isStatic;
@@ -26,6 +27,7 @@ public class Class
 	{
 		this.name="";
 		this.extend="";
+		this.parent = new ArrayList<String>();
 		this.child = new ArrayList<String>();
 		this.implement=new ArrayList<String>();
 		this.isFinal=false;
@@ -35,6 +37,7 @@ public class Class
 		this.agg = new ArrayList<String>();
 		this.ass = new ArrayList<>();
 		this.assV = "";
+
 	}
 	public void addAssV(String name) {
 		this.assV=name;
@@ -80,6 +83,8 @@ public class Class
 	public void setExtend(String e)
 	{
 		this.extend=e;
+		setParent(this.extend);
+
 	}
 	
 	
@@ -108,9 +113,14 @@ public class Class
 		return this.isStatic;
 	}
 	
-	public String getParent()
+	public ArrayList<String> getParent()
 	{
-		return this.extend;
+
+		return this.parent;
+	}
+
+	public void setParent(String s){
+		this.parent.add(s);
 	}
 
 	public void setChild(String c) {this.child.add(c);}
