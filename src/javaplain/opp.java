@@ -96,7 +96,7 @@ public class opp {
                     }
                     for (Param p : m.getParam()) 
                     {
-                         if (callNames.contains(p.getParam().split(" ")[0])) {
+                         if (callNames.contains(p.getParam().split(" ")[0])||((!p.getParam().split(" ")[0].equals("String"))&&(!p.getParam().split(" ")[0].equals("int"))&&(!p.getParam().split(" ")[0].equals("boolean")))) {
                             ListOfClass.get(i).addAss(p.getParam().split(" ")[0]);
                             ListOfClass.get(i).addAssV(p.getParam().split(" ")[1]);
                         }
