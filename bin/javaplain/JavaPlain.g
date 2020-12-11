@@ -6,8 +6,8 @@ package javaplain;
 }
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
-int intCount=0;
-boolean param=false;
+int intCount=-1;
+boolean param=false,ent=false,sp=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
@@ -91,7 +91,7 @@ typeParameters
     ;
 
 typeParameter
-    :   Identifier{System.out.println($Identifier.text);} ('extends' typeBound)? {c.setExtend($Identifier.text);}
+    :   Identifier ('extends' typeBound)? {c.setExtend($Identifier.text);}
     ;
         
 typeBound
@@ -167,7 +167,7 @@ memberDecl
 	    			p="";
 	    			} 
     				{param=true;}voidMethodDeclaratorRest{isMethod=false;}
-    |   Identifier{c.addMethod(new Method(""));
+    |   Identifier{c.addMethod(new Method("constructor"));
     				classMemberFlag=false;
     				l++;
     				c.getMethod().get(l).addName($Identifier.text);
@@ -308,7 +308,8 @@ constantDeclaratorRest
     ;
     
 variableDeclaratorId
-    :   Identifier {if(classMemberFlag){
+    :   Identifier 
+    {if(classMemberFlag){
     			c.addDM(new DataMem($Identifier.text));
     			v++;
     			c.getDM().get(v).settype(type);
@@ -331,9 +332,8 @@ variableDeclaratorId
     			
     			}
     			else if (param){
-    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));
+    			c.getMethod().get(l).addParam(new Param($Identifier.text,type));    			
     			}
-    			
     			} ('[' ']')*
     ;
 
@@ -379,7 +379,8 @@ type
 	;
 
 classOrInterfaceType
-	:	I1=Identifier {if(isExtends){ 
+	:	I1=Identifier 
+				{if(isExtends){ 
 	                          c.setExtend($I1.text); isExtends=false;} 
 	                       else 
 	                       if(isImp){
@@ -387,8 +388,8 @@ classOrInterfaceType
 	                       	  isImp=false;
 	                       } 
 	                       else
-	                       
 	                       type = $I1.text;}
+	                       
 	         typeArguments? ('.' Identifier typeArguments?)*
 	;
 
@@ -456,7 +457,7 @@ literal
     :   integerLiteral
     |   FloatingPointLiteral
     |   CharacterLiteral
-    |   StringLiteral
+    |   StringLiteral    {if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}	{sb.setLength(0);}		
     |   booleanLiteral
     |   'null'
     ;
@@ -583,8 +584,8 @@ statement
     |   'throw' expression ';'
     |   'break' Identifier? ';'
     |   'continue' Identifier? ';'
-    |   ';' 
-    |   statementExpression ';'
+    |   ';' {sb.setLength(0);}
+    |   statementExpression ';'  {sb.setLength(0);}
     |   Identifier ':' statement
     ;
     
@@ -660,7 +661,7 @@ expression
     ;
     
 assignmentOperator
-    :   '='
+    :   '=' 
     |   '+='
     |   '-='
     |   '*='
@@ -774,7 +775,7 @@ unaryExpressionNotPlusMinus
     :   '~' unaryExpression
     |   '!' unaryExpression
     |   castExpression
-    |   primary{if(sb.length()!=0){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{sb.setLength(0);}selector* ('++'|'--')?
+    |	primary    selector* ('++'|'--')?
     ;
 
 castExpression
@@ -783,14 +784,14 @@ castExpression
     ;
 
 primary
-    :   parExpression
-    |   'this' ('.' Identifier)* identifierSuffix?
-    |   'super' superSuffix
+    :   parExpression 
+    |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
+    |   'super'{sp=true;} superSuffix 
     |   literal
-    |   'new' creator
-    |   II1=Identifier{sb.append($II1.text);} ('.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
-    |   primitiveType ('[' ']')* '.' 'class'
-    |   'void' '.' 'class'
+    |   'new' creator 
+    |   II1=Identifier{ent=true;} ({if(ent==true){sb.append($II1.text);ent=false;}}'.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
+    |   primitiveType ('[' ']')* '.' 'class' 
+    |   'void' '.' 'class' 
     ;
 
 identifierSuffix
@@ -847,11 +848,11 @@ selector
     
 superSuffix
     :   arguments
-    |   '.' Identifier arguments?
+    |   {if (sp==true){sb.append("super");}}'.' Identifier{sb.append("."+$Identifier.text);} arguments?
     ;
 
 arguments
-    :   '(' expressionList? ')'
+    :   '(' expressionList? ')'{if(sb.length()!=0 ){c.getMethod().get(l).addCall(new Call(sb.toString()));}}{sb.setLength(0);}
     ;
 
 // LEXER
@@ -886,7 +887,7 @@ CharacterLiteral
     ;
 
 StringLiteral
-    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"'
+    :  '"' ( EscapeSequence | ~('\\'|'"') )* '"' 
     ;
 
 fragment

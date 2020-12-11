@@ -5,8 +5,13 @@ import java.util.ArrayList;
 public class Class
 {
 	private String name;
+	private String assV;
 	private ArrayList<Method> method;
 	private ArrayList<DataMem> dm;
+	private ArrayList<String> agg;
+	private ArrayList<String> ass;
+	private ArrayList<String> parent;
+
 	private boolean isFinal;
 	private boolean isStatic;
 	private String extend;
@@ -14,6 +19,7 @@ public class Class
 	private boolean fin;
 	private boolean strifp;
 	private boolean isAbs;
+	private ArrayList<String> child;
 	private ArrayList<String> implement;
 
 
@@ -21,13 +27,33 @@ public class Class
 	{
 		this.name="";
 		this.extend="";
+		this.parent = new ArrayList<String>();
+		this.child = new ArrayList<String>();
 		this.implement=new ArrayList<String>();
 		this.isFinal=false;
 		this.isStatic=false;
 		this.method=new ArrayList<Method>();
 		this.dm=new ArrayList<DataMem>();
+		this.agg = new ArrayList<String>();
+		this.ass = new ArrayList<>();
+		this.assV = "";
+
+	}
+	public void addAssV(String name) {
+		this.assV=name;
+	}
+	public String getAssV(){
+		return this.assV;
 	}
 
+	public void addAss(String a){ass.add(a);};
+	public ArrayList<String> getAss(){
+		return this.ass;
+	}
+	public void addAgg(String a){agg.add(a);};
+	public ArrayList<String> getAgg(){
+		return this.agg;
+	}
 	
 	public void addName(String name)
 	{
@@ -57,6 +83,8 @@ public class Class
 	public void setExtend(String e)
 	{
 		this.extend=e;
+		setParent(this.extend);
+
 	}
 	
 	
@@ -85,10 +113,18 @@ public class Class
 		return this.isStatic;
 	}
 	
-	public String parent()
+	public ArrayList<String> getParent()
 	{
-		return this.extend;
+
+		return this.parent;
 	}
+
+	public void setParent(String s){
+		this.parent.add(s);
+	}
+
+	public void setChild(String c) {this.child.add(c);}
+	public ArrayList<String> child() { return this.child;}
 	
 	public String getName()
 	{
@@ -157,5 +193,6 @@ public class Class
 		this.isAbs = isAbs;
 	}
 
-	
+
+
 }

@@ -7,5 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/xinyi/Desktop/antlrworks-1.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/xinyi/eclipse-workspace/OPPIES/jackson lib/jackson-annotations-2.8.11.jar"/>
+	<classpathentry kind="lib" path="D:/Users/xinyi/eclipse-workspace/OPPIES/jackson lib/jackson-core-2.8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Users/xinyi/eclipse-workspace/OPPIES/jackson lib/jackson-databind-2.8.11.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

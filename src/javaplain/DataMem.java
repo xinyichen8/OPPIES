@@ -58,6 +58,9 @@ public class DataMem
 	
 	public String getp()
 	{
+		if(this.pri_pub.equals("")){
+			return "null";
+		}
 		return this.pri_pub;
 	}
 	
