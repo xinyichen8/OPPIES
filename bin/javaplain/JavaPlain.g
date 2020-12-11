@@ -7,7 +7,7 @@ package javaplain;
 @members{
 boolean isExtends=false, isProtect = false, isabt=false, isImp=false, isMethod=false, isstat=false, isabs=false, isf=false,isnative=false,issync=false,istran=false,isvolatile=false,isstrict=false;
 int intCount=-1;
-boolean param=false,ent=false;
+boolean param=false,ent=false,sp=false;
 ArrayList<String> mod = new ArrayList<String>();
 Class c = new Class();
 int l = -1;
@@ -786,7 +786,7 @@ castExpression
 primary
     :   parExpression 
     |   'this' ('.' II0=Identifier{sb.append($II0.text);})* identifierSuffix?
-    |   'super' superSuffix
+    |   'super'{sp=true;} superSuffix 
     |   literal
     |   'new' creator 
     |   II1=Identifier{ent=true;} ({if(ent==true){sb.append($II1.text);ent=false;}}'.' II2=Identifier{sb.append("."+$II2.text);})* identifierSuffix?
@@ -848,7 +848,7 @@ selector
     
 superSuffix
     :   arguments
-    |   '.' Identifier{sb.append($Identifier.text);} arguments?
+    |   {if (sp==true){sb.append("super");}}'.' Identifier{sb.append("."+$Identifier.text);} arguments?
     ;
 
 arguments

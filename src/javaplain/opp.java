@@ -10,11 +10,14 @@ import org.antlr.runtime.RecognitionException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 
 public class opp {
     public static List<Class> ListOfClass;
+    public static List<Class> pre;
+    public static List<Class> post;
 
     public static void main(String[] args) throws IOException, RecognitionException {
         Class newClass = new Class();
@@ -25,6 +28,7 @@ public class opp {
         File folder = new File(args[0]);
         File[] listOfFiles = folder.listFiles();
 
+        
         for (int i = 0; i < listOfFiles.length; i++) {
             File file = listOfFiles[i];
             if (file.isFile() && file.getName().endsWith(".java")) {
@@ -39,6 +43,8 @@ public class opp {
             }
         }
 
+        
+        
         //save class into json file
         try {
 
@@ -52,6 +58,42 @@ public class opp {
             e.printStackTrace();
         }
 
+        //move class to previous
+        pre = ListOfClass;
+        String post_dir = "";
+        File post_folder = new File(post_dir);
+        File[] post_file = post_folder.listFiles();
+        
+        for (int i = 0; i < post_file.length; i++) {
+            File file = post_file[i];
+            if (file.isFile() && file.getName().endsWith(".java")) {
+                JavaPlainLexer lexer = new JavaPlainLexer(new ANTLRFileStream(file.getAbsolutePath()));
+                CommonTokenStream tokens = new CommonTokenStream(lexer);
+                JavaPlainParser parser = new JavaPlainParser(tokens);
+                parser.compilationUnit();
+                newClass = parser.c;
+                post.add(newClass);
+
+            }
+        }
+        
+        
+        //comparison
+        for(Class i : pre)
+        {
+        	for(Class j:post)
+        	{
+        		if (i.getName().equals(j.getName()))
+        		{
+        			//compare dataMember
+        			
+        			//compare Method
+        		}
+        	}
+        }
+        
+        
+        
         //store child into parent class
         for (int i = 0; i < ListOfClass.size(); i++) {
             callNames.add(ListOfClass.get(i).getName().split(" ")[0]);
@@ -71,7 +113,7 @@ public class opp {
             }
         }
 
-
+        
         //Aggreagtes
         for (int i = 0; i < ListOfClass.size(); i++) {
             for (DataMem dataMem : ListOfClass.get(i).getDM()) {
@@ -130,6 +172,36 @@ public class opp {
 
 
     }
+    
+    //compare change in class data member information
+    private static String compDM(List<DataMem> pre, List<DataMem> post)
+    {
+    	HashSet<String> pr = new HashSet<String>();
+    	HashSet<String> po = new HashSet<String>();
+    	for(DataMem d:pre)
+    	{
+    		pr.add(d.getName());
+    		
+    	}
+    	for(DataMem d:post)
+    	{
+    		po.add(d.getName());
+    	}
+    	
+    	if(pr.size()>po.size())
+    	{
+    		
+    	}
+    	
+		return "";
+    	
+    }
+    
+    //compare change in method information
+    private static String compMethod(List<Method> pre, List<Method> post)
+    {
+    	return "";
+    }
 
     private static void checkAncestors(List<Class> LC, int childIndex, int parentIndex){
         if(LC.get(parentIndex).getParent().size()==0){
@@ -147,6 +219,7 @@ public class opp {
         }
         return;
     }
+    
 
     private static int getIndexOf(List<Class> c, String name) {
         int pos = 0;
