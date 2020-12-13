@@ -89,7 +89,7 @@ public class opp {
         			//compare dataMember
         			System.out.println(compDM(i.getDM(),j.getDM()));
         			//compare Method
-        			//System.out.println(compMethod(i.getMethod(),j.getMethod()));
+        			System.out.println(compMethod(i.getMethod(),j.getMethod()));
         		}
         	}
         }
@@ -221,21 +221,6 @@ public class opp {
     				if(!d.getp().equals(e.getp()))
     				{
     					sb.append("    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
-    				}
-    			}
-    		}
-    	}
-    	
-    	//compare if type change
-    	sb.append("\nType change: \n");
-    	for(DataMem d: pre)
-    	{
-    		for(DataMem e:post)
-    		{
-    			if (d.getName().equals(e.getName()))
-    			{
-    				if(!d.getType().equals(e.getType()))
-    				{
     					sb.append("    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
     				}
     			}
@@ -250,7 +235,90 @@ public class opp {
     //compare change in method information
     private static String compMethod(List<Method> pre, List<Method> post)
     {
-    	return "";
+    	//compare if method got deleted or added
+    	HashSet<String> pr = new HashSet<>();
+    	HashSet<String> po = new HashSet<>();
+    	HashSet<String> pr1 = new HashSet<>();
+    	StringBuilder sb1; 
+    	StringBuilder sb2 = new StringBuilder();
+    	for(Method m:pre)
+    	{
+    		sb1= new StringBuilder();
+    		sb1.append(m.getName()+"!");
+    		for(Param p:m.getParam())
+    		{
+    			sb1.append(p.getParam());
+    		}
+    		pr.add(sb1.toString());
+    	}
+    	pr1.addAll(pr);
+    	for(Method m:post)
+    	{
+    		sb1= new StringBuilder();
+    		sb1.append(m.getName()+"!");
+    		for(Param p:m.getParam())
+    		{
+    			sb1.append(p.getParam());
+    		}
+    		po.add(sb1.toString());
+    	}
+    	
+    	sb2.append("Removed Method: \n");
+    	pr.removeAll(po);
+    	for(String d:pr)
+    	{
+    		String s[]=d.split("!");
+    		if(s.length>1)
+    		{
+    			sb2.append("    "+s[0]+"("+s[1]+")"+"\n");
+    		}
+    		else
+    		{
+    			sb2.append("    "+s[0]+"()\n");
+    		}
+    	}
+    	sb2.append("\nAdded Method: \n");
+    	
+    	po.removeAll(pr1);
+    	
+    	for(String d:po)
+    	{
+    		String s[]=d.split("!");
+    		if(s.length>1)
+    		{
+    			sb2.append("    "+s[0]+"("+s[1]+")"+"\n");
+    		}
+    		else
+    		{
+    			sb2.append("    "+s[0]+"()\n");
+    		}
+    	}
+    	
+	
+    	//compare if the type/access of method changed
+    	sb2.append("\nChange in access of method: \n");
+    	for(Method m1:pre)
+    	{
+    		for(Method m2:post)
+    		{
+    			if (m1.getName().equals(m2.getName()))
+    			{
+    				if(m1.getParam().equals(m2.getParam()))
+    				{
+    					if(!m1.getp().equals(m2.getp()))
+    					{
+    						sb2.append("    Method "+m1.getName()+" change from "+m1.getp()+" to "+m2.getp()+"\n");
+    					}
+    					if(!m1.getType().equals(m2.getType()))
+    					{
+    						sb2.append("    Method "+m1.getName()+" change from "+m1.getType()+" to "+m2.getType()+"\n");
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	return sb2.toString();
     }
 
     
