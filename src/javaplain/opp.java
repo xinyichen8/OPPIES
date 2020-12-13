@@ -1,6 +1,7 @@
 package javaplain;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.antlr.runtime.ANTLRFileStream;
@@ -14,6 +15,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -43,7 +45,6 @@ public class opp {
 
                 newClass = parser.c;
                 ListOfClass.add(newClass);
-
             }
         }
 
@@ -51,9 +52,7 @@ public class opp {
         
         //save class into json file
         try {
-
             mapper.writeValue(sfile, ListOfClass);
-
         } catch (JsonMappingException e) {
             e.printStackTrace();
         } catch (JsonGenerationException e) {
@@ -61,24 +60,19 @@ public class opp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        //read from json
-//      for (int i = 0; i < ListOfClass.size(); i++) {
-//
-//      }
 
-//		//load json file
-//		try{
-//			Class a = mapper.readValue(file,Class.class);
-//			System.out.println(a.getMethod());
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
+		//load json file
+        List<Class> classList = new ArrayList<>();
+		try{
+			classList =  Arrays.asList(mapper.readValue(sfile,Class[].class));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 
         //move class to previous
-        pre = ListOfClass;
+        pre = classList;
         post = new ArrayList<>();
-        String post_dir = "D:\\Users\\xinyi\\eclipse-workspace\\OO-PIES\\src\\anom_sda_post";
+        String post_dir = "C:\\Users\\martin\\Desktop\\antlr";
         File post_folder = new File(post_dir);
         File[] post_file = post_folder.listFiles();
 
@@ -356,7 +350,7 @@ public class opp {
             for(String s: LC.get(parentIndex).getParent()) {
             int Aindex = getIndexOf(LC,s);
             if(Aindex!=-1){
-                LC.get(childIndex).setParent(s);
+                LC.get(childIndex).addParent(s);
                 checkAncestors(LC,childIndex,Aindex);
                 }
             }
@@ -407,10 +401,10 @@ public class opp {
         if (c.isAbs()) {
             System.out.println("is abstract");
         }
-        if (c.isf()) {
+        if (c.isfinal()) {
             System.out.println("is final");
         }
-        if (c.iss()) {
+        if (c.isstatic()) {
             System.out.println("is static");
         }
         if (c.isProtect()) {

@@ -4,10 +4,8 @@ package javaplain;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
+
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 
 @SuppressWarnings("all")
@@ -815,7 +813,7 @@ public class JavaPlainParser extends Parser {
 					// D:\\Users\\xinyi\\eclipse-workspace\\OPPIES\\src\\javaplain\\JavaPlain.g:68:9: 'static'
 					{
 					match(input,94,FOLLOW_94_in_classOrInterfaceModifier355); if (state.failed) return;
-					if ( state.backtracking==0 ) {c.setStatic(true);}
+					if ( state.backtracking==0 ) {c.setIsstatic(true);}
 					}
 					break;
 				case 7 :

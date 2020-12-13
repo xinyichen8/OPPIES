@@ -1,6 +1,6 @@
 package javaplain;
 
-public class DataMem 
+public class DataMem
 {
 	private String type;
 	private String pri_pub;
@@ -8,7 +8,20 @@ public class DataMem
 	private boolean abs;
 	private boolean isFinal;
 	private boolean isStatic;
-	
+
+	public DataMem(String type, String pri_pub, String name, boolean abs, boolean isFinal, boolean isStatic) {
+		this.type = type;
+		this.pri_pub = pri_pub;
+		this.name = name;
+		this.abs = abs;
+		this.isFinal = isFinal;
+		this.isStatic = isStatic;
+	}
+
+	public DataMem() {
+
+	}
+
 	public DataMem(String name)
 	{
 		this.name=name;
@@ -19,7 +32,7 @@ public class DataMem
 		isStatic=false;
 		
 	}
-	
+
 	public void settype(String t)
 	{
 		this.type=t;

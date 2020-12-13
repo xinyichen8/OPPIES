@@ -7,7 +7,10 @@ public class Call
 	{
 		this.call=c;
 	}
-	
+
+	public Call() {
+	}
+
 	public String getCall()
 	{
 		return this.call;

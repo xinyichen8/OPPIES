@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="antlr-3.5.2-complete">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/antlr/antlr-3.5.2-complete.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jackson lib/antlr-3.5.2-complete.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

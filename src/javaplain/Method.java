@@ -1,26 +1,49 @@
 package javaplain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 public class Method {
 	private String type;
-	private String pri_pub;
 	private String name;
 	private boolean abs;
-	private boolean isFinal;
-	private boolean isStatic;
 	private boolean protect;
 	private boolean strifp;
 	private boolean natives;
 	private boolean transients;
 	private boolean vola;
 	private boolean sync;
-	
-	
-	private ArrayList<DataMem> localVar;
 	private ArrayList<Call> call;
 	private ArrayList<Param> param;
-	
+	private String pri_pub;
+	private boolean isStatic;
+	private boolean isFinal;
+	private ArrayList<DataMem> localVar;
+
+	public Method(String type, String name, boolean abs, boolean protect, boolean strifp, boolean natives, boolean transients, boolean vola, boolean sync, ArrayList<Call> call, ArrayList<Param> param, String pri_pub, boolean isStatic, boolean isFinal, ArrayList<DataMem> localVar) {
+		this.type = type;
+		this.name = name;
+		this.abs = abs;
+		this.protect = protect;
+		this.strifp = strifp;
+		this.natives = natives;
+		this.transients = transients;
+		this.vola = vola;
+		this.sync = sync;
+		this.call = call;
+		this.param = param;
+		this.pri_pub = pri_pub;
+		this.isStatic = isStatic;
+		this.isFinal = isFinal;
+		this.localVar = localVar;
+	}
+
+	public Method() {
+	}
+
+
+
 	public Method(String type)
 	{
 		this.name="";
@@ -94,7 +117,15 @@ public class Method {
 
 		return this.pri_pub;
 	}
-	
+
+	public void setLocalVar(ArrayList<DataMem> localVar) {
+		this.localVar = localVar;
+	}
+
+	public ArrayList<DataMem> getLocalVar() {
+		return localVar;
+	}
+
 	public boolean getabs()
 	{
 		return this.abs;
