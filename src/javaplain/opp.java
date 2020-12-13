@@ -7,7 +7,11 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,6 +61,19 @@ public class opp {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        //read from json
+//      for (int i = 0; i < ListOfClass.size(); i++) {
+//
+//      }
+
+//		//load json file
+//		try{
+//			Class a = mapper.readValue(file,Class.class);
+//			System.out.println(a.getMethod());
+//		}catch(IOException e){
+//			e.printStackTrace();
+//		}
 
         //move class to previous
         pre = ListOfClass;
@@ -78,7 +95,7 @@ public class opp {
             }
         }
         
-        
+        StringBuilder sbw;
         //comparison
         for(Class i : pre)
         {
@@ -86,10 +103,26 @@ public class opp {
         	{
         		if (i.getName().equals(j.getName()))
         		{
-        			//compare dataMember
-        			System.out.println(compDM(i.getDM(),j.getDM()));
+        			sbw=new StringBuilder();
+        			sbw.append("//autodoc\n");
+        			sbw.append(compDM(i.getDM(),j.getDM()));
         			//compare Method
-        			System.out.println(compMethod(i.getMethod(),j.getMethod()));
+        			sbw.append(compMethod(i.getMethod(),j.getMethod()));
+        			sbw.append("\n//end autodoc\n");
+        			File f = new File(post_dir+"\\"+i.getName().split(" ")[0]+".java");
+        			BufferedReader br = new BufferedReader(new FileReader(f));
+        			String temp="";
+        			String line = "";
+        			while((line=br.readLine())!=null)
+        			{
+        				temp=temp+line+"\n";
+        			}
+        			temp=sbw.toString()+temp;
+        			f.delete();
+        			FileWriter out = new FileWriter(f);
+        			out.write(temp);
+        			out.close();
+        			
         		}
         	}
         }
@@ -160,17 +193,7 @@ public class opp {
         }
 
 
-//        for (int i = 0; i < ListOfClass.size(); i++) {
-//
-//        }
 
-//		//load json file
-//		try{
-//			Class a = mapper.readValue(file,Class.class);
-//			System.out.println(a.getMethod());
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
 
 
     }
@@ -195,23 +218,23 @@ public class opp {
     	}
     	pr1.addAll(pr);
 
-    	sb.append("Removed param: \n");
+    	sb.append("//Removed param: \n");
     	pr.removeAll(po);
     	for(String d:pr)
     	{
-    		sb.append("    "+d+"\n");
+    		sb.append("//    "+d+"\n");
     	}
-    	sb.append("\nAdded param: \n");
+    	sb.append("\n//Added param: \n");
     	
     	po.removeAll(pr1);
     	
     	for(String d:po)
     	{
-    		sb.append("    "+d+"\n");
+    		sb.append("//    "+d+"\n");
     	}
     	
     	//compare if access change
-    	sb.append("\nChange in access: \n");
+    	sb.append("\n//Change in access: \n");
     	for(DataMem d: pre)
     	{
     		for(DataMem e:post)
@@ -220,8 +243,8 @@ public class opp {
     			{
     				if(!d.getp().equals(e.getp()))
     				{
-    					sb.append("    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
-    					sb.append("    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
+    					sb.append("//    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
+    					sb.append("//    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
     				}
     			}
     		}
@@ -263,21 +286,21 @@ public class opp {
     		po.add(sb1.toString());
     	}
     	
-    	sb2.append("Removed Method: \n");
+    	sb2.append("//Removed Method: \n");
     	pr.removeAll(po);
     	for(String d:pr)
     	{
     		String s[]=d.split("!");
     		if(s.length>1)
     		{
-    			sb2.append("    "+s[0]+"("+s[1]+")"+"\n");
+    			sb2.append("//    "+s[0]+"("+s[1]+")"+"\n");
     		}
     		else
     		{
-    			sb2.append("    "+s[0]+"()\n");
+    			sb2.append("//    "+s[0]+"()\n");
     		}
     	}
-    	sb2.append("\nAdded Method: \n");
+    	sb2.append("\n//Added Method: \n");
     	
     	po.removeAll(pr1);
     	
@@ -286,17 +309,17 @@ public class opp {
     		String s[]=d.split("!");
     		if(s.length>1)
     		{
-    			sb2.append("    "+s[0]+"("+s[1]+")"+"\n");
+    			sb2.append("//    "+s[0]+"("+s[1]+")"+"\n");
     		}
     		else
     		{
-    			sb2.append("    "+s[0]+"()\n");
+    			sb2.append("//    "+s[0]+"()\n");
     		}
     	}
     	
 	
     	//compare if the type/access of method changed
-    	sb2.append("\nChange in access of method: \n");
+    	sb2.append("\n//Change in access of method: \n");
     	for(Method m1:pre)
     	{
     		for(Method m2:post)
@@ -307,11 +330,11 @@ public class opp {
     				{
     					if(!m1.getp().equals(m2.getp()))
     					{
-    						sb2.append("    Method "+m1.getName()+" change from "+m1.getp()+" to "+m2.getp()+"\n");
+    						sb2.append("//    Method "+m1.getName()+" change from "+m1.getp()+" to "+m2.getp()+"\n");
     					}
     					if(!m1.getType().equals(m2.getType()))
     					{
-    						sb2.append("    Method "+m1.getName()+" change from "+m1.getType()+" to "+m2.getType()+"\n");
+    						sb2.append("//    Method "+m1.getName()+" change from "+m1.getType()+" to "+m2.getType()+"\n");
     					}
     				}
     			}
