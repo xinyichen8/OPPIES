@@ -60,10 +60,11 @@ public class opp {
 
         //move class to previous
         pre = ListOfClass;
-        String post_dir = "";
+        post = new ArrayList<>();
+        String post_dir = "D:\\Users\\xinyi\\eclipse-workspace\\OO-PIES\\src\\anom_sda_post";
         File post_folder = new File(post_dir);
         File[] post_file = post_folder.listFiles();
-        
+
         for (int i = 0; i < post_file.length; i++) {
             File file = post_file[i];
             if (file.isFile() && file.getName().endsWith(".java")) {
@@ -86,8 +87,9 @@ public class opp {
         		if (i.getName().equals(j.getName()))
         		{
         			//compare dataMember
-        			
+        			System.out.println(compDM(i.getDM(),j.getDM()));
         			//compare Method
+        			//System.out.println(compMethod(i.getMethod(),j.getMethod()));
         		}
         	}
         }
@@ -176,8 +178,12 @@ public class opp {
     //compare change in class data member information
     private static String compDM(List<DataMem> pre, List<DataMem> post)
     {
+    	//compare if deletion or addition happens
+    	StringBuilder sb = new StringBuilder();
     	HashSet<String> pr = new HashSet<String>();
     	HashSet<String> po = new HashSet<String>();
+    	HashSet<String> pr1 = new HashSet<String>();
+    	
     	for(DataMem d:pre)
     	{
     		pr.add(d.getName());
@@ -187,13 +193,57 @@ public class opp {
     	{
     		po.add(d.getName());
     	}
-    	
-    	if(pr.size()>po.size())
+    	pr1.addAll(pr);
+
+    	sb.append("Removed param: \n");
+    	pr.removeAll(po);
+    	for(String d:pr)
     	{
-    		
+    		sb.append("    "+d+"\n");
+    	}
+    	sb.append("\nAdded param: \n");
+    	
+    	po.removeAll(pr1);
+    	
+    	for(String d:po)
+    	{
+    		sb.append("    "+d+"\n");
     	}
     	
-		return "";
+    	//compare if access change
+    	sb.append("\nChange in access: \n");
+    	for(DataMem d: pre)
+    	{
+    		for(DataMem e:post)
+    		{
+    			if (d.getName().equals(e.getName()))
+    			{
+    				if(!d.getp().equals(e.getp()))
+    				{
+    					sb.append("    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
+    				}
+    			}
+    		}
+    	}
+    	
+    	//compare if type change
+    	sb.append("\nType change: \n");
+    	for(DataMem d: pre)
+    	{
+    		for(DataMem e:post)
+    		{
+    			if (d.getName().equals(e.getName()))
+    			{
+    				if(!d.getType().equals(e.getType()))
+    				{
+    					sb.append("    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
+    				}
+    			}
+    		}
+    	}
+    	
+    	
+		return sb.toString();
     	
     }
     
@@ -203,6 +253,9 @@ public class opp {
     	return "";
     }
 
+    
+    
+    
     private static void checkAncestors(List<Class> LC, int childIndex, int parentIndex){
         if(LC.get(parentIndex).getParent().size()==0){
             return;
