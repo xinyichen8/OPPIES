@@ -72,7 +72,9 @@ public class opp {
         //move class to previous
         pre = classList;
         post = new ArrayList<>();
-        String post_dir = "C:\\Users\\martin\\Desktop\\antlr";
+        //String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\add_delete_method\\post";
+        String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\datamem\\post";
+        //String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\change_access\\post";
         File post_folder = new File(post_dir);
         File[] post_file = post_folder.listFiles();
 
@@ -228,7 +230,7 @@ public class opp {
     	}
     	
     	//compare if access change
-    	sb.append("\n//Change in access: \n");
+    	sb.append("\n//Change in access or type: \n");
     	for(DataMem d: pre)
     	{
     		for(DataMem e:post)
@@ -238,6 +240,10 @@ public class opp {
     				if(!d.getp().equals(e.getp()))
     				{
     					sb.append("//    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
+    					
+    				}
+    				if(!d.getType().equals(e.getType()))
+    				{
     					sb.append("//    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
     				}
     			}
@@ -313,7 +319,7 @@ public class opp {
     	
 	
     	//compare if the type/access of method changed
-    	sb2.append("\n//Change in access of method: \n");
+    	sb2.append("\n//Change in access or type of method: \n");
     	for(Method m1:pre)
     	{
     		for(Method m2:post)
