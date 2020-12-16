@@ -72,8 +72,8 @@ public class opp {
         //move class to previous
         pre = classList;
         post = new ArrayList<>();
-        //String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\add_delete_method\\post";
-        String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\datamem\\post";
+        String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\add_delete_method\\post";
+        //String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\datamem\\post";
         //String post_dir = "C:\\Users\\xinyi\\Desktop\\547\\project\\samples\\change_access\\post";
         File post_folder = new File(post_dir);
         File[] post_file = post_folder.listFiles();
@@ -205,12 +205,12 @@ public class opp {
     	
     	for(DataMem d:pre)
     	{
-    		pr.add(d.getName());
+    		pr.add(d.getType()+" "+d.getName());
     		
     	}
     	for(DataMem d:post)
     	{
-    		po.add(d.getName());
+    		po.add(d.getType()+" "+d.getName());
     	}
     	pr1.addAll(pr);
 
@@ -230,7 +230,7 @@ public class opp {
     	}
     	
     	//compare if access change
-    	sb.append("\n//Change in access or type: \n");
+    	sb.append("\n//Change in access of datamember: \n");
     	for(DataMem d: pre)
     	{
     		for(DataMem e:post)
@@ -242,10 +242,10 @@ public class opp {
     					sb.append("//    Data Member "+d.getName()+" change from "+d.getp()+" to "+e.getp()+"\n");
     					
     				}
-    				if(!d.getType().equals(e.getType()))
-    				{
-    					sb.append("//    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
-    				}
+//    				if(!d.getType().equals(e.getType()))
+//    				{
+//    					sb.append("//    Data Member "+d.getName()+" change from "+d.getType()+" to "+e.getType()+"\n");
+//    				}
     			}
     		}
     	}
@@ -270,7 +270,15 @@ public class opp {
     		sb1.append(m.getName()+"!");
     		for(Param p:m.getParam())
     		{
-    			sb1.append(p.getParam());
+    			if(p.getParam().contains(" null"))
+    			{
+    				sb1.append(p.getParam().replace(" null", "")+" ");
+    			}
+    			else
+    			{
+    				sb1.append(p.getParam()+" ");
+    			}
+    			
     		}
     		pr.add(sb1.toString());
     	}
@@ -281,7 +289,7 @@ public class opp {
     		sb1.append(m.getName()+"!");
     		for(Param p:m.getParam())
     		{
-    			sb1.append(p.getParam());
+    			sb1.append(p.getParam()+" ");
     		}
     		po.add(sb1.toString());
     	}
@@ -330,7 +338,7 @@ public class opp {
     				{
     					if(!m1.getp().equals(m2.getp()))
     					{
-    						sb2.append("//    Method "+m1.getName()+" change from "+m1.getp()+" to "+m2.getp()+"\n");
+    						sb2.append("//    Method "+m1.getp()+" "+m1.getName()+" change from "+m1.getp()+" to "+m2.getp()+"\n");
     					}
     					if(!m1.getType().equals(m2.getType()))
     					{
